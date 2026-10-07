@@ -1234,6 +1234,20 @@
     each($$('[data-404], a[href="404.html"]'), function (a) {
       on(a, 'click', function () { Back404.record(); });
     });
+    /* Phone numbers and email addresses are not live actions on this site:
+       a delegated handler catches every tel:/mailto: link - static markup,
+       footer injected by layout.js, anything added later - records the current
+       page so the 404 page can offer an exact return, then routes to 404.
+       Delegation means no per-link wiring is needed as content changes. */
+    on(document, 'click', function (e) {
+      if (!e.target || !e.target.closest) return;
+      var a = e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+      if (!a) return;
+      e.preventDefault();
+      if (document.getElementById('back404')) return;
+      Back404.record();
+      setTimeout(function () { location.href = '404.html'; }, 700);
+    });
     /* Exact-position capture. The per-link handlers above only fire for links
        that existed when boot() ran, so anything injected later (cart markup from
        Store.render(), drawer content), plus form submits and location.href

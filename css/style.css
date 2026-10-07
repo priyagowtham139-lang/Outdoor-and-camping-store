@@ -457,11 +457,12 @@ body[data-page="contact"] .phero p{color:#000;}
 .drawer{
   position:fixed;top:0;right:0;height:100%;width:min(400px,90vw);z-index:var(--z-drawer);
   background:var(--ink-2);border-left:1px solid var(--line-2);
-  transform:translateX(102%);transition:transform .55s var(--ease);
+  transform:translateX(102%);transition:transform .55s var(--ease),visibility 0s linear .55s;
+  visibility:hidden;
   display:flex;flex-direction:column;overflow:hidden;
   box-shadow:-30px 0 70px rgba(0,0,0,.7);
 }
-.drawer.open{transform:translateX(0);}
+.drawer.open{transform:translateX(0);visibility:visible;transition:transform .55s var(--ease),visibility 0s linear 0s;}
 .drawer::before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
@@ -580,6 +581,12 @@ body[data-page="contact"] .phero p{color:#000;}
   user-select:none;
 }
 .marquee.no-mask{-webkit-mask-image:none;mask-image:none;}
+/* On phones the 7%/93% edge masks hide marquee copy at the screen edges, so the
+   right side reads as a black fade that covers the content. Drop them on small
+   screens; desktop keeps the soft edge fade. */
+@media(max-width:860px){
+  .marquee:not(.vert){-webkit-mask-image:none;mask-image:none;}
+}
 .marquee-track{display:flex;align-items:center;flex:0 0 auto;gap:var(--mq-gap,2.2rem);padding-right:var(--mq-gap,2.2rem);will-change:transform;}
 .marquee-track.rev{animation:marqueeX var(--mq-dur,34s) linear infinite reverse;}
 .marquee-track.fwd{animation:marqueeX var(--mq-dur,34s) linear infinite;}
@@ -1060,10 +1067,11 @@ body[data-page="contact"] .phero p{color:#000;}
 .panel{
   position:fixed;top:0;right:0;height:100%;width:min(440px,100vw);z-index:1000;
   background:var(--ink-2);border-left:1px solid var(--line-2);
-  transform:translateX(102%);transition:transform .55s var(--ease);
+  transform:translateX(102%);transition:transform .55s var(--ease),visibility 0s linear .55s;
+  visibility:hidden;
   display:flex;flex-direction:column;box-shadow:-30px 0 70px rgba(0,0,0,.7);
 }
-.panel.open{transform:translateX(0);}
+.panel.open{transform:translateX(0);visibility:visible;transition:transform .55s var(--ease),visibility 0s linear 0s;}
 .panel-top{display:flex;align-items:center;gap:.8rem;padding:1.1rem 1.2rem;border-bottom:1px solid var(--line);flex:0 0 auto;}
 .panel-top h3{font-family:var(--ff-alt);font-weight:700;font-size:1.05rem;letter-spacing:-.02em;}
 .panel-top .cnt{font-family:var(--ff-mono);font-size:.62rem;color:var(--mute-2);letter-spacing:.16em;margin-left:auto;}

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Gear Systems — Stackly Equipment Architecture, Load Paths &amp; Materials</title>
+<meta name="description" content="Inside the Stackly engineering platform: four series built on shared poles, hubs and fabrics. Compare load paths, packed weights, materials and repair standards across the full range." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="gear">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main>
+
+  <!-- ================= 1 · PAGE HERO — GEAR SYSTEMS ================= -->
+  <section class="phero" id="gear-hero" aria-labelledby="gear-h">
+    <div class="phero-bg">
+      <img src="assets/gear_hero_image.webp" alt="Snow-loaded ridgeline above a glacial valley" loading="lazy" />
+    </div>
+
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        <span>Gear</span>
+      </nav>
+
+      <span class="eyebrow">Equipment Architecture</span>
+      <h1 class="d2" id="gear-h" style="margin:1.1rem 0 1.2rem;max-width:19ch" data-split>Gear systems,<br />built on <span class="hl">one frame.</span></h1>
+
+      <p class="lead" style="max-width:58ch">Every Stackly series runs on the same engineering platform. Four product families, one set of pole diameters, one hub casting, one fabrics library and one repair standard. That is how a 1.4&nbsp;kg alpine tarp and a 68&nbsp;litre expedition haul end up sharing the same load path.</p>
+
+      
+    </div>
+
+    <div style="position:relative;z-index:2;margin-top:clamp(2.6rem,6vw,4.6rem)">
+      <div class="marquee" style="--mq-dur:40s">
+        <div class="marquee-track fwd">
+          <span class="mq-item">Alpine Series<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">Basecamp Series</span>
+          <span class="mq-item">Expedition Series<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline thin">Traverse Series</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:2;margin-top:clamp(.8rem,2vw,1.4rem)">
+      <div class="marquee no-mask" style="--mq-dur:56s">
+        <div class="marquee-track rev">
+          <span class="mq-item mq-outline thin" style="font-size:clamp(.95rem,2vw,1.5rem)">7001-T6 poles</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:clamp(.95rem,2vw,1.5rem)">Tensile load paths</span><i class="mq-dot"></i>
+          <span class="mq-item mq-outline thin" style="font-size:clamp(.95rem,2vw,1.5rem)">Monocoque hubs</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:clamp(.95rem,2vw,1.5rem)">Single-polymer fabric</span><i class="mq-dot"></i>
+          <span class="mq-item mq-outline thin" style="font-size:clamp(.95rem,2vw,1.5rem)">Field-replaceable sections</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:clamp(.95rem,2vw,1.5rem)">Pole-sleeve topology</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2 · COLLECTION GRID (4 SERIES) ================= -->
+  <section class="sec bg-lines" id="collections" aria-labelledby="coll-h">
+    <div class="blob w" style="top:-12%;right:-12%"></div>
+    <div class="blob w" style="bottom:-24%;left:-14%;opacity:.07"></div>
+
+    <div class="wrap" style="position:relative;z-index:1">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">The Four Collections</span>
+          <h2 class="d2 mt-l" id="coll-h" data-split>Four series.<br />One <span class="hl">load path.</span></h2>
+        </div>
+        <div>
+          <p class="lead">A series is not a style. It is a tolerance envelope. Alpine runs 8.5&nbsp;mm poles at 68&nbsp;g/m for a 0.62&nbsp;kg carried weight; Expedition runs 12.7&nbsp;mm at 96&nbsp;g/m and welds six reinforcement patches into every seam. Choose the series that matches your worst night, not your best one.</p>
+        </div>
+      </div>
+
+      <div class="g g-2 series-grid">
+
+        <article class="move-l" data-reveal="left" style="display:flex">
+            <a class="spot spot-lg" href="shop.html#tents" style="display:flex;flex-direction:column;flex:1 1 auto;width:100%;min-height:clamp(320px,30vw,380px)">
+              <div style="position:relative;aspect-ratio:3/4;overflow:hidden">
+                <img src="assets/Alpine_series.webp" alt="Trekking-pole shelter pitched below a granite headwall" loading="lazy" data-parallax="0.05" style="filter:contrast(1.1) brightness(.82);height:118%;width:100%;object-fit:cover" />
+                
+                <span class="tag" style="position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">Series 01 / 3-season</span>
+                <div class="tilt" style="position:absolute;left:1.4rem;right:1.4rem;bottom:1.3rem">
+                  <b class="d3" style="display:block">Alpine Series</b>
+                  <span class="mono dim">0.62&ndash;2.9 kg &middot; 3 season &middot; 9.4 m&sup2;</span>
+                </div>
+              </div>
+               <div class="spot-pad" style="flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between">
+                 <ul class="feat" style="gap:0;margin-bottom:1.3rem">
+                   <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-ruler-combined"></i></span><div><b>8.5 mm 7001-T6 pole family</b><p>Shock-corded 40 cm sections, ferrule-spliced in 90 seconds without a maul.</p></div></li>
+                   <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-wind"></i></span><div><b>Gust envelope 90 km/h</b><p>Tension tuned from a single continuous guyline loop, not six separate points.</p></div></li>
+                   <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-scissors"></i></span><div><b>Pole-sleeve topology</b><p>Sleeves are external and half-open, so a crushed section is swapped without unpitching.</p></div></li>
+                 </ul>
+                 <span class="link-u">View series <i class="fa-solid fa-arrow-right-long"></i></span>
+               </div>
+            </a>
+        </article>
+
+        <article class="move-r" data-reveal="right" style="display:flex">
+            <a class="spot spot-lg" href="shop.html#cooking" style="display:flex;flex-direction:column;flex:1 1 auto;width:100%;min-height:clamp(320px,30vw,380px)">
+              <div style="position:relative;aspect-ratio:3/4;overflow:hidden">
+                <img src="assets/basecamp_series (2).webp" alt="Modular basecamp kitchen station set up beside a haul bag" loading="lazy" data-parallax="0.05" style="filter:contrast(1.1) brightness(.82);height:118%;width:100%;object-fit:cover" />
+                
+                <span class="tag" style="position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">Series 02 / Vehicle access</span>
+                <div class="tilt" style="position:absolute;left:1.4rem;right:1.4rem;bottom:1.3rem">
+                  <b class="d3" style="display:block">Basecamp Series</b>
+                  <span class="mono dim">1.8&ndash;6.2 kg &middot; 4 modules &middot; 18.6 m&sup2;</span>
+                </div>
+              </div>
+               <div class="spot-pad" style="flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between">
+                 <ul class="feat" style="gap:0;margin-bottom:1.3rem">
+                   <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-cubes"></i></span><div><b>Shared 32 mm hub casting</b><p>Every pole, ridge and awning junction uses the same moulded hub, so one spare covers all four.</p></div></li>
+                   <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-box-open"></i></span><div><b>Cradle-and-column floor</b><p>Load transfers to the frame, not the fabric, so a 40 kg cache never bows the bathtub.</p></div></li>
+                   <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-fire-burner"></i></span><div><b>340 g kitchen stack</b><p>Nesting titanium, piezo ignition, 3 min 20 s litre boil at 1,200 m.</p></div></li>
+                 </ul>
+                 <span class="link-u">View series <i class="fa-solid fa-arrow-right-long"></i></span>
+               </div>
+            </a>
+        </article>
+
+        <article class="move-u" data-reveal="scale" style="display:flex">
+          <a class="spot spot-lg" href="shop.html#sleep" style="display:flex;flex-direction:column;flex:1 1 auto;width:100%;min-height:clamp(320px,30vw,380px)">
+            <div style="position:relative;aspect-ratio:3/4;overflow:hidden">
+              <img src="assets/expedition_series.webp" alt="Expedition dome on a snow plateau under low cloud" loading="lazy" data-parallax="0.05" style="filter:contrast(1.1) brightness(.82);height:118%;width:100%;object-fit:cover" />
+              
+              <span class="tag" style="position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">Series 03 / 4-season</span>
+              <div class="tilt" style="position:absolute;left:1.4rem;right:1.4rem;bottom:1.3rem">
+                <b class="d3" style="display:block">Expedition Series</b>
+                <span class="mono dim">3.1&ndash;9.4 kg &middot; 4 season &middot; -24 &deg;C</span>
+              </div>
+            </div>
+             <div class="spot-pad" style="flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between">
+               <ul class="feat" style="gap:0;margin-bottom:1.3rem">
+                 <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-snowflake"></i></span><div><b>12.7 mm heavy-wall poles</b><p>96 g/m 7001-T6 with a 4.6 kN axial rating and a doubled ferrule at every joint.</p></div></li>
+                 <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-layer-group"></i></span><div><b>Reinforced load path</b><p>Six welded stress-relief patches break the seam tension into the hub, not the fabric.</p></div></li>
+                 <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-temperature-low"></i></span><div><b>850-fill certified down</b><p>Responsibly sourced, 90/10, RDS chain of custody audited annually.</p></div></li>
+               </ul>
+               <span class="link-u">View series <i class="fa-solid fa-arrow-right-long"></i></span>
+             </div>
+          </a>
+        </article>
+
+        <article class="move-r" data-reveal="right" style="display:flex">
+          <a class="spot spot-lg" href="shop.html#packs" style="display:flex;flex-direction:column;flex:1 1 auto;width:100%;min-height:clamp(320px,30vw,380px)">
+            <div style="position:relative;aspect-ratio:3/4;overflow:hidden">
+              <img src="assets/traverse_series.webp" alt="Ultralight framed pack crossing an open traverse" loading="lazy" data-parallax="0.05" style="filter:contrast(1.1) brightness(.82);height:118%;width:100%;object-fit:cover" />
+              
+              <span class="tag" style="position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">Series 04 / Long distance</span>
+              <div class="tilt" style="position:absolute;left:1.4rem;right:1.4rem;bottom:1.3rem">
+                <b class="d3" style="display:block">Traverse Series</b>
+                <span class="mono dim">0.41&ndash;1.9 kg &middot; 3 season &middot; 8&ndash;21 nights</span>
+              </div>
+            </div>
+             <div class="spot-pad" style="flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between">
+               <ul class="feat" style="gap:0;margin-bottom:1.3rem">
+                <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-feather"></i></span><div><b>Grammage discipline</b><p>Nothing over 38 g/m² enters the programme, including every reinforcement panel.</p></div></li>
+                <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-arrows-rotate"></i></span><div><b>Removable load frame</b><p>The frame unbolts in four places and travels as a 210 g flat panel when you do not need it.</p></div></li>
+                <li class="feat-row"><span class="feat-ic"><i class="fa-solid fa-battery-full"></i></span><div><b>Integrated power spine</b><p>A 1.2 Ah LiFePO4 cell and a 19.5&times;10.5 cm mono panel share the back panel channel.</p></div></li>
+              </ul>
+              <span class="link-u">View series <i class="fa-solid fa-arrow-right-long"></i></span>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 · 3D MODULE EXPLORER ================= -->
+  <section class="sec bg-dots" id="modules" aria-labelledby="mod-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Module Explorer</span>
+          <h2 class="d2 mt-l" id="mod-h" data-split>Four modules.<br />One <span class="hl">interface.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Shelter, carry, kitchen and power are not four products. They are four modules that bolt to the same 32&nbsp;mm hub and draw from the same 40&nbsp;g/m² fabric library. Pick the load path you need and the rest becomes optional weight.</p>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-5 move-l" data-reveal="left" style="display:grid;gap:clamp(1rem,1.6vw,1.5rem)">
+
+          <article class="spot spot-3d spot-pad" data-tilt="9">
+            <div class="tilt" style="display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:center">
+              <span class="icon-btn" aria-hidden="true" style="width:54px;height:54px;font-size:1rem"><i class="fa-solid fa-tent"></i></span>
+              <span>
+                <span class="tag">Module 01</span>
+                <b class="d4" style="display:block;margin:.55rem 0 .3rem">Shelter Core</b>
+                <span class="dim" style="font-size:.84rem">Geodesic frame, single-pole hubs, 8 repair sleeves in the door pocket.</span>
+              </span>
+            </div>
+          </article>
+
+          <article class="spot spot-3d spot-pad" data-tilt="9" style="margin-left:clamp(0px,2vw,1.4rem)">
+            <div class="tilt" style="display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:center">
+              <span class="icon-btn" aria-hidden="true" style="width:54px;height:54px;font-size:1rem"><i class="fa-solid fa-person-hiking"></i></span>
+              <span>
+                <span class="tag">Module 02</span>
+                <b class="d4" style="display:block;margin:.55rem 0 .3rem">Carry System</b>
+                <span class="dim" style="font-size:.84rem">Framed haul with load transfer, 22 to 68 litre shells on one back pattern.</span>
+              </span>
+            </div>
+          </article>
+
+          <article class="spot spot-3d spot-pad" data-tilt="9">
+            <div class="tilt" style="display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:center">
+              <span class="icon-btn" aria-hidden="true" style="width:54px;height:54px;font-size:1rem"><i class="fa-solid fa-fire-burner"></i></span>
+              <span>
+                <span class="tag">Module 03</span>
+                <b class="d4" style="display:block;margin:.55rem 0 .3rem">Camp Kitchen</b>
+                <span class="dim" style="font-size:.84rem">Nesting titanium, stove, windscreen and fuel bottle in 340 g total.</span>
+              </span>
+            </div>
+          </article>
+
+          <article class="spot spot-3d spot-pad" data-tilt="9" style="margin-left:clamp(0px,2vw,1.4rem)">
+            <div class="tilt" style="display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:center">
+              <span class="icon-btn" aria-hidden="true" style="width:54px;height:54px;font-size:1rem"><i class="fa-solid fa-bolt"></i></span>
+              <span>
+                <span class="tag">Module 04</span>
+                <b class="d4" style="display:block;margin:.55rem 0 .3rem">Power Module</b>
+                <span class="dim" style="font-size:.84rem">LiFePO4 bank, mono panel and a 40 mm pass-through for the light cable.</span>
+              </span>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="c-7 move-r" data-reveal="right" style="margin-inline-start:auto">
+
+          <div class="media-frame ratio" data-reveal="scale">
+            <video class="media-video" autoplay muted loop playsinline preload="metadata" aria-label="Camping by the riverside">
+              <source src="assets/picnic_compressed.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="table-wrap" style="margin-top:clamp(1rem,1.8vw,1.6rem)">
+            <div class="tbl-scroll">
+              <table class="tbl" style="min-width:460px">
+                <caption class="sr">Module interface dimensions</caption>
+                <thead>
+                  <tr><th scope="col">Interface</th><th scope="col">Spec</th><th scope="col">Tolerance</th><th scope="col">Load</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="t-strong">Hub bore</td><td>32.0 mm</td><td>&plusmn;0.15 mm</td><td>2.4 kN shear</td></tr>
+                  <tr><td class="t-strong">Pole family</td><td>8.5 / 9.8 / 12.7 mm</td><td>&plusmn;0.05 mm</td><td>4.6 kN axial</td></tr>
+                  <tr><td class="t-strong">Fabric shell</td><td>40&ndash;70 g/m&sup2;</td><td>&plusmn;3 g/m&sup2;</td><td>4.1 kN/m</td></tr>
+                  <tr><td class="t-strong">Section length</td><td>40 cm</td><td>&plusmn;2 mm</td><td>Shock-corded</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5 · KIT BUILDER ================= -->
+  <section class="sec bg-grid" id="builder" aria-labelledby="bld-h">
+    <div class="marquee vert hide-desk" style="position:absolute;left:0;top:8rem;height:200px;width:56px;z-index:1" aria-hidden="true">
+      <div class="marquee-track fwd" style="--mq-dur:24s">
+        <div class="mq-item mq-outline thin" style="font-size:1.1rem">32 mm hub</div>
+        <div class="mq-item" style="font-size:1.1rem">Shock cord</div>
+        <div class="mq-item mq-outline thin" style="font-size:1.1rem">Ferrule</div>
+        <div class="mq-item" style="font-size:1.1rem">Guylines</div>
+      </div>
+    </div>
+
+    <div class="wrap" style="position:relative;z-index:2">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Kit Builder</span>
+          <h2 class="d2 mt-l" id="bld-h" data-split>Set the budget.<br />We cap the <span class="hl">loadout.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Four decisions, one number. Tell the builder how far you are walking, what the weather does and what you refuse to carry, and the panel below returns a loadout that fits inside the mass budget. Nothing here is theoretical: every figure is the measured packed weight of a shipped build.</p>
+        </div>
+      </div>
+
+      <div class="steps" data-reveal>
+        <div class="step done"><span class="step-n">01 / DISTANCE</span><b>Route length</b><p>Weekend, hut circuit, or twenty nights unsupported. Select 3, 7 or 21 nights and the module count drops automatically.</p></div>
+        <div class="step done"><span class="step-n">02 / CLIMATE</span><b>Worst-case climate</b><p>Temperate forest, alpine freeze or a five-month ice crossing. Sets sleep rating and floor insulation.</p></div>
+        <div class="step done"><span class="step-n">03 / MODULES</span><b>What you need to carry</b><p>Shelter, carry, kitchen and power. Every module you drop returns mass to the budget.</p></div>
+        <div class="step"><span class="step-n">04 / MASS</span><b>Weight budget</b><p>Set a ceiling in kilograms. The gauge turns to a dashed line the moment a build exceeds it.</p></div>
+      </div>
+
+      <div class="g g-12 builder-grid" style="align-items:stretch">
+
+        <div class="c-4" data-reveal="left">
+          <div class="spot spot-pad stack" style="height:100%">
+            <span class="eyebrow">Selectable modules</span>
+            <h3 class="d4">Toggle what leaves the rucksack</h3>
+            <div class="chip-scroll" style="flex-direction:column;align-items:flex-start;gap:.55rem;overflow-y:visible">
+              <span class="chip on" aria-pressed="true"><i class="fa-solid fa-tent"></i> Shelter Core &middot; 1,240 g</span>
+              <span class="chip on" aria-pressed="true"><i class="fa-solid fa-person-hiking"></i> Carry 38 &middot; 890 g</span>
+              <span class="chip on" aria-pressed="true"><i class="fa-solid fa-fire-burner"></i> Kitchen 3 &middot; 340 g</span>
+              <span class="chip" aria-pressed="false"><i class="fa-solid fa-bolt"></i> Power Module &middot; 415 g</span>
+              <span class="chip" aria-pressed="true"><i class="fa-solid fa-bed"></i> Sleep -5 &deg;C &middot; 720 g</span>
+              <span class="chip" aria-pressed="false"><i class="fa-solid fa-mountain"></i> Crampon kit &middot; 960 g</span>
+            </div>
+            <p class="mono dim push-bottom">Hover any module to preview the loaded pack</p>
+          </div>
+        </div>
+
+        <div class="c-8 move-r" data-reveal="right">
+          <div class="spot spot-lg" style="height:100%;background:var(--fill);border-color:var(--fill);color:var(--ink)">
+            <div class="spot-pad stack" style="padding:clamp(1.5rem,3.2vw,2.8rem)">
+              <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+                <span class="eyebrow inv">Recommended loadout</span>
+                <span class="tag dark">Build ref. SGL-4.2-TRAV</span>
+              </div>
+              <h3 class="d3">Traverse 7 &middot; alpine freeze</h3>
+              <p class="lead inv" style="font-size:.96rem">A seven-night unsupported loop with a low freezing forecast on nights two and three. Shelter and carry modules retained, power module dropped, sleep rating raised one step.</p>
+
+              <div class="stat-grid">
+                <div class="stat-item" style="border-color:rgba(0,0,0,.2)">
+                  <b class="tnum" data-count="6" data-suffix=" pc">0</b>
+                  <small style="color:var(--mute-dark)">Modules packed</small>
+                </div>
+                <div class="stat-item" style="border-color:rgba(0,0,0,.2)">
+                  <b class="tnum" data-count="3.605" data-decimals="3" data-suffix=" kg">0</b>
+                  <small style="color:var(--mute-dark)">Packed weight</small>
+                </div>
+                <div class="stat-item" style="border-color:rgba(0,0,0,.2)">
+                  <b class="tnum" data-count="4.2" data-decimals="1" data-suffix=" kg">0</b>
+                  <small style="color:var(--mute-dark)">Mass budget</small>
+                </div>
+                <div class="stat-item" style="border-color:rgba(0,0,0,.2)">
+                  <b class="tnum" data-count="11" data-suffix=" min">0</b>
+                  <small style="color:var(--mute-dark)">Pitch time</small>
+                </div>
+              </div>
+
+              <div>
+                <div style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between;margin-bottom:.6rem">
+                  <b class="mono" style="color:var(--ink)">Budget used</b>
+                  <span class="mono" style="color:var(--mute-dark)">3.605 / 4.200 kg &middot; 86%</span>
+                </div>
+                <div class="bar-mini" style="background:rgba(0,0,0,.14);min-width:100%"><i style="width:86%;background:var(--ink)"></i></div>
+              </div>
+
+              <div class="table-wrap" style="border-color:rgba(0,0,0,.14)">
+                <div class="tbl-scroll">
+                <table class="tbl" style="min-width:420px">
+                  <caption class="sr">Recommended loadout weights</caption>
+                  <thead>
+                    <tr><th scope="col" style="color:var(--mute-dark);border-color:rgba(0,0,0,.14);background:rgba(0,0,0,.04)">Item</th><th scope="col" style="color:var(--mute-dark);border-color:rgba(0,0,0,.14);background:rgba(0,0,0,.04)">Module</th><th scope="col" style="color:var(--mute-dark);border-color:rgba(0,0,0,.14);background:rgba(0,0,0,.04)">Mass</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-color:rgba(0,0,0,.14)"><td class="t-strong" style="color:var(--ink)">Ridgeline 2 shelter</td><td style="color:var(--mute-dark)">Shelter Core</td><td style="color:var(--mute-dark)">1,240 g</td></tr>
+                    <tr style="border-color:rgba(0,0,0,.14)"><td class="t-strong" style="color:var(--ink)">Traverse 38 pack</td><td style="color:var(--mute-dark)">Carry System</td><td style="color:var(--mute-dark)">890 g</td></tr>
+                    <tr style="border-color:rgba(0,0,0,.14)"><td class="t-strong" style="color:var(--ink)">Kitchen 3 titanium set</td><td style="color:var(--mute-dark)">Camp Kitchen</td><td style="color:var(--mute-dark)">340 g</td></tr>
+                    <tr style="border-color:rgba(0,0,0,.14)"><td class="t-strong" style="color:var(--ink)">Coldline 500 bag</td><td style="color:var(--mute-dark)">Sleep</td><td style="color:var(--mute-dark)">720 g</td></tr>
+                    <tr style="border-bottom:0"><td class="t-strong" style="color:var(--ink)">Repair stock &amp; spares</td><td style="color:var(--mute-dark)">Common</td><td style="color:var(--mute-dark)">415 g</td></tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-wrap:wrap;gap:.7rem">
+                <button class="btn dark solid" type="button" data-add data-id="traverse-7-alpine" data-name="Traverse 7 Alpine Loadout" data-price="1246" data-cat="Gear Systems" data-magnetic>
+                  Add this build <i class="fa-solid fa-plus"></i>
+                </button>
+                <a class="btn dark" href="contact.html" data-magnetic>Ask an engineer <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+              </div>
+              <p class="mono" style="color:var(--mute-dark)">Weights measured packed, tolerance &plusmn;25 g &middot; Built to order in Reno, dispatched in 48 h</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 · MATERIALS, WARRANTY, CTA ================= -->
+  <section class="sec bg-grid-dark" id="materials" aria-labelledby="mat-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow inv">Materials &amp; Guarantee</span>
+          <h2 class="d2 mt-l" id="mat-h" data-split>Three materials.<br /><span class="hl">Fifteen years.</span></h2>
+        </div>
+        <div>
+          <p class="lead inv">Ninety-one per cent of the range is built from three material families, chosen because they can all be repaired, re-sourced and eventually recycled in a domestic stream. No blended laminates, no PFC coatings, no proprietary zips.</p>
+        </div>
+      </div>
+
+      <div class="g g-3">
+
+        <article class="spot spot-3d spot-pad" data-tilt="6" data-reveal>
+          <div class="tilt">
+            <svg viewBox="0 0 120 120" aria-hidden="true" style="width:74px;height:74px;margin-bottom:1.2rem">
+              <g fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                <rect x="18" y="18" width="84" height="84" rx="6" opacity=".9"/>
+                <path d="M18 44h84M18 76h84M44 18v84M76 18v84" opacity=".35"/>
+                <path d="M18 18l84 84M102 18l-84 84" opacity=".18"/>
+              </g>
+            </svg>
+            <span class="tag">Fabric</span>
+            <b class="d4" style="display:block;margin:.7rem 0 .5rem">Recycled 210D ripstop</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.2rem">Post-consumer nylon 6, 70 g/m&sup2;, 6,000 mm hydrostatic head with a silicone-free PU face. Single polymer, so it goes back into the same stream it came from.</p>
+            <div class="table-wrap">
+              <div class="tbl-scroll">
+                <table class="tbl" style="min-width:300px">
+                  <caption class="sr">Ripstop fabric specification</caption>
+                  <tbody>
+                    <tr><td class="t-strong">Denier</td><td>210D / 6x6</td></tr>
+                    <tr><td class="t-strong">Tear strength</td><td>68 N warp</td></tr>
+                    <tr><td class="t-strong">Recycled content</td><td>94%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="spot spot-3d spot-pad" data-tilt="6" data-reveal style="--rd:90ms">
+          <div class="tilt">
+            <svg viewBox="0 0 120 120" aria-hidden="true" style="width:74px;height:74px;margin-bottom:1.2rem">
+              <g fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                <circle cx="60" cy="60" r="42" opacity=".9"/>
+                <circle cx="60" cy="60" r="26" opacity=".4"/>
+                <circle cx="60" cy="60" r="10" opacity=".9"/>
+                <path d="M60 8v18M60 94v18M8 60h18M94 60h18" opacity=".55"/>
+                <path d="M24 24l13 13M83 83l13 13M96 24L83 37M37 83L24 96" opacity=".28"/>
+              </g>
+            </svg>
+            <span class="tag">Frame</span>
+            <b class="d4" style="display:block;margin:.7rem 0 .5rem">7001-T6 aluminium</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.2rem">Cold-drawn 7001-T6 for the pole family, 6061-T6 for every hub casting. Both alloy families recycle in the same secondary stream and both are stocked as spares indefinitely.</p>
+            <div class="table-wrap">
+              <div class="tbl-scroll">
+                <table class="tbl" style="min-width:300px">
+                  <caption class="sr">Aluminium specification</caption>
+                  <tbody>
+                    <tr><td class="t-strong">Tensile</td><td>430 MPa</td></tr>
+                    <tr><td class="t-strong">Axial rating</td><td>4.6 kN</td></tr>
+                    <tr><td class="t-strong">Anodising</td><td>Class II</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="spot spot-3d spot-pad" data-tilt="6" data-reveal style="--rd:180ms">
+          <div class="tilt">
+            <svg viewBox="0 0 120 120" aria-hidden="true" style="width:74px;height:74px;margin-bottom:1.2rem">
+              <g fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M60 16c18 0 30 14 30 32 0 26-30 56-30 56S30 74 30 48c0-18 12-32 30-32Z" opacity=".9"/>
+                <path d="M46 46c0-9 6-15 14-15s14 6 14 15-6 16-14 16-14-7-14-16Z" opacity=".3"/>
+                <path d="M52 62c3 5 6 7 8 7s5-2 8-7" opacity=".55"/>
+              </g>
+            </svg>
+            <span class="tag">Insulation</span>
+            <b class="d4" style="display:block;margin:.7rem 0 .5rem">850-fill down</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.2rem">Responsibly sourced 90/10 850-fill-power down with an RDS chain-of-custody audit every year. Baffles are 1.8 m&sup2;/m so the loft does not bridge after a compression cycle.</p>
+            <div class="table-wrap">
+              <div class="tbl-scroll">
+                <table class="tbl" style="min-width:300px">
+                  <caption class="sr">Down specification</caption>
+                  <tbody>
+                    <tr><td class="t-strong">Fill power</td><td>850 FP</td></tr>
+                    <tr><td class="t-strong">Certified low</td><td>-24 &deg;C</td></tr>
+                    <tr><td class="t-strong">Baffle area</td><td>1.8 m&sup2;/m</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="mq-band skew" style="margin-top:clamp(2.4rem,5vw,4rem);border:1px solid rgba(0,0,0,.18)">
+        <div class="marquee" style="--mq-dur:42s">
+          <div class="marquee-track fwd">
+            <span class="mq-item">Fifteen-year parts guarantee<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Mono-material shells</span>
+            <span class="mq-item">96% recyclable by weight<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Zero PFC coatings</span>
+            <span class="mq-item">Field-replaceable sections<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Reno, Nevada</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap" style="padding-inline:0;margin-top:clamp(2rem,4vw,3.2rem)">
+        <div class="cta-box" data-reveal="scale" style="border:1px solid rgba(0,0,0,.16);box-shadow:0 40px 90px -50px rgba(0,0,0,.6)">
+          <div style="display:grid;gap:clamp(1.6rem,4vw,3.4rem);align-items:center;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+            <div>
+              <span class="eyebrow inv">Range Documentation</span>
+              <h3 class="d2" style="margin:1rem 0 1rem" data-split>Get the full range<br /><span class="hl">specification.</span></h3>
+              <p class="lead inv">Load ratings, fabric weights, weld maps and the complete parts catalogue, sent as a 42-page PDF. Or talk to the engineers who drew the load paths in the first place.</p>
+            </div>
+            <div>
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+                <a class="btn dark solid lg" href="shop.html" data-magnetic>Browse the range <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+                <a class="btn dark lg" href="contact.html" data-magnetic>Request the spec pack <i class="fa-solid fa-file-arrow-down"></i></a>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem">
+                <span class="chip dark"><i class="fa-solid fa-check"></i> No signup required</span>
+                <span class="chip dark"><i class="fa-solid fa-check"></i> Engineering drawings included</span>
+                <span class="chip dark"><i class="fa-solid fa-check"></i> Answered by engineers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

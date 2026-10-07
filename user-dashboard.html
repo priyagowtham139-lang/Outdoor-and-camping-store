@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Trail Member Dashboard — Stackly</title>
+<meta name="description" content="Your Stackly account: live order tracking, repair claims, saved gear, delivery addresses and account preferences in one place." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="user-dashboard">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main class="dash">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="dash-side" id="dashSide">
+    <div class="dash-side-in">
+      <a class="logo" href="index.html" aria-label="Stackly home" style="margin-bottom:1rem">
+        <img class="logo-img" src="assets/logo_c2410c.webp" alt="Stackly" width="367" height="98" />
+      </a>
+      <div class="dash-user">
+        <span class="dash-ava" data-session-initials aria-hidden="true"></span>
+        <span><b data-session-name></b><small data-session-email></small></span>
+      </div>
+
+      <a class="dash-link active" href="#overview" data-pane="overview"><span class="ic"><i class="fa-solid fa-gauge-high"></i></span> Overview</a>
+      <a class="dash-link" href="#orders" data-pane="orders"><span class="ic"><i class="fa-solid fa-box-open"></i></span> Orders <span class="badge-r">3</span></a>
+      <a class="dash-link" href="#repairs" data-pane="repairs"><span class="ic"><i class="fa-solid fa-screwdriver-wrench"></i></span> Repairs <span class="badge-r">2</span></a>
+      <a class="dash-link" href="#wishlist" data-pane="wishlist"><span class="ic"><i class="fa-solid fa-heart"></i></span> Wishlist</a>
+      <a class="dash-link" href="#addresses" data-pane="addresses"><span class="ic"><i class="fa-solid fa-location-dot"></i></span> Addresses</a>
+      <a class="dash-link" href="#settings" data-pane="settings"><span class="ic"><i class="fa-solid fa-sliders"></i></span> Settings</a>
+
+      <div style="height:1px;background:var(--line);margin:.9rem .2rem"></div>
+
+      <a class="dash-link danger" href="signin.html?tab=signin" data-signout><span class="ic"><i class="fa-solid fa-right-from-bracket"></i></span> Sign out</a>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <section class="dash-main">
+
+    <!-- ---------- PANE: OVERVIEW ---------- -->
+    <div data-dashpane="overview" class="on">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Account / Trail Member / Overview</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Everything you own,<br />in one <span class="hl">place.</span></h1>
+          <p class="lead">Three parcels are moving through the Reno workshop, two claims are on the bench and you hold $148 in repair credit. Every figure below updates the moment a parcel is scanned at a hub.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-file-arrow-down"></i> Account statement</a>
+          <a class="btn solid" href="journal.html"><i class="fa-solid fa-book-open"></i> Read the dispatch</a>
+        </div>
+      </div>
+
+      <div class="g g-4">
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-box-open"></i></span>
+          <span class="delta">+1 this week</span>
+          <b class="tnum" data-count="3">0</b>
+          <small>Open orders</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+          <span class="delta">1 due Friday</span>
+          <b class="tnum" data-count="2">0</b>
+          <small>Active repairs</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-heart"></i></span>
+          <span class="delta">2 price drops</span>
+          <b class="tnum" data-count="6">0</b>
+          <small>Saved items</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-ticket"></i></span>
+          <span class="delta">+$40 granted</span>
+          <b class="tnum" data-count="148" data-prefix="$">0</b>
+          <small>Trail credits</small>
+        </article>
+      </div>
+
+      <div class="g g-12" style="margin-top:clamp(1.2rem,2.4vw,2rem);align-items:start">
+        <div class="c-7">
+          <div class="table-wrap">
+            <div class="tbl-scroll">
+              <table class="tbl">
+                <caption class="sr">Your four most recent Stackly orders</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Order</th>
+                    <th scope="col">Placed</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b class="t-strong">STK-48407</b></td>
+                    <td>18 Mar 2026</td>
+                    <td>Haul 55 Expedition Pack</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Packing</span></td>
+                    <td class="t-strong">$420.00</td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-48219</b></td>
+                    <td>04 Mar 2026</td>
+                    <td>Ridgeline 2 Tent, Terra 6 Mat</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                    <td class="t-strong">$485.00</td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-47960</b></td>
+                    <td>21 Feb 2026</td>
+                    <td>Coldline 900 Down Bag</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                    <td class="t-strong">$449.00</td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-47118</b></td>
+                    <td>09 Jan 2026</td>
+                    <td>Trail Kitchen Titanium Set</td>
+                    <td><span class="pill hold"><i class="fa-solid fa-rotate-left"></i>Returned</span></td>
+                    <td class="t-strong">$128.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="mono dim" style="margin-top:.9rem">Showing 4 of 41 orders since March 2019</p>
+        </div>
+
+        <div class="c-5">
+          <aside class="spot spot-pad">
+            <span class="eyebrow">Next dispatch</span>
+            <div style="margin-top:1rem;border-radius:14px;overflow:hidden;border:1px solid var(--line)">
+              <img src="assets/contact_hero.webp" alt="Parcel wrapped in recycled paper resting on a workshop bench" loading="lazy" style="aspect-ratio:3/2;filter:contrast(1.1)" />
+            </div>
+            <b class="d4" style="display:block;margin:1.1rem 0 .4rem">STK-48407 leaves Reno on Thursday 08:00 PT</b>
+            <p class="dim" style="font-size:.86rem">One item, insured for $420, signature required. Carbon-neutral road freight, fourteen handling stops.</p>
+            <div class="stat-grid" style="grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.4rem 0">
+              <div class="stat-item"><b class="tnum" data-count="2" data-suffix=" d">0</b><small>To hand-off</small></div>
+              <div class="stat-item"><b class="tnum" data-count="3" data-suffix=" d">0</b><small>On your doorstep</small></div>
+              <div class="stat-item"><b class="tnum" data-count="14">0</b><small>Holding scans</small></div>
+              <div class="stat-item"><b class="tnum" data-count="1.8" data-decimals="1" data-suffix=" kg">0</b><small>Parcel weight</small></div>
+            </div>
+            <a class="btn solid block" href="journal.html"><i class="fa-solid fa-route"></i> Tracking notes from the hub</a>
+          </aside>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(2rem,4vw,3.2rem)">
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:end;justify-content:space-between;margin-bottom:1.3rem">
+          <div>
+            <span class="eyebrow">Matched to your last three logged routes</span>
+            <h2 class="d3" style="margin-top:.7rem">Picked for your next trip</h2>
+          </div>
+          <a class="btn sm" href="shop.html">Browse the full range</a>
+        </div>
+
+        <div class="g g-3">
+          <article class="spot spot-pad">
+            <div style="border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+              <img src="assets/Trekking-Pole_Tent.webp" alt="Two-pole trekking-pole tent pitched on an alpine bench" loading="lazy" style="aspect-ratio:7/5;filter:contrast(1.1)" />
+            </div>
+            <div class="chip-row" style="margin:.95rem 0 .7rem">
+              <span class="chip">Shelters</span>
+              <span class="chip">1.9 kg</span>
+              <span class="chip">4.9 rated</span>
+            </div>
+            <b class="d4" style="display:block">Ridgeline 2 Trekking-Pole Tent</b>
+            <p class="dim" style="font-size:.84rem;margin:.45rem 0 1.1rem">Same wind exposure and pack weight as your last three logged routes. One guyline adjustment per pitch.</p>
+            <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+              <span class="price">$389.00</span>
+              <button class="btn sm solid" style="margin-left:auto" type="button" data-add data-id="usr-rig-2" data-name="Ridgeline 2 Trekking-Pole Tent" data-price="389" data-cat="Shelters"><i class="fa-solid fa-plus"></i> Add to cart</button>
+            </div>
+          </article>
+
+          <article class="spot spot-pad">
+            <div style="border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+              <img src="assets/camp_kitchen.webp" alt="Titanium pot nested inside its own lid beside a camp stove" loading="lazy" style="aspect-ratio:7/5;filter:contrast(1.1)" />
+            </div>
+            <div class="chip-row" style="margin:.95rem 0 .7rem">
+              <span class="chip">Camp Kitchen</span>
+              <span class="chip">340 g</span>
+              <span class="chip">Boils in 3:20</span>
+            </div>
+            <b class="d4" style="display:block">Nesting Titanium Cook Set</b>
+            <p class="dim" style="font-size:.84rem;margin:.45rem 0 1.1rem">You logged twelve boil-overs last season. This set folds into its own lid and has no coated surfaces to fail.</p>
+            <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+              <span class="price">$128.00</span>
+              <button class="btn sm solid" style="margin-left:auto" type="button" data-add data-id="usr-tiki-set" data-name="Nesting Titanium Cook Set" data-price="128" data-cat="Camp Kitchen"><i class="fa-solid fa-plus"></i> Add to cart</button>
+            </div>
+          </article>
+
+          <article class="spot spot-pad">
+            <div style="border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+              <img src="assets/sleep_systems.webp" alt="Folded down sleeping bag on a foam mat inside a tent" loading="lazy" style="aspect-ratio:7/5;filter:contrast(1.1)" />
+            </div>
+            <div class="chip-row" style="margin:.95rem 0 .7rem">
+              <span class="chip">Sleep Systems</span>
+              <span class="chip">-9 C comfort</span>
+              <span class="chip">1.1 kg</span>
+            </div>
+            <b class="d4" style="display:block">Coldline 900 Down Bag</b>
+            <p class="dim" style="font-size:.84rem;margin:.45rem 0 1.1rem">Your autumn routes bottom out near freezing. This is the bag our crew reaches for between October and December.</p>
+            <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+              <span class="price">$449.00</span>
+              <button class="btn sm solid" style="margin-left:auto" type="button" data-add data-id="usr-cold-900" data-name="Coldline 900 Down Bag" data-price="449" data-cat="Sleep"><i class="fa-solid fa-plus"></i> Add to cart</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: ORDERS ---------- -->
+    <div data-dashpane="orders">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Account / Orders / All history</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Forty-one orders,<br />since <span class="hl">2019.</span></h1>
+          <p class="lead">Live status, invoices and return windows for every parcel. Orders stay in the archive for seven years and can be reprinted as a workshop record at any time.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-print"></i> Reprint archive</a>
+          <a class="btn solid" href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Start a new order</a>
+        </div>
+      </div>
+
+      <div class="fbar">
+        <span class="mono dim" style="margin-inline:.5rem">Filter</span>
+        <button class="chip on" type="button" aria-pressed="true">All orders</button>
+        <button class="chip" type="button" aria-pressed="false">In transit</button>
+        <button class="chip" type="button" aria-pressed="false">Delivered</button>
+        <button class="chip" type="button" aria-pressed="false">Returned</button>
+        <button class="chip" type="button" aria-pressed="false">Repaired</button>
+        <span class="spacer"></span>
+        <span class="fcount">8 OF 41 ORDERS</span>
+      </div>
+
+      <div class="table-wrap" style="margin-top:1.2rem">
+        <div class="tbl-scroll">
+          <table class="tbl">
+            <caption class="sr">Order history with status, totals and invoice links</caption>
+            <thead>
+              <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Placed</th>
+                <th scope="col">Contents</th>
+                <th scope="col">Status</th>
+                <th scope="col">Total</th>
+                <th scope="col">Invoice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b class="t-strong">STK-48407</b></td>
+                <td>18 Mar 2026</td>
+                <td>Haul 55 Expedition Pack</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Packing</span></td>
+                <td class="t-strong">$420.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-48355</b></td>
+                <td>11 Mar 2026</td>
+                <td>Terra 6 Insulated Mat, Nightwatch Kit</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>In transit</span></td>
+                <td class="t-strong">$260.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-48219</b></td>
+                <td>04 Mar 2026</td>
+                <td>Ridgeline 2 Tent, Terra 6 Mat</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                <td class="t-strong">$485.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-48102</b></td>
+                <td>27 Feb 2026</td>
+                <td>Trek Pro Poles and Gaiters</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                <td class="t-strong">$238.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-48044</b></td>
+                <td>14 Feb 2026</td>
+                <td>Merino 200 Base Set</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                <td class="t-strong">$198.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-47960</b></td>
+                <td>21 Feb 2026</td>
+                <td>Coldline 900 Down Bag</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                <td class="t-strong">$449.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-47118</b></td>
+                <td>09 Jan 2026</td>
+                <td>Trail Kitchen Titanium Set</td>
+                <td><span class="pill hold"><i class="fa-solid fa-rotate-left"></i>Returned</span></td>
+                <td class="t-strong">$128.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-46881</b></td>
+                <td>19 Nov 2025</td>
+                <td>Nightwatch Headlamp and Flask</td>
+                <td><span class="pill hold"><i class="fa-solid fa-screwdriver-wrench"></i>Repaired</span></td>
+                <td class="t-strong">$164.00</td>
+                <td><a class="link-u" href="404.html" data-404>PDF</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="g g-3" style="margin-top:clamp(1.4rem,2.6vw,2.2rem)">
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.1rem">
+            <span class="tag">STK-48407</span>
+            <span class="pill wait"><i class="fa-solid fa-circle"></i>Packing</span>
+          </div>
+          <b class="d4" style="display:block">Haul 55 Expedition Pack</b>
+          <p class="dim" style="font-size:.84rem;margin:.4rem 0 1.2rem">Frame re-tensioned, ordered Thursday, insured on dispatch.</p>
+          <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+            <div class="step done"><span class="step-n">01 / PLACED</span><b>Confirmed</b><p>Payment cleared 18 Mar.</p></div>
+            <div class="step done"><span class="step-n">02 / PACKED</span><b>Bench check</b><p>Frame load tested to 28 kg.</p></div>
+            <div class="step"><span class="step-n">03 / TRANSIT</span><b>Reno hub</b><p>Scans when the trailer loads.</p></div>
+            <div class="step"><span class="step-n">04 / DELIVERED</span><b>Signature</b><p>Three days once scanned.</p></div>
+          </div>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.1rem">
+            <span class="tag">STK-48355</span>
+            <span class="pill wait"><i class="fa-solid fa-circle"></i>In transit</span>
+          </div>
+          <b class="d4" style="display:block">Terra 6 Mat and Nightwatch Kit</b>
+          <p class="dim" style="font-size:.84rem;margin:.4rem 0 1.2rem">Held at the Troutdale cross-dock for a battery safety check.</p>
+          <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+            <div class="step done"><span class="step-n">01 / PLACED</span><b>Confirmed</b><p>Payment cleared 11 Mar.</p></div>
+            <div class="step done"><span class="step-n">02 / PACKED</span><b>Boxed</b><p>Recycled pulp, no plastic.</p></div>
+            <div class="step done"><span class="step-n">03 / TRANSIT</span><b>Six scans</b><p>Last scan Troutdale, OR.</p></div>
+            <div class="step"><span class="step-n">04 / DELIVERED</span><b>Signature</b><p>Expected Thursday morning.</p></div>
+          </div>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.1rem">
+            <span class="tag">STK-48219</span>
+            <span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span>
+          </div>
+          <b class="d4" style="display:block">Ridgeline 2 Tent and Terra 6 Mat</b>
+          <p class="dim" style="font-size:.84rem;margin:.4rem 0 1.2rem">Signed for at the porch on 08 Mar. Return window closes 07 Apr.</p>
+          <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+            <div class="step done"><span class="step-n">01 / PLACED</span><b>Confirmed</b><p>Payment cleared 04 Mar.</p></div>
+            <div class="step done"><span class="step-n">02 / PACKED</span><b>Bench check</b><p>Gust test logged at 61 km/h.</p></div>
+            <div class="step done"><span class="step-n">03 / TRANSIT</span><b>Nine scans</b><p>Reno to Portland, no exceptions.</p></div>
+            <div class="step done"><span class="step-n">04 / DELIVERED</span><b>Signed</b><p>Left in the porch locker.</p></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: REPAIRS ---------- -->
+    <div data-dashpane="repairs">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Account / Repairs / Lifetime claims</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>The workshop<br />keeps your <span class="hl">records.</span></h1>
+          <p class="lead">Every structural claim since 2019 sits here with the technician's note, the parts consumed and the bench date. Structural components are covered for fifteen years.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="contact.html#faq"><i class="fa-solid fa-circle-question"></i> Warranty terms</a>
+          <a class="btn solid" href="contact.html#form"><i class="fa-solid fa-plus"></i> File a new claim</a>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-7">
+          <div class="table-wrap">
+            <div class="tbl-scroll">
+              <table class="tbl">
+                <caption class="sr">Active and closed repair claims with progress gauges</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Claim</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">ETA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b class="t-strong">RC-3391</b></td>
+                    <td>Ridgeline 2 Tent</td>
+                    <td>06 Mar 2026</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-screwdriver-wrench"></i>On bench</span></td>
+                    <td>Fri 27 Mar<div class="bar-mini" style="margin-top:.5rem"><i data-w="64"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">RC-3364</b></td>
+                    <td>Coldline 900 Down Bag</td>
+                    <td>24 Feb 2026</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-scissors"></i>Quoting</span></td>
+                    <td>Awaiting parts<div class="bar-mini" style="margin-top:.5rem"><i data-w="28"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">RC-3108</b></td>
+                    <td>Haul 55 Pack frame</td>
+                    <td>14 Nov 2025</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Returned</span></td>
+                    <td>Closed 02 Dec<div class="bar-mini" style="margin-top:.5rem"><i data-w="100"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">RC-2884</b></td>
+                    <td>Trail Kitchen Set</td>
+                    <td>22 Jul 2025</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Returned</span></td>
+                    <td>Closed 30 Jul<div class="bar-mini" style="margin-top:.5rem"><i data-w="100"></i></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="mono dim" style="margin-top:.9rem">Gauges show workshop completion, not carrier transit</p>
+        </div>
+
+        <div class="c-5">
+          <aside class="spot spot-pad">
+            <span class="eyebrow">How a repair runs</span>
+            <b class="d4" style="display:block;margin:1rem 0 .5rem">Four steps, fourteen working days</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.4rem">Most claims clear inside a fortnight. You approve the quote before a single part is cut, and the technician's note travels back with the parcel.</p>
+            <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+              <div class="step done"><span class="step-n">01 / DIAGNOSE</span><b>Photographs in</b><p>A technician names the failure mode and the exact part.</p></div>
+              <div class="step done"><span class="step-n">02 / APPROVE</span><b>You sign off</b><p>Quote held for 7 days. Nothing is cut before approval.</p></div>
+              <div class="step"><span class="step-n">03 / REPAIR</span><b>Bench work</b><p>Replacement panels, poles or zips fitted in the Portland workshop.</p></div>
+              <div class="step"><span class="step-n">04 / RETURN</span><b>Shipped back</b><p>Tracked dispatch with a dated failure note inside the pocket.</p></div>
+            </div>
+            <a class="btn block" style="margin-top:1.5rem" href="contact.html#faq"><i class="fa-solid fa-circle-question"></i> Read the full warranty FAQ</a>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: WISHLIST ---------- -->
+    <div data-dashpane="wishlist">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Account / Wishlist / Stored on this device</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Kept for a<br />quieter <span class="hl">season.</span></h1>
+          <p class="lead">Anything you tap the heart on lands here, with the price you saved it at. Move the whole list into the cart in one click when the weather window opens.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="shop.html"><i class="fa-solid fa-compass"></i> Keep browsing</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-bell"></i> Price-drop alerts</a>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-8">
+          <div class="g g-3" id="wishPageList" style="margin-top:1rem"></div>
+        </div>
+        <div class="c-4">
+          <aside class="spot spot-pad">
+            <span class="icon-btn" aria-hidden="true" style="width:52px;height:52px;font-size:1rem;margin-bottom:1rem"><i class="fa-regular fa-heart"></i></span>
+            <b class="d4" style="display:block;margin-bottom:.5rem">What saving an item does</b>
+            <p class="dim" style="font-size:.86rem">Your list is held in this browser, not on a server, so nothing leaves this device and no account is required to browse.</p>
+            <div class="acc" style="margin-top:1.2rem">
+              <div class="acc-item on">
+                <button class="acc-btn" type="button" aria-expanded="true"><span class="num">01</span> Price and stock are re-checked hourly <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner"><p>Saved prices are compared against the live catalogue every hour. If an item drops, the heart icon switches to an outlined bell so you can decide without pressure.</p></div>
+                </div>
+              </div>
+              <div class="acc-item">
+                <button class="acc-btn" type="button" aria-expanded="false"><span class="num">02</span> Move everything into the cart at once <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner"><p>The summary card beside your list carries a single button. Quantities are preserved if an item is already in the cart, and the list clears only after the transfer succeeds.</p></div>
+                </div>
+              </div>
+              <div class="acc-item">
+                <button class="acc-btn" type="button" aria-expanded="false"><span class="num">03</span> Clearing your browser data clears the list <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner"><p>Because the list lives in local storage, wiping site data removes it permanently. Sign in and use the wishlist panel in the header if you want it to follow you between devices.</p></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="spot spot-pad" id="wishPageSum" style="margin-top:1rem"></div>
+        </div>
+      </div>
+
+      <p class="mono dim" style="margin-top:1.4rem">Saved items are stored on this device only and sync to no account server</p>
+    </div>
+
+    <!-- ---------- PANE: ADDRESSES ---------- -->
+    <div data-dashpane="addresses">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Account / Addresses / Delivery book</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Three doors,<br />one <span class="hl">book.</span></h1>
+          <p class="lead">Addresses are checked against the carrier postcode database at checkout, so a mistyped street never becomes a returned parcel. Local time <span class="mono" data-clock></span>.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="contact.html#faq"><i class="fa-solid fa-truck-fast"></i> Shipping rates</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-plus"></i> Add new address</a>
+        </div>
+      </div>
+
+      <div class="g g-3">
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:1.1rem">
+            <span class="tag">Default</span>
+            <i class="fa-solid fa-house-chimney" style="color:var(--mute-2)" aria-hidden="true"></i>
+          </div>
+          <div class="addr-row">
+            <span class="ic"><i class="fa-solid fa-location-dot"></i></span>
+            <span>
+              <b>Home, Portland</b>
+              1428 SE Ankeny Street, Apt 3B<br />
+              Portland, OR 97214<br />
+              United States<br />
+              <a href="tel:+917010792745">+91 70107 92745</a>
+            </span>
+          </div>
+          <div class="chip-row" style="margin:1.1rem 0">
+            <span class="chip">Billing</span>
+            <span class="chip">Shipping</span>
+            <span class="chip">Default</span>
+            <span class="chip">Verified</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+            <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-pen"></i> Edit</a>
+            <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-trash-can"></i> Remove</a>
+          </div>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:1.1rem">
+            <span class="tag">Workshop</span>
+            <i class="fa-solid fa-warehouse" style="color:var(--mute-2)" aria-hidden="true"></i>
+          </div>
+          <div class="addr-row">
+            <span class="ic"><i class="fa-solid fa-industry"></i></span>
+            <span>
+              <b>Stackly Workshop</b>
+              MMR Complex, Chinna Thirupathi<br />
+              (near Chinna Muniyappan Kovil)<br />
+              Salem, Tamil Nadu 636008<br />
+              India<br />
+              <a href="tel:+917010792745">+91 70107 92745</a>
+            </span>
+          </div>
+          <div class="chip-row" style="margin:1.1rem 0">
+            <span class="chip">Repairs only</span>
+            <span class="chip">Mon to Fri</span>
+            <span class="chip">Drop-off</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+            <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-pen"></i> Edit</a>
+                <a class="btn sm" href="contact.html#map"><i class="fa-solid fa-directions"></i> Directions</a>
+          </div>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:1.1rem">
+            <span class="tag">Europe</span>
+            <i class="fa-solid fa-flag" style="color:var(--mute-2)" aria-hidden="true"></i>
+          </div>
+          <div class="addr-row">
+            <span class="ic"><i class="fa-solid fa-globe"></i></span>
+            <span>
+              <b>Chalet, Innsbruck</b>
+              Brandstatter Weg 17, Top 4<br />
+              6020 Innsbruck<br />
+              Austria<br />
+              <a href="tel:+43512233440">+43 512 233 440</a>
+            </span>
+          </div>
+          <div class="chip-row" style="margin:1.1rem 0">
+            <span class="chip">Shipping</span>
+            <span class="chip">4 to 7 days</span>
+            <span class="chip">Duties prepaid</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+            <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-pen"></i> Edit</a>
+            <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-trash-can"></i> Remove</a>
+          </div>
+        </article>
+
+        <article class="spot spot-pad" style="border-style:dashed;display:grid;place-items:center;text-align:center;min-height:280px">
+          <div>
+            <span class="icon-btn" aria-hidden="true" style="width:56px;height:56px;font-size:1.05rem;margin:0 auto 1rem"><i class="fa-solid fa-plus"></i></span>
+            <b class="d4" style="display:block;margin-bottom:.45rem">Add a fourth door</b>
+            <p class="dim" style="font-size:.84rem;max-width:30ch;margin:0 auto 1.2rem">Store a basecamp, a mate's address or a seasonal place. We verify every postcode before it reaches a label printer.</p>
+            <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-location-dot"></i> Add new address</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="spot spot-pad" style="margin-top:1.2rem">
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+          <div>
+            <b class="d4" style="display:block;margin-bottom:.35rem">Address book hygiene</b>
+            <p class="dim" style="font-size:.86rem;max-width:64ch">Addresses unused for 24 months are archived, not deleted. Archived rows still resolve for warranty claims and can be restored from the archive export.</p>
+          </div>
+          <span class="mono dim">Book synced <span data-clock></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: SETTINGS ---------- -->
+    <div data-dashpane="settings">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Account / Settings / Profile and security</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Details, alerts<br />and <span class="hl">access.</span></h1>
+          <p class="lead">Change anything here and it takes effect immediately across every order, repair and dispatch. Changes to credentials are logged and held for 24 months.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="contact.html#faq"><i class="fa-solid fa-shield-halved"></i> Privacy policy</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-file-arrow-down"></i> Export my data</a>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-6">
+          <div class="spot spot-pad">
+            <span class="eyebrow">Profile</span>
+            <b class="d4" style="display:block;margin:1rem 0 .4rem">How the workshop reaches you</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.4rem">Technicians use these details on every claim note. Keep the mobile number current if you want same-day repair decisions.</p>
+
+            <form novalidate>
+              <div class="field">
+                <label for="setName"><i class="fa-solid fa-user"></i> Full name</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-user lead-ic"></i>
+                  <input type="text" id="setName" name="name" autocomplete="name" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="setEmail"><i class="fa-solid fa-envelope"></i> Email address</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-envelope lead-ic"></i>
+                  <input type="email" id="setEmail" name="email" autocomplete="email" />
+                </div>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Enter a valid email address</span>
+              </div>
+              <div class="field">
+                <label for="setPhone"><i class="fa-solid fa-phone"></i> Phone</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-phone lead-ic"></i>
+                  <input type="tel" id="setPhone" name="phone" value="+91 70107 92745" autocomplete="tel" />
+                </div>
+              </div>
+              <button class="btn solid block" type="button"><i class="fa-solid fa-floppy-disk"></i> Save profile changes</button>
+            </form>
+          </div>
+
+          <div class="spot spot-pad" style="margin-top:1.2rem">
+            <span class="eyebrow">Preferences</span>
+            <b class="d4" style="display:block;margin:1rem 0 .4rem">What reaches your inbox</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.3rem">Trail Dispatch is two letters a month. Everything else is transactional and tied to an order or a claim.</p>
+            <div style="display:grid;gap:.85rem">
+              <label class="check">
+                <input type="checkbox" checked />
+                <span class="box" aria-hidden="true"></span>
+                <span>Trail Dispatch, twice a month</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" checked />
+                <span class="box" aria-hidden="true"></span>
+                <span>SMS alerts when a parcel is scanned</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" />
+                <span class="box" aria-hidden="true"></span>
+                <span>Restock notices for saved items</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" checked />
+                <span class="box" aria-hidden="true"></span>
+                <span>Sixty-night trial reminders</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-6">
+          <div class="spot spot-pad">
+            <span class="eyebrow">Security</span>
+            <b class="d4" style="display:block;margin:1rem 0 .4rem">One more lock on the account</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.4rem">Your password protects the workshop record as much as the shop. Twelve characters with a symbol is our floor, not a suggestion.</p>
+
+            <form novalidate>
+              <div class="field">
+                <label for="dashPw"><i class="fa-solid fa-key"></i> New password</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock lead-ic"></i>
+                  <input type="password" id="dashPw" name="new-password" placeholder="At least 12 characters" autocomplete="new-password" />
+                  <button type="button" class="pw-eye" data-pw-toggle="dashPw" aria-label="Show password" aria-pressed="false"><i class="fa-regular fa-eye"></i></button>
+                </div>
+                <div class="pw-meter" data-pw-meter="dashPw" data-lv="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <p class="pw-meter-lbl">Too short</p>
+              </div>
+              <button class="btn solid block" type="button"><i class="fa-solid fa-shield-halved"></i> Update password</button>
+            </form>
+
+            <div class="addr-list" style="margin-top:1.4rem">
+              <div class="addr-row">
+                <span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                <span><b>Two-factor authentication</b>Enabled on the mobile number ending 0142. A code is required on any new device.</span>
+              </div>
+              <div class="addr-row">
+                <span class="ic"><i class="fa-solid fa-laptop"></i></span>
+                <span><b>Two active sessions</b>Portland, Oregon on Firefox, and Boulder, Colorado on Safari. Both were confirmed by email.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot spot-pad" style="margin-top:1.2rem">
+            <span class="eyebrow">Sign out</span>
+            <b class="d4" style="display:block;margin:1rem 0 .45rem">End this session</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.3rem">Signing out clears the session on this device only. Your repair record, addresses and credit balance stay exactly where they are.</p>
+            <button class="btn block" type="button" id="signOutBtn" data-signout><i class="fa-solid fa-right-from-bracket"></i> Sign out of this device</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="g g-2" style="margin-top:1.6rem">
+        <div class="marquee" style="--mq-dur:38s">
+          <div class="marquee-track fwd">
+            <span class="mq-item">Account changes are logged for 24 months<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline thin">Export your data at any time</span>
+            <span class="mq-item">Passwords are never stored in plain text<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Signed out sessions expire after 30 days</span>
+          </div>
+        </div>
+        <div class="marquee" style="--mq-dur:46s">
+          <div class="marquee-track rev">
+            <span class="mq-item">Two-factor on every staff account<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">No third-party trackers</span>
+            <span class="mq-item mq-outline thin">Address data never sold<i class="mq-dot"></i></span>
+            <span class="mq-item">Delete everything with one request</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Sign In / Create Account — Stackly</title>
+<meta name="description" content="Sign in to Stackly to track orders, manage repairs, and build a loadout. Customer and staff access in one place." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="signin">
+
+
+
+
+
+<main class="auth-wrap">
+
+  <!-- ============ LEFT: EDITORIAL ART PANEL ============ -->
+  <aside class="auth-art">
+    <img src="assets/sign_in.webp" alt="A hiker looking across a glacial valley" />
+    <div class="auth-art-in">
+      <span class="eyebrow">Trail Member Access</span>
+      <h2 class="d2" data-split>Every repair.<br />Every order.<br /><span class="hl">One account.</span></h2>
+      <p class="lead" style="max-width:44ch">Members get repair history, lifetime warranty claims, early access to limited runs, and a saved loadout for every trip they have logged.</p>
+
+      <div class="stat-grid" style="grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:1.4rem">
+        <div class="stat-item"><b class="tnum" data-count="12" data-suffix="k">0</b><small>Active members</small></div>
+        <div class="stat-item"><b class="tnum" data-count="184" data-suffix="k">0</b><small>Repairs filed</small></div>
+        <div class="stat-item"><b class="tnum" data-count="4" data-suffix=" min">0</b><small>Median reply</small></div>
+        <div class="stat-item"><b class="tnum" data-count="48">0</b><small>Countries</small></div>
+      </div>
+
+      <div class="chip-row" style="margin-top:1.6rem">
+        <span class="chip"><i class="fa-solid fa-shield-halved"></i> Encrypted session</span>
+        <span class="chip"><i class="fa-solid fa-recycle"></i> Repair history</span>
+        <span class="chip"><i class="fa-solid fa-box-open"></i> Order tracking</span>
+      </div>
+
+      <div class="marquee no-mask" style="--mq-dur:30s;margin-top:2rem">
+        <div class="marquee-track fwd">
+          <span class="mq-item mq-outline thin" style="font-size:1.4rem">Member access</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:1.4rem">No data sold</span><i class="mq-dot"></i>
+          <span class="mq-item mq-outline thin" style="font-size:1.4rem">Leave at any time</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ RIGHT: FORMS ============ -->
+  <section class="auth-main">
+    <div class="auth-card">
+
+       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem">
+         <a class="logo" href="index.html" aria-label="Stackly home">
+           <img class="logo-img" src="assets/logo_c2410c.webp" alt="" width="367" height="98" />
+         </a>
+        <span class="tag" style="margin-left:auto"><i class="fa-solid fa-lock"></i> Secure</span>
+      </div>
+
+      <!-- Sign In / Sign Up switch -->
+      <div class="tabs" id="authTabs" data-tabs="authScope" role="tablist" aria-label="Account access">
+        <span class="ind" aria-hidden="true"></span>
+        <a href="signin.html?tab=signin" class="tab-btn on" data-tab-link="signin-pane" role="tab" aria-selected="true">Sign In</a>
+        <a href="signin.html?tab=signup" class="tab-btn" data-tab-link="signup-pane" role="tab" aria-selected="false">Sign Up</a>
+      </div>
+
+      <div id="authScope">
+
+        <!-- ---------- SIGN IN ---------- -->
+        <div class="form-pane on" data-pane="signin-pane">
+          <h1 class="d3" style="margin-bottom:.5rem">Welcome back.</h1>
+          <p class="lead" style="margin-bottom:1.6rem;font-size:.95rem">Choose how you are signing in. Staff accounts open the operations console.</p>
+
+          <form id="authForm" novalidate>
+            <input type="hidden" id="rolePick" name="role" value="user" />
+
+            <div class="role-tabs" data-role-group="#rolePick" role="group" aria-label="Account role">
+              <button class="role on" type="button" data-role="user" aria-pressed="true">
+                <span class="ic"><i class="fa-solid fa-user"></i></span>
+                <span><b>Customer</b><small>Orders &amp; repairs</small></span>
+              </button>
+              <button class="role" type="button" data-role="admin" aria-pressed="false">
+                <span class="ic"><i class="fa-solid fa-shield-halved"></i></span>
+                <span><b>Staff</b><small>Operations console</small></span>
+              </button>
+            </div>
+
+            <div class="field">
+              <label for="loginEmail"><i class="fa-solid fa-envelope"></i> Email address</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-user lead-ic"></i>
+                <input type="email" id="loginEmail" name="email" placeholder="yourname@gmail.com" autocomplete="username" />
+              </div>
+              <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Only Gmail addresses are allowed</span>
+            </div>
+
+            <div class="field">
+              <label for="loginPw"><i class="fa-solid fa-key"></i> Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock lead-ic"></i>
+                <input type="password" id="loginPw" name="password" placeholder="At least 8 characters" autocomplete="current-password" />
+                <button type="button" class="pw-eye" data-pw-toggle="loginPw" aria-label="Show password" aria-pressed="false"><i class="fa-regular fa-eye"></i></button>
+              </div>
+              <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Password must be at least 6 characters</span>
+            </div>
+
+            <div class="form-foot">
+              <label class="check">
+                <input type="checkbox" id="remember" checked />
+                <span class="box" aria-hidden="true"></span>
+                <span>Keep me signed in</span>
+              </label>
+              <a class="link-u" href="404.html" data-404>Forgot password <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+
+            <button class="btn solid lg block" type="submit" data-magnetic>
+              <i class="fa-solid fa-right-to-bracket"></i> Sign In
+            </button>
+          </form>
+
+          <div class="or-line">or continue with</div>
+
+          <form class="social-login" id="socialLogin" novalidate>
+            <button type="submit"><i class="fa-brands fa-apple"></i> Apple</button>
+            <button type="submit"><i class="fa-brands fa-google"></i> Google</button>
+          </form>
+
+          <p style="text-align:center;margin-top:1.6rem;font-size:.86rem;color:var(--mute)">
+            New to Stackly?
+            <a class="link-u" href="signin.html?tab=signup" data-signup-switch>Create an account <i class="fa-solid fa-arrow-right-long"></i></a>
+          </p>
+        </div>
+
+        <!-- ---------- SIGN UP ---------- -->
+        <div class="form-pane" data-pane="signup-pane">
+          <h1 class="d3" style="margin-bottom:.5rem">Create your account.</h1>
+          <p class="lead" style="margin-bottom:1.6rem;font-size:.95rem">One account for orders, warranty claims, saved loadouts and Trail Dispatch.</p>
+
+          <form id="signupForm" novalidate>
+            <div class="g g-2" style="gap:0 .9rem">
+              <div class="field">
+                <label for="suFirst"><i class="fa-solid fa-user"></i> First name</label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-user lead-ic"></i>
+                  <input type="text" id="suFirst" name="first" placeholder="Ada" autocomplete="given-name" data-alpha-only required />
+                </div>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Required</span>
+              </div>
+              <div class="field">
+                <label for="suLast"><i class="fa-solid fa-user"></i> Last name</label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-user lead-ic"></i>
+                  <input type="text" id="suLast" name="last" placeholder="Whitfield" autocomplete="family-name" data-alpha-only required />
+                </div>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Required</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="suEmail"><i class="fa-solid fa-envelope"></i> Email address</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope lead-ic"></i>
+                <input type="email" id="suEmail" name="email" placeholder="yourname@gmail.com" autocomplete="email" required />
+              </div>
+              <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Only Gmail addresses are allowed</span>
+            </div>
+
+            <div class="field">
+              <label for="suPhone"><i class="fa-solid fa-phone"></i> Phone <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-phone lead-ic"></i>
+                <input type="tel" id="suPhone" name="phone" placeholder="+91 70107 92745" autocomplete="tel" data-numeral-only />
+              </div>
+              <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Only numerals are allowed</span>
+            </div>
+
+            <div class="g g-2" style="gap:0 .9rem">
+              <div class="field">
+                <label for="suPw"><i class="fa-solid fa-key"></i> Password</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock lead-ic"></i>
+                  <input type="password" id="suPw" name="password" placeholder="8+ characters" autocomplete="new-password" required />
+                  <button type="button" class="pw-eye" data-pw-toggle="suPw" aria-label="Show password" aria-pressed="false"><i class="fa-regular fa-eye"></i></button>
+                </div>
+                <div class="pw-meter" data-pw-meter="suPw" data-lv="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <p class="pw-meter-lbl">Too short</p>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> At least 8 characters</span>
+              </div>
+              <div class="field">
+                <label for="suPw2"><i class="fa-solid fa-key"></i> Confirm</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock lead-ic"></i>
+                  <input type="password" id="suPw2" name="password2" placeholder="Repeat password" autocomplete="new-password" required />
+                  <button type="button" class="pw-eye" data-pw-toggle="suPw2" aria-label="Show password" aria-pressed="false"><i class="fa-regular fa-eye"></i></button>
+                </div>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Passwords must match</span>
+              </div>
+            </div>
+            <p class="pw-strength-note"><i class="fa-solid fa-circle-info"></i> Mix upper and lower case, a number and a symbol. We never store the plain text.</p>
+
+            <div class="field">
+              <label for="suHome"><i class="fa-solid fa-location-dot"></i> Home trail region</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-compass lead-ic"></i>
+                <select id="suHome" name="region">
+                  <option>Pacific Northwest</option>
+                  <option>Rockies &amp; High Plains</option>
+                  <option>Sierra Nevada</option>
+                  <option>Canadian Rockies</option>
+                  <option>European Alps</option>
+                  <option>Southern Hemisphere</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field check-field" style="margin:.4rem 0 .9rem">
+              <label class="check" for="suTerms">
+                <input type="checkbox" id="suTerms" name="terms" aria-describedby="suTermsErr" required />
+                <span class="box" aria-hidden="true"></span>
+                <span>I accept the terms of sale and the privacy policy</span>
+              </label>
+              <span class="err-msg" id="suTermsErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Please agree to continue</span>
+            </div>
+
+            <label class="check" style="margin:0 0 1.3rem">
+              <input type="checkbox" id="suNews" />
+              <span class="box" aria-hidden="true"></span>
+              <span>Send me Trail Dispatch twice a month</span>
+            </label>
+
+            <button class="btn solid lg block" type="submit" data-magnetic>
+              <i class="fa-solid fa-user-plus"></i> Create Account
+            </button>
+          </form>
+
+          <p style="text-align:center;margin-top:1.6rem;font-size:.86rem;color:var(--mute)">
+            Already a member?
+            <a class="link-u" href="signin.html?tab=signin" data-signin-switch>Sign in instead <i class="fa-solid fa-arrow-right-long"></i></a>
+          </p>
+        </div>
+
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line)">
+        <a class="chip" href="index.html"><i class="fa-solid fa-house"></i> Back to home</a>
+        <a class="chip" href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+        <a class="chip" href="contact.html"><i class="fa-solid fa-headset"></i> Get help</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var tabs = document.getElementById('authTabs');
+  function pick(pane) {
+    Array.prototype.forEach.call(tabs.querySelectorAll('[data-tab-link]'), function (b) {
+      var on = b.getAttribute('data-tab-link') === pane;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', String(on));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-pane]'), function (p) {
+      p.classList.toggle('on', p.getAttribute('data-pane') === pane);
+    });
+  }
+  var params = new URLSearchParams(window.location.search);
+  var tab = params.get('tab');
+  if (tab === 'signup') {
+    pick('signup-pane');
+  } else if (tab === 'signin') {
+    pick('signin-pane');
+  }
+  var su = document.querySelector('[data-signup-switch]');
+  var si = document.querySelector('[data-signin-switch]');
+  if (su) su.addEventListener('click', function (e) { e.preventDefault(); window.location.href = 'signin.html?tab=signup'; });
+  if (si) si.addEventListener('click', function (e) { e.preventDefault(); window.location.href = 'signin.html?tab=signin'; });
+});
+</script>
+</body>
+</html>

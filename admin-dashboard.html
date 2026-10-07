@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Operations Console - Stackly</title>
+<meta name="description" content="Stackly operations console: live revenue, fulfilment, inventory cover, customer segments, editorial queue and support load for the outdoor equipment team." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="admin-dash">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main class="dash">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="dash-side" id="dashSide">
+    <div class="dash-side-in">
+      <a class="logo" href="index.html" aria-label="Stackly home" style="margin-bottom:1rem">
+        <img class="logo-img" src="assets/logo_c2410c.webp" alt="Stackly" width="367" height="98" />
+      </a>
+      <div class="dash-user">
+        <span class="dash-ava" data-session-initials aria-hidden="true"></span>
+        <span><b data-session-name></b><small data-session-email></small></span>
+      </div>
+
+      <a class="dash-link active" href="#overview" data-pane="overview"><span class="ic"><i class="fa-solid fa-gauge-high"></i></span> Overview</a>
+      <a class="dash-link" href="#orders" data-pane="orders"><span class="ic"><i class="fa-solid fa-box-open"></i></span> Orders <span class="badge-r">12</span></a>
+      <a class="dash-link" href="#inventory" data-pane="inventory"><span class="ic"><i class="fa-solid fa-warehouse"></i></span> Inventory</a>
+      <a class="dash-link" href="#customers" data-pane="customers"><span class="ic"><i class="fa-solid fa-users"></i></span> Customers</a>
+      <a class="dash-link" href="#content" data-pane="content"><span class="ic"><i class="fa-solid fa-pen-nib"></i></span> Content</a>
+      <a class="dash-link" href="#support" data-pane="support"><span class="ic"><i class="fa-solid fa-headset"></i></span> Support <span class="badge-r">7</span></a>
+
+      <div style="height:1px;background:var(--line);margin:.6rem 0"></div>
+
+      <a class="dash-link" href="#orders" data-pane="orders" data-shortcut><span class="ic"><i class="fa-solid fa-print"></i></span> Print queue</a>
+      <a class="dash-link" href="#inventory" data-pane="inventory" data-shortcut><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span> Stock alerts</a>
+      <a class="dash-link danger" href="signin.html?tab=signin" id="signOutBtn" data-signout><span class="ic"><i class="fa-solid fa-right-from-bracket"></i></span> Sign out</a>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <section class="dash-main">
+
+    <!-- ---------- PANE: OVERVIEW ---------- -->
+    <div data-dashpane="overview" class="on">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Operations / Overview / Live trading position</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Everything moving<br />through <span class="hl">Reno today.</span></h1>
+          <p class="lead">Twenty-two minutes past the Pacific open, the floor is running two pick waves, nine parcels are past their promise date at the Troutdale cross-dock and the Ridgeline 2 flysheet is the single hardest constraint on the board. All figures below pull from the same ledger the carriers scan against.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-file-arrow-down"></i> Daily trading report</a>
+          <a class="btn solid" href="#orders" data-pane="orders"><i class="fa-solid fa-box-open"></i> Work the order queue</a>
+        </div>
+      </div>
+
+      <div class="g g-3">
+        <article class="kpi" data-reveal>
+          <span class="ic"><i class="fa-solid fa-sack-dollar"></i></span>
+          <span class="delta">+6.2% vs Mar</span>
+          <b class="tnum" data-count="418640" data-prefix="$" data-decimals="0">0</b>
+          <small>Revenue, month to date</small>
+        </article>
+        <article class="kpi" data-reveal>
+          <span class="ic"><i class="fa-solid fa-box-open"></i></span>
+          <span class="delta">+18 vs 30-day avg</span>
+          <b class="tnum" data-count="212" data-decimals="0">0</b>
+          <small>Orders today</small>
+        </article>
+        <article class="kpi" data-reveal>
+          <span class="ic"><i class="fa-solid fa-rotate-left"></i></span>
+          <span class="delta">-0.4 pts on Q1</span>
+          <b class="tnum" data-count="3.4" data-decimals="1" data-suffix="%">0</b>
+          <small>Return rate, rolling 90 days</small>
+        </article>
+        <article class="kpi" data-reveal>
+          <span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>
+          <span class="delta">6 already critical</span>
+          <b class="tnum" data-count="23" data-decimals="0">0</b>
+          <small>SKUs below reorder point</small>
+        </article>
+        <article class="kpi" data-reveal>
+          <span class="ic"><i class="fa-solid fa-life-ring"></i></span>
+          <span class="delta">7 waiting on us</span>
+          <b class="tnum" data-count="47" data-decimals="0">0</b>
+          <small>Open support tickets</small>
+        </article>
+        <article class="kpi" data-reveal>
+          <span class="ic"><i class="fa-solid fa-star"></i></span>
+          <span class="delta">+4 pts on Q1</span>
+          <b class="tnum" data-count="61" data-prefix="+" data-decimals="0">0</b>
+          <small>Net promoter score, quarter to date</small>
+        </article>
+      </div>
+
+      <div class="g g-12" style="margin-top:clamp(1.2rem,2.4vw,2rem);align-items:start">
+        <div class="c-7">
+          <div class="spot spot-pad">
+            <div style="display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.4rem">
+              <div>
+                <span class="eyebrow">Trading</span>
+                <b class="d4" style="display:block;margin-top:.7rem">Revenue, last 12 weeks</b>
+              </div>
+              <span class="mono dim">USD thousands, gross of returns</span>
+            </div>
+
+            <svg viewBox="0 0 640 250" style="width:100%;height:auto;display:block" role="img" aria-labelledby="revChartTitle revChartDesc">
+              <title id="revChartTitle">Weekly revenue, last twelve weeks</title>
+              <desc id="revChartDesc">A bar chart rising from 24 thousand dollars in week three to 86 thousand dollars in week twelve, with the two tallest weeks drawn in a brighter white.</desc>
+
+              <g stroke="rgba(255,255,255,.14)" stroke-width="1" stroke-linecap="round">
+                <line x1="34" y1="218" x2="614" y2="218" />
+                <line x1="34" y1="158" x2="614" y2="158" />
+                <line x1="34" y1="98" x2="614" y2="98" />
+                <line x1="34" y1="38" x2="614" y2="38" />
+              </g>
+
+              <g fill="rgba(255,255,255,.18)">
+                <rect x="44" y="168" width="28" height="50" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.00s;--fd:2.4s" />
+                <rect x="90" y="157" width="28" height="61" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.10s;--fd:2.4s" />
+                <rect x="136" y="174" width="28" height="44" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.20s;--fd:2.4s" />
+                <rect x="182" y="146" width="28" height="72" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.30s;--fd:2.4s" />
+                <rect x="228" y="151" width="28" height="67" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.40s;--fd:2.4s" />
+                <rect x="274" y="135" width="28" height="83" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.50s;--fd:2.4s" />
+                <rect x="320" y="125" width="28" height="93" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.60s;--fd:2.4s" />
+                <rect x="366" y="140" width="28" height="78" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.70s;--fd:2.4s" />
+                <rect x="412" y="111" width="28" height="107" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.80s;--fd:2.4s" />
+                <rect x="458" y="116" width="28" height="102" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:.90s;--fd:2.4s" />
+              </g>
+
+              <g fill="rgba(255,255,255,.5)">
+                <rect x="504" y="87" width="28" height="131" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:1.00s;--fd:2.4s" />
+                <rect x="550" y="59" width="28" height="159" style="transform-origin:bottom;animation:floatY 3.2s ease-in-out infinite alternate;animation-delay:1.10s;--fd:2.4s" />
+              </g>
+
+              <g fill="#888" font-size="11" text-anchor="middle" style="font-family:var(--ff-mono);letter-spacing:.14em">
+                <text x="564" y="49">$86K</text>
+                <text x="426" y="101">$58K</text>
+                <text x="150" y="164">$24K</text>
+              </g>
+
+              <g fill="#555" font-size="10" text-anchor="middle" style="font-family:var(--ff-mono);letter-spacing:.16em">
+                <text x="34" y="238">MAR</text>
+                <text x="228" y="238">APR</text>
+                <text x="412" y="238">MAY</text>
+                <text x="614" y="238">JUN</text>
+              </g>
+            </svg>
+
+            <p class="mono dim" style="margin-top:1.1rem">Week 12 is tracking 14% above the trailing four-week mean</p>
+          </div>
+        </div>
+
+        <div class="c-5">
+          <div class="spot spot-pad">
+            <div style="display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;margin-bottom:1.3rem">
+              <div>
+                <span class="eyebrow">Floor</span>
+                <b class="d4" style="display:block;margin-top:.7rem">Fulfilment queue</b>
+              </div>
+              <span class="pill wait"><i class="fa-solid fa-circle"></i>6 active</span>
+            </div>
+
+            <div style="display:grid;gap:.9rem">
+              <div style="border-bottom:1px solid var(--line);padding-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem">
+                  <b class="t-strong" style="font-size:.86rem">STK-74120</b>
+                  <span class="chip" style="padding:.18rem .55rem;font-size:.62rem">PNW</span>
+                  <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-circle"></i>Picking</span>
+                </div>
+                <div class="bar-mini"><i data-w="42"></i></div>
+              </div>
+
+              <div style="border-bottom:1px solid var(--line);padding-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem">
+                  <b class="t-strong" style="font-size:.86rem">STK-74119</b>
+                  <span class="chip" style="padding:.18rem .55rem;font-size:.62rem">EU</span>
+                  <span class="pill ok" style="margin-left:auto"><i class="fa-solid fa-check"></i>On trailer</span>
+                </div>
+                <div class="bar-mini"><i data-w="78"></i></div>
+              </div>
+
+              <div style="border-bottom:1px solid var(--line);padding-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem">
+                  <b class="t-strong" style="font-size:.86rem">STK-74118</b>
+                  <span class="chip" style="padding:.18rem .55rem;font-size:.62rem">US-WEST</span>
+                  <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-circle"></i>Awaiting pick</span>
+                </div>
+                <div class="bar-mini"><i data-w="18"></i></div>
+              </div>
+
+              <div style="border-bottom:1px solid var(--line);padding-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem">
+                  <b class="t-strong" style="font-size:.86rem">STK-74117</b>
+                  <span class="chip" style="padding:.18rem .55rem;font-size:.62rem">EU</span>
+                  <span class="pill hold" style="margin-left:auto"><i class="fa-solid fa-pause"></i>Address hold</span>
+                </div>
+                <div class="bar-mini"><i data-w="9"></i></div>
+              </div>
+
+              <div style="border-bottom:1px solid var(--line);padding-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem">
+                  <b class="t-strong" style="font-size:.86rem">STK-74116</b>
+                  <span class="chip" style="padding:.18rem .55rem;font-size:.62rem">CA</span>
+                  <span class="pill ok" style="margin-left:auto"><i class="fa-solid fa-check"></i>Handed to carrier</span>
+                </div>
+                <div class="bar-mini"><i data-w="92"></i></div>
+              </div>
+
+              <div>
+                <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem">
+                  <b class="t-strong" style="font-size:.86rem">STK-74115</b>
+                  <span class="chip" style="padding:.18rem .55rem;font-size:.62rem">APAC</span>
+                  <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-circle"></i>Customs review</span>
+                </div>
+                <div class="bar-mini"><i data-w="61"></i></div>
+              </div>
+            </div>
+
+            <a class="btn block" style="margin-top:1.4rem" href="#orders" data-pane="orders"><i class="fa-solid fa-list-check"></i> Open the full order queue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="g g-3" style="margin-top:clamp(1.2rem,2.4vw,2rem)">
+        <article class="spot spot-pad">
+          <span class="icon-btn" aria-hidden="true" style="width:48px;height:48px;font-size:.95rem"><i class="fa-solid fa-boxes-stacked"></i></span>
+          <b class="tnum" style="display:block;margin:1rem 0 .3rem;font-family:var(--ff-alt);font-weight:800;font-size:2.2rem;letter-spacing:-.03em;line-height:1" data-count="23" data-decimals="0">0</b>
+          <b class="d4" style="display:block;margin-bottom:.45rem">Low stock</b>
+          <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Twelve SKUs sit below reorder point. The Ridgeline 2 flysheet is the hard constraint at 41 units against a 90-unit level, and the mill ships in eleven days.</p>
+          <a class="btn sm" href="#inventory" data-pane="inventory"><i class="fa-solid fa-arrow-rotate-right"></i> Raise replenishment</a>
+        </article>
+
+        <article class="spot spot-pad">
+          <span class="icon-btn" aria-hidden="true" style="width:48px;height:48px;font-size:.95rem"><i class="fa-solid fa-credit-card"></i></span>
+          <b class="tnum" style="display:block;margin:1rem 0 .3rem;font-family:var(--ff-alt);font-weight:800;font-size:2.2rem;letter-spacing:-.03em;line-height:1" data-count="38" data-decimals="0">0</b>
+          <b class="d4" style="display:block;margin-bottom:.45rem">Failed payments</b>
+          <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Declines rose 22% since the gateway cutover on Tuesday. Eight of the 38 are duplicate authorisations on split shipments and void on their own within 72 hours.</p>
+          <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-magnifying-glass-chart"></i> Inspect decline log</a>
+        </article>
+
+        <article class="spot spot-pad">
+          <span class="icon-btn" aria-hidden="true" style="width:48px;height:48px;font-size:.95rem"><i class="fa-solid fa-truck-fast"></i></span>
+          <b class="tnum" style="display:block;margin:1rem 0 .3rem;font-family:var(--ff-alt);font-weight:800;font-size:2.2rem;letter-spacing:-.03em;line-height:1" data-count="9" data-decimals="0">0</b>
+          <b class="d4" style="display:block;margin-bottom:.45rem">Delayed shipments</b>
+          <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Nine parcels are past their promise date, all held at the Troutdale cross-dock pending a battery safety check. Median delay is 1.4 days and all nine remain inside the free-return window.</p>
+          <a class="btn sm" href="#support" data-pane="support"><i class="fa-solid fa-headset"></i> Notify the 9 buyers</a>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: ORDERS ---------- -->
+    <div data-dashpane="orders">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Operations / Orders / All fulfilment states</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Twelve orders<br />need a <span class="hl">decision.</span></h1>
+          <p class="lead">The queue is sorted by risk, not by date. An address hold on an EU order blocks four lines behind it; a customs review on a single APAC parcel costs nothing until Thursday. Everything shown here is live against the carrier scan feed.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-file-csv"></i> Export the queue</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-print"></i> Print pick wave 3</a>
+        </div>
+      </div>
+
+      <div class="fbar">
+        <select aria-label="Filter orders by region" style="background:transparent;border:1px solid var(--line-2);border-radius:99px;color:var(--paper);padding:.5rem 1rem;font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.12em;outline:0">
+          <option>All regions</option>
+          <option>US-West</option>
+          <option>US-East</option>
+          <option>EU</option>
+          <option>CA</option>
+          <option>APAC</option>
+        </select>
+        <select aria-label="Filter orders by status" style="background:transparent;border:1px solid var(--line-2);border-radius:99px;color:var(--paper);padding:.5rem 1rem;font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.12em;outline:0">
+          <option>Any status</option>
+          <option>Awaiting pick</option>
+          <option>Picking</option>
+          <option>On trailer</option>
+          <option>Address hold</option>
+          <option>Customs review</option>
+          <option>Return review</option>
+          <option>Delivered</option>
+        </select>
+        <span class="spacer"></span>
+        <span class="fcount">9 OF 1,284 ORDERS</span>
+        <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-filter"></i> Saved views</a>
+      </div>
+
+      <div class="table-wrap" style="margin-top:1.2rem">
+        <div class="tbl-scroll">
+          <table class="tbl">
+            <caption class="sr">Fulfilment queue with customer, region, status and dispatch progress</caption>
+            <thead>
+              <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Region</th>
+                <th scope="col">Items</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+                <th scope="col">Fulfilment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b class="t-strong">STK-74120</b></td>
+                <td>Marisol Duarte</td>
+                <td><span class="chip">PNW</span></td>
+                <td>3</td>
+                <td class="t-strong">$684.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>On trailer</span></td>
+                <td style="min-width:120px">74%<div class="bar-mini" style="margin-top:.5rem"><i data-w="74"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74119</b></td>
+                <td>Tobias Renn</td>
+                <td><span class="chip">EU</span></td>
+                <td>1</td>
+                <td class="t-strong">$449.00</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Picking</span></td>
+                <td style="min-width:120px">38%<div class="bar-mini" style="margin-top:.5rem"><i data-w="38"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74118</b></td>
+                <td>Priya Raman</td>
+                <td><span class="chip">US-WEST</span></td>
+                <td>6</td>
+                <td class="t-strong">$1,942.00</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Awaiting pick</span></td>
+                <td style="min-width:120px">12%<div class="bar-mini" style="margin-top:.5rem"><i data-w="12"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74117</b></td>
+                <td>Halvard Nilsen</td>
+                <td><span class="chip">EU</span></td>
+                <td>2</td>
+                <td class="t-strong">$517.00</td>
+                <td><span class="pill hold"><i class="fa-solid fa-pause"></i>Address hold</span></td>
+                <td style="min-width:120px">4%<div class="bar-mini" style="margin-top:.5rem"><i data-w="4"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74116</b></td>
+                <td>Camille Fontaine</td>
+                <td><span class="chip">CA</span></td>
+                <td>4</td>
+                <td class="t-strong">$1,208.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                <td style="min-width:120px">100%<div class="bar-mini" style="margin-top:.5rem"><i data-w="100"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74115</b></td>
+                <td>Owen Blackwood</td>
+                <td><span class="chip">APAC</span></td>
+                <td>2</td>
+                <td class="t-strong">$562.00</td>
+                <td><span class="pill wait"><i class="fa-solid fa-globe"></i>Customs review</span></td>
+                <td style="min-width:120px">55%<div class="bar-mini" style="margin-top:.5rem"><i data-w="55"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74114</b></td>
+                <td>Sana Qureshi</td>
+                <td><span class="chip">US-EAST</span></td>
+                <td>1</td>
+                <td class="t-strong">$389.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Delivered</span></td>
+                <td style="min-width:120px">100%<div class="bar-mini" style="margin-top:.5rem"><i data-w="100"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74113</b></td>
+                <td>Elias Brandt</td>
+                <td><span class="chip">EU</span></td>
+                <td>5</td>
+                <td class="t-strong">$1,730.00</td>
+                <td><span class="pill hold"><i class="fa-solid fa-rotate-left"></i>Return review</span></td>
+                <td style="min-width:120px">88%<div class="bar-mini" style="margin-top:.5rem"><i data-w="88"></i></div></td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">STK-74112</b></td>
+                <td>Juno Vasquez</td>
+                <td><span class="chip">US-WEST</span></td>
+                <td>2</td>
+                <td class="t-strong">$476.00</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Picking</span></td>
+                <td style="min-width:120px">26%<div class="bar-mini" style="margin-top:.5rem"><i data-w="26"></i></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="g g-4" style="margin-top:clamp(1.4rem,2.6vw,2.2rem)">
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-boxes-stacked"></i></span>
+          <span class="delta">+18 vs avg</span>
+          <b class="tnum" data-count="212" data-decimals="0">0</b>
+          <small>Orders picked today</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="delta">+4.1% on Q1</span>
+          <b class="tnum" data-count="486" data-prefix="$" data-decimals="0">0</b>
+          <small>Average basket value</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-stopwatch"></i></span>
+          <span class="delta">target 95%</span>
+          <b class="tnum" data-count="96.4" data-decimals="1" data-suffix="%">0</b>
+          <small>On-time dispatch rate</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-pause"></i></span>
+          <span class="delta">2 over 24 h</span>
+          <b class="tnum" data-count="7" data-decimals="0">0</b>
+          <small>Orders held for review</small>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: INVENTORY ---------- -->
+    <div data-dashpane="inventory">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Operations / Inventory / Reno distribution centre</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Cover days,<br />not unit <span class="hl">counts.</span></h1>
+          <p class="lead">Counts are cheap to read and expensive to act on, so this board is sorted by the number of days of cover left against the reorder point. Six SKUs are already past the line and the lead time on each is printed beside it.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-file-arrow-down"></i> Stock ledger export</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-cart-flatbed"></i> Draft purchase orders</a>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-8">
+          <div class="table-wrap">
+            <div class="tbl-scroll">
+              <table class="tbl">
+                <caption class="sr">Stock on hand by SKU against reorder point</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Reorder at</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Cover</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b class="t-strong">STK-RGD2-FLY</b></td>
+                    <td>Ridgeline 2 Flysheet</td>
+                    <td>Shelters</td>
+                    <td class="t-strong">41</td>
+                    <td>90</td>
+                    <td><span class="pill hold"><i class="fa-solid fa-triangle-exclamation"></i>Reorder now</span></td>
+                    <td style="min-width:120px">46%<div class="bar-mini" style="margin-top:.5rem"><i data-w="46"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-CLD900-BAG</b></td>
+                    <td>Coldline 900 Down Bag</td>
+                    <td>Sleep Systems</td>
+                    <td class="t-strong">128</td>
+                    <td>60</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Healthy</span></td>
+                    <td style="min-width:120px">78%<div class="bar-mini" style="margin-top:.5rem"><i data-w="78"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-TRKPR-POL</b></td>
+                    <td>Trek Pro Poles, pair</td>
+                    <td>Trekking</td>
+                    <td class="t-strong">12</td>
+                    <td>40</td>
+                    <td><span class="pill hold"><i class="fa-solid fa-triangle-exclamation"></i>Reorder now</span></td>
+                    <td style="min-width:120px">21%<div class="bar-mini" style="margin-top:.5rem"><i data-w="21"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-TIKSET-04</b></td>
+                    <td>Nesting Titanium Cook Set</td>
+                    <td>Camp Kitchen</td>
+                    <td class="t-strong">210</td>
+                    <td>75</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Healthy</span></td>
+                    <td style="min-width:120px">91%<div class="bar-mini" style="margin-top:.5rem"><i data-w="91"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-HAUL55-FRM</b></td>
+                    <td>Haul 55 Frame Kit</td>
+                    <td>Packs</td>
+                    <td class="t-strong">64</td>
+                    <td>50</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Reorder soon</span></td>
+                    <td style="min-width:120px">57%<div class="bar-mini" style="margin-top:.5rem"><i data-w="57"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-NGHTWCH-HL</b></td>
+                    <td>Nightwatch 900 Headlamp</td>
+                    <td>Lighting</td>
+                    <td class="t-strong">7</td>
+                    <td>45</td>
+                    <td><span class="pill hold"><i class="fa-solid fa-circle-exclamation"></i>Stockout risk</span></td>
+                    <td style="min-width:120px">13%<div class="bar-mini" style="margin-top:.5rem"><i data-w="13"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-TERRA6-MAT</b></td>
+                    <td>Terra 6 Insulated Mat</td>
+                    <td>Sleep Systems</td>
+                    <td class="t-strong">305</td>
+                    <td>110</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-check"></i>Healthy</span></td>
+                    <td style="min-width:120px">96%<div class="bar-mini" style="margin-top:.5rem"><i data-w="96"></i></div></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">STK-MRK200-BLS</b></td>
+                    <td>Merino 200 Base Set, Crew</td>
+                    <td>Apparel</td>
+                    <td class="t-strong">58</td>
+                    <td>120</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Reorder soon</span></td>
+                    <td style="min-width:120px">39%<div class="bar-mini" style="margin-top:.5rem"><i data-w="39"></i></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="mono dim" style="margin-top:.9rem">Cover is measured against a rolling 28-day demand curve, not last season</p>
+        </div>
+
+        <div class="c-4">
+          <aside class="spot spot-pad">
+            <span class="eyebrow">Standard path</span>
+            <b class="d4" style="display:block;margin:1rem 0 .5rem">How a reorder clears</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.4rem">Nobody is asked to guess a quantity. The trigger comes off the cover curve, the buyer signs the purchase order against it, and nothing reaches the supplier without a name attached.</p>
+            <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+              <div class="step done"><span class="step-n">01 / TRIGGER</span><b>Reorder point breached</b><p>Cover falls under 45 days. The SKU is queued automatically.</p></div>
+              <div class="step done"><span class="step-n">02 / REVIEW</span><b>Buyer approves the PO</b><p>Quantity is set from lead time, not from last season.</p></div>
+              <div class="step"><span class="step-n">03 / SUPPLIER</span><b>Maker confirms</b><p>Mills quote an eleven-day window on shelters.</p></div>
+              <div class="step"><span class="step-n">04 / RECEIVE</span><b>Reno books the count</b><p>Inbound is counted twice before it hits available stock.</p></div>
+            </div>
+            <a class="btn block" style="margin-top:1.5rem" href="404.html" data-404><i class="fa-solid fa-clipboard-list"></i> Open the replenishment board</a>
+          </aside>
+        </div>
+      </div>
+
+      <div class="g g-3" style="margin-top:clamp(1.2rem,2.4vw,2rem)">
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem">
+            <span class="eyebrow">Category health</span>
+            <span class="pill wait"><i class="fa-solid fa-circle"></i>Shelters</span>
+          </div>
+          <b class="d4" style="display:block;margin-bottom:.7rem">Shelters, 46% covered</b>
+          <div class="bar-mini" style="margin-bottom:1.3rem"><i data-w="46"></i></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem">
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="3.1" data-decimals="1" data-suffix="x">0</b><small class="mono dim" style="font-size:.56rem">Turns</small></div>
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="18" data-decimals="0" data-suffix=" d">0</b><small class="mono dim" style="font-size:.56rem">Cover</small></div>
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="4" data-decimals="0">0</b><small class="mono dim" style="font-size:.56rem">Held</small></div>
+          </div>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem">
+            <span class="eyebrow">Category health</span>
+            <span class="pill ok"><i class="fa-solid fa-check"></i>Sleep Systems</span>
+          </div>
+          <b class="d4" style="display:block;margin-bottom:.7rem">Sleep Systems, 78% covered</b>
+          <div class="bar-mini" style="margin-bottom:1.3rem"><i data-w="78"></i></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem">
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="5.4" data-decimals="1" data-suffix="x">0</b><small class="mono dim" style="font-size:.56rem">Turns</small></div>
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="62" data-decimals="0" data-suffix=" d">0</b><small class="mono dim" style="font-size:.56rem">Cover</small></div>
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="1" data-decimals="0">0</b><small class="mono dim" style="font-size:.56rem">Held</small></div>
+          </div>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem">
+            <span class="eyebrow">Category health</span>
+            <span class="pill ok"><i class="fa-solid fa-check"></i>Camp Kitchen</span>
+          </div>
+          <b class="d4" style="display:block;margin-bottom:.7rem">Camp Kitchen, 91% covered</b>
+          <div class="bar-mini" style="margin-bottom:1.3rem"><i data-w="91"></i></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem">
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="7.2" data-decimals="1" data-suffix="x">0</b><small class="mono dim" style="font-size:.56rem">Turns</small></div>
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="94" data-decimals="0" data-suffix=" d">0</b><small class="mono dim" style="font-size:.56rem">Cover</small></div>
+            <div><b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1" data-count="0" data-decimals="0">0</b><small class="mono dim" style="font-size:.56rem">Held</small></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: CUSTOMERS ---------- -->
+    <div data-dashpane="customers">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Operations / Customers / Segments and lifetime value</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Ten thousand<br />people, three <span class="hl">segments.</span></h1>
+          <p class="lead">Segments are set by behaviour, not by spend alone. Anyone who has filed a repair claim in the last 180 days and rated us above eight is an advocate, whoever they bought from. At-risk means two visits without a purchase, not a quiet inbox.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-file-csv"></i> Export segments</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-envelope-open-text"></i> Draft a dispatch</a>
+        </div>
+      </div>
+
+      <div class="fbar">
+        <select aria-label="Filter customers by segment" style="background:transparent;border:1px solid var(--line-2);border-radius:99px;color:var(--paper);padding:.5rem 1rem;font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.12em;outline:0">
+          <option>All segments</option>
+          <option>Advocate</option>
+          <option>Loyal</option>
+          <option>At risk</option>
+        </select>
+        <select aria-label="Filter customers by last active period" style="background:transparent;border:1px solid var(--line-2);border-radius:99px;color:var(--paper);padding:.5rem 1rem;font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.12em;outline:0">
+          <option>Any activity</option>
+          <option>Last 24 hours</option>
+          <option>Last 7 days</option>
+          <option>Last 30 days</option>
+          <option>Dormant 90 days</option>
+        </select>
+        <span class="spacer"></span>
+        <span class="fcount">8 OF 10,482 CUSTOMERS</span>
+        <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-sliders"></i> Segment rules</a>
+      </div>
+
+      <div class="table-wrap" style="margin-top:1.2rem">
+        <div class="tbl-scroll">
+          <table class="tbl">
+            <caption class="sr">Customer accounts with order counts, lifetime value and segment</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Orders</th>
+                <th scope="col">Lifetime value</th>
+                <th scope="col">Segment</th>
+                <th scope="col">Last active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b class="t-strong">Marisol Duarte</b></td>
+                <td>marisol.duarte@driftline.co</td>
+                <td>31</td>
+                <td class="t-strong">$12,480.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Advocate</span></td>
+                <td>12 min ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Tobias Renn</b></td>
+                <td>tobias.renn@nordkette.de</td>
+                <td>18</td>
+                <td class="t-strong">$7,215.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Advocate</span></td>
+                <td>1 h ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Priya Raman</b></td>
+                <td>priya.raman@summitworks.in</td>
+                <td>24</td>
+                <td class="t-strong">$9,860.00</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Loyal</span></td>
+                <td>3 h ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Halvard Nilsen</b></td>
+                <td>halvard.nilsen@fjordmail.no</td>
+                <td>6</td>
+                <td class="t-strong">$1,940.00</td>
+                <td><span class="pill hold"><i class="fa-solid fa-triangle-exclamation"></i>At risk</span></td>
+                <td>9 days ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Camille Fontaine</b></td>
+                <td>camille.fontaine@cabanequebec.ca</td>
+                <td>41</td>
+                <td class="t-strong">$18,930.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Advocate</span></td>
+                <td>22 min ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Owen Blackwood</b></td>
+                <td>owen.blackwood@trailhead.io</td>
+                <td>12</td>
+                <td class="t-strong">$4,760.00</td>
+                <td><span class="pill wait"><i class="fa-solid fa-circle"></i>Loyal</span></td>
+                <td>2 days ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Sana Qureshi</b></td>
+                <td>sana.qureshi@highcamp.pk</td>
+                <td>3</td>
+                <td class="t-strong">$912.00</td>
+                <td><span class="pill hold"><i class="fa-solid fa-triangle-exclamation"></i>At risk</span></td>
+                <td>21 days ago</td>
+              </tr>
+              <tr>
+                <td><b class="t-strong">Juno Vasquez</b></td>
+                <td>juno.vasquez@ridgeline.mx</td>
+                <td>27</td>
+                <td class="t-strong">$11,340.00</td>
+                <td><span class="pill ok"><i class="fa-solid fa-check"></i>Advocate</span></td>
+                <td>40 min ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="g g-3" style="margin-top:clamp(1.4rem,2.6vw,2.2rem)">
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+            <svg viewBox="0 0 140 140" width="140" height="140" role="img" aria-label="Ring chart showing advocates at 62 percent of the customer base">
+              <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="6" />
+              <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="6" stroke-linecap="round" stroke-dasharray="226 364" stroke-dashoffset="0" transform="rotate(-90 70 70)" />
+              <circle cx="70" cy="70" r="38" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="4" />
+              <circle cx="70" cy="70" r="38" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="4" stroke-linecap="round" stroke-dasharray="210 239" stroke-dashoffset="0" transform="rotate(-90 70 70)" />
+            </svg>
+          </div>
+          <span class="pill ok" style="margin-bottom:.9rem"><i class="fa-solid fa-check"></i>Advocate</span>
+          <b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:2.1rem;letter-spacing:-.03em;line-height:1;margin-bottom:.4rem" data-count="6498" data-decimals="0">0</b>
+          <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Bought twice or more, filed at least one repair claim, and rated the workshop above eight. Outer ring is share of base, inner ring is share of lifetime value.</p>
+          <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-envelope"></i> Open advocate dispatch</a>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+            <svg viewBox="0 0 140 140" width="140" height="140" role="img" aria-label="Ring chart showing loyal customers at 44 percent of the customer base">
+              <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="6" />
+              <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="6" stroke-linecap="round" stroke-dasharray="160 364" stroke-dashoffset="0" transform="rotate(-90 70 70)" />
+              <circle cx="70" cy="70" r="38" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="4" />
+              <circle cx="70" cy="70" r="38" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="4" stroke-linecap="round" stroke-dasharray="170 239" stroke-dashoffset="0" transform="rotate(-90 70 70)" />
+            </svg>
+          </div>
+          <span class="pill wait" style="margin-bottom:.9rem"><i class="fa-solid fa-circle"></i>Loyal</span>
+          <b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:2.1rem;letter-spacing:-.03em;line-height:1;margin-bottom:.4rem" data-count="2931" data-decimals="0">0</b>
+          <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Repeat buyers who have never needed the workshop. Most of this group converts on a restock notice rather than a discount, which is why the alert cadence matters more than the price.</p>
+          <a class="btn sm" href="404.html" data-404><i class="fa-solid fa-bell"></i> Schedule restock notices</a>
+        </article>
+
+        <article class="spot spot-pad">
+          <div style="display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+            <svg viewBox="0 0 140 140" width="140" height="140" role="img" aria-label="Ring chart showing at-risk customers at 14 percent of the customer base">
+              <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="6" />
+              <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="6" stroke-linecap="round" stroke-dasharray="51 364" stroke-dashoffset="0" transform="rotate(-90 70 70)" />
+              <circle cx="70" cy="70" r="38" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="4" />
+              <circle cx="70" cy="70" r="38" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="4" stroke-linecap="round" stroke-dasharray="91 239" stroke-dashoffset="0" transform="rotate(-90 70 70)" />
+            </svg>
+          </div>
+          <span class="pill hold" style="margin-bottom:.9rem"><i class="fa-solid fa-triangle-exclamation"></i>At risk</span>
+          <b class="tnum" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:2.1rem;letter-spacing:-.03em;line-height:1;margin-bottom:.4rem" data-count="1053" data-decimals="0">0</b>
+          <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Two visits in ninety days with no purchase, or one failed delivery with no reply. Thirty-one of these are sitting on an open ticket right now, which is the fixable half.</p>
+          <a class="btn sm" href="#support" data-pane="support"><i class="fa-solid fa-user-clock"></i> Work the at-risk list</a>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: CONTENT ---------- -->
+    <div data-dashpane="content">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Operations / Content / Editorial queue</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Six pieces,<br />four <span class="hl">states.</span></h1>
+          <p class="lead">Nothing goes live without a named technician behind the figures. Draft sits with the writer, Review waits on the bench for a fact check, Scheduled is queued for the six o'clock send and Published is immutable apart from a correction note.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="404.html" data-404><i class="fa-solid fa-calendar-days"></i> Editorial calendar</a>
+          <a class="btn solid" href="journal.html"><i class="fa-solid fa-newspaper"></i> View the journal</a>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-7">
+          <div class="g g-2">
+            <article class="spot spot-pad">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+                <span class="tag">JR-0418</span>
+                <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-magnifying-glass"></i>Review</span>
+              </div>
+              <b class="d4" style="display:block;margin:.9rem 0 .45rem">What a -9 C comfort rating actually means on a shoulder</b>
+              <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Held with the Portland workshop for a fact check on the loft figures. Draft quotes a lab test that predates our new protocol, and the sleep-systems team has flagged it.</p>
+              <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+                <span class="mono dim">Edited 27 Mar 2026</span>
+                <span style="display:flex;gap:.45rem;margin-left:auto">
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Edit What a -9 C comfort rating actually means on a shoulder"><i class="fa-solid fa-pen"></i></a>
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Send What a -9 C comfort rating actually means on a shoulder for review"><i class="fa-solid fa-paper-plane"></i></a>
+                </span>
+              </div>
+            </article>
+
+            <article class="spot spot-pad">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+                <span class="tag">JR-0417</span>
+                <span class="pill hold" style="margin-left:auto"><i class="fa-solid fa-clock"></i>Scheduled</span>
+              </div>
+              <b class="d4" style="display:block;margin:.9rem 0 .45rem">Field notes: eleven nights above the treeline</b>
+              <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Long-form trip report from the northern loop, with all eleven temperature logs attached. Queued for the Thursday send and locked against edits after 18:00 the night before.</p>
+              <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+                <span class="mono dim">Publishes 02 Apr 2026</span>
+                <span style="display:flex;gap:.45rem;margin-left:auto">
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Edit Field notes: eleven nights above the treeline"><i class="fa-solid fa-pen"></i></a>
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Preview Field notes: eleven nights above the treeline"><i class="fa-solid fa-eye"></i></a>
+                </span>
+              </div>
+            </article>
+
+            <article class="spot spot-pad">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+                <span class="tag">JR-0416</span>
+                <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-circle"></i>Draft</span>
+              </div>
+              <b class="d4" style="display:block;margin:.9rem 0 .45rem">How we load-test a pack frame to 28 kg</b>
+              <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Explains the bench rig in the workshop, including the failure mode we actually see: stay ferrules, not frame tubing. Waiting on three photographs from the bench.</p>
+              <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+                <span class="mono dim">Updated 26 Mar 2026</span>
+                <span style="display:flex;gap:.45rem;margin-left:auto">
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Edit How we load-test a pack frame to 28 kg"><i class="fa-solid fa-pen"></i></a>
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Request photographs for How we load-test a pack frame to 28 kg"><i class="fa-solid fa-camera"></i></a>
+                </span>
+              </div>
+            </article>
+
+            <article class="spot spot-pad">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+                <span class="tag">JR-0415</span>
+                <span class="pill ok" style="margin-left:auto"><i class="fa-solid fa-check"></i>Published</span>
+              </div>
+              <b class="d4" style="display:block;margin:.9rem 0 .45rem">Repair log: replacing a buckled Haul 55 stay</b>
+              <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">A dated bench record showing the ferrules, the crimp and the 34 minute repair. Published pieces stay live but any correction is appended, never overwritten.</p>
+              <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+                <span class="mono dim">Live since 18 Mar 2026</span>
+                <span style="display:flex;gap:.45rem;margin-left:auto">
+                  <a class="icon-btn" href="journal.html" aria-label="Read Repair log: replacing a buckled Haul 55 stay"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Append a correction to Repair log: replacing a buckled Haul 55 stay"><i class="fa-solid fa-file-circle-plus"></i></a>
+                </span>
+              </div>
+            </article>
+
+            <article class="spot spot-pad">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+                <span class="tag">JR-0414</span>
+                <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-magnifying-glass"></i>Review</span>
+              </div>
+              <b class="d4" style="display:block;margin:.9rem 0 .45rem">Buying second-hand kit without buying a problem</b>
+              <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">A buyer guide with a twenty-point inspection list. Legal read requested on the paragraph describing how to date a shell, since it touches on resale warranties in the EU.</p>
+              <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+                <span class="mono dim">Edited 25 Mar 2026</span>
+                <span style="display:flex;gap:.45rem;margin-left:auto">
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Edit Buying second-hand kit without buying a problem"><i class="fa-solid fa-pen"></i></a>
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Nudge the reviewer for Buying second-hand kit without buying a problem"><i class="fa-solid fa-bell"></i></a>
+                </span>
+              </div>
+            </article>
+
+            <article class="spot spot-pad">
+              <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+                <span class="tag">JR-0413</span>
+                <span class="pill wait" style="margin-left:auto"><i class="fa-solid fa-circle"></i>Draft</span>
+              </div>
+              <b class="d4" style="display:block;margin:.9rem 0 .45rem">Winter kit list, Colorado Trail mile 1 to 500</b>
+              <p class="dim" style="font-size:.84rem;margin-bottom:1.1rem">Segment-by-segment load plan for a January traverse, built off three years of logged routes. The stove section still needs a decision between the canister and the liquid option.</p>
+              <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+                <span class="mono dim">Updated 24 Mar 2026</span>
+                <span style="display:flex;gap:.45rem;margin-left:auto">
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Edit Winter kit list, Colorado Trail mile 1 to 500"><i class="fa-solid fa-pen"></i></a>
+                  <a class="icon-btn" href="404.html" data-404 aria-label="Delete draft Winter kit list, Colorado Trail mile 1 to 500"><i class="fa-solid fa-trash-can"></i></a>
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="c-5">
+          <aside class="spot spot-pad">
+            <span class="eyebrow">Compose</span>
+            <b class="d4" style="display:block;margin:1rem 0 .4rem">New Trail Dispatch piece</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.3rem">Saved as a draft with the current author and reviewer attached. Nothing reaches the public site until a technician has signed the figures.</p>
+
+            <div class="field">
+              <label for="cmpTitle"><i class="fa-solid fa-heading"></i> Working title</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-heading lead-ic"></i>
+                <input type="text" id="cmpTitle" name="title" placeholder="e.g. Packing a 1.4 kg kit for a four-day traverse" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cmpBody"><i class="fa-solid fa-align-left"></i> Standfirst</label>
+              <textarea id="cmpBody" name="standfirst" rows="5" placeholder="Two sentences that say what the reader will be able to do differently after reading this."></textarea>
+              <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> A standfirst is required</span>
+            </div>
+
+            <div class="field">
+              <label><i class="fa-solid fa-tags"></i> Section</label>
+              <div class="chip-row">
+                <span class="chip on">Trail guides</span>
+                <span class="chip on">Gear tests</span>
+                <span class="chip">Repair logs</span>
+                <span class="chip">Field notes</span>
+                <span class="chip">Product news</span>
+              </div>
+            </div>
+
+            <button class="btn solid block" type="button"><i class="fa-solid fa-floppy-disk"></i> Queue for review</button>
+          </aside>
+        </div>
+      </div>
+
+      <div class="mq-band skew" style="margin-top:clamp(1.4rem,3vw,2.6rem)">
+        <div class="marquee" style="--mq-dur:42s">
+          <div class="marquee-track fwd">
+            <span class="mq-item">Two letters a month<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Reviewed by the bench before it ships</span>
+            <span class="mq-item">Every figure traceable to a logged route<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline thin">Corrections appended, never overwritten</span>
+            <span class="mq-item">Six o'clock send, Thursday<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">No affiliate links, ever</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- PANE: SUPPORT ---------- -->
+    <div data-dashpane="support">
+      <div class="dash-head">
+        <div>
+          <span class="mono dim">Operations / Support / Live desk load</span>
+          <h1 class="d2" style="margin:.7rem 0 .8rem" data-split>Forty-seven open,<br />seven need <span class="hl">you.</span></h1>
+          <p class="lead">The desk answers inside four hours in every season we have measured. Three tickets are the reason that number holds today, and one of them is a duty-free code that the payment gateway has been rejecting since Tuesday.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn" href="contact.html#faq"><i class="fa-solid fa-book"></i> Reply macros</a>
+          <a class="btn solid" href="404.html" data-404><i class="fa-solid fa-chart-simple"></i> Desk report</a>
+        </div>
+      </div>
+
+      <div class="g g-4">
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-stopwatch"></i></span>
+          <span class="delta">target under 4 h</span>
+          <b class="tnum" data-count="2.1" data-decimals="1" data-suffix=" h">0</b>
+          <small>Median first reply</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-headset"></i></span>
+          <span class="delta">7 waiting on us</span>
+          <b class="tnum" data-count="47" data-decimals="0">0</b>
+          <small>Open tickets</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-face-smile"></i></span>
+          <span class="delta">+1.8 pts</span>
+          <b class="tnum" data-count="94.2" data-decimals="1" data-suffix="%">0</b>
+          <small>CSAT, rolling 30 days</small>
+        </article>
+        <article class="kpi">
+          <span class="ic"><i class="fa-solid fa-flag"></i></span>
+          <span class="delta">2 over 48 h</span>
+          <b class="tnum" data-count="4" data-decimals="0">0</b>
+          <small>Escalations to the workshop</small>
+        </article>
+      </div>
+
+      <div class="g g-12" style="margin-top:clamp(1.2rem,2.4vw,2rem);align-items:start">
+        <div class="c-7">
+          <div class="table-wrap">
+            <div class="tbl-scroll">
+              <table class="tbl">
+                <caption class="sr">Open support tickets with channel, wait time and priority</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Ticket</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Channel</th>
+                    <th scope="col">Wait</th>
+                    <th scope="col">Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b class="t-strong">TK-5521</b></td>
+                    <td>Coldline 900 arrived with a torn seam</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-envelope"></i>Email</span></td>
+                    <td>34 min</td>
+                    <td><b class="t-strong">High</b></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">TK-5518</b></td>
+                    <td>Exchange a Ridgeline 2 for a Terra 6 footprint</td>
+                    <td><span class="pill ok"><i class="fa-solid fa-comments"></i>Chat</span></td>
+                    <td>12 min</td>
+                    <td>Normal</td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">TK-5512</b></td>
+                    <td>Duty-free code rejected at checkout for an EU order</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-envelope"></i>Email</span></td>
+                    <td>3 h 08</td>
+                    <td><b class="t-strong">High</b></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">TK-5507</b></td>
+                    <td>Where is my quote for repair claim RC-3391</td>
+                    <td><span class="pill hold"><i class="fa-solid fa-phone"></i>Phone</span></td>
+                    <td>6 h 41</td>
+                    <td>Normal</td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">TK-5496</b></td>
+                    <td>Tracking has not moved since 04 March</td>
+                    <td><span class="pill wait"><i class="fa-solid fa-envelope"></i>Email</span></td>
+                    <td>2 d 04</td>
+                    <td><b class="t-strong">Urgent</b></td>
+                  </tr>
+                  <tr>
+                    <td><b class="t-strong">TK-5489</b></td>
+                    <td>Wrong colourway shipped on the Haul 55</td>
+                    <td><span class="pill hold"><i class="fa-solid fa-hashtag"></i>Social</span></td>
+                    <td>51 min</td>
+                    <td>Normal</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="mono dim" style="margin-top:.9rem">Wait is measured from first customer contact, not from the last internal note</p>
+        </div>
+
+        <div class="c-5">
+          <aside class="spot spot-pad">
+            <span class="eyebrow">Reply desk</span>
+            <b class="d4" style="display:block;margin:1rem 0 .4rem">Answer TK-5521</b>
+            <p class="dim" style="font-size:.86rem;margin-bottom:1.3rem">Sent to Marisol Duarte, opened 34 minutes ago from a tear along the left shoulder seam. A replacement panel is in the parts bin, so this can close on the same message.</p>
+
+            <form data-validate novalidate>
+              <div class="field">
+                <label for="supSubject"><i class="fa-solid fa-tag"></i> Subject</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-tag lead-ic"></i>
+                  <input type="text" id="supSubject" name="subject" placeholder="Re: Coldline 900 seam, claim RC-3391" required />
+                </div>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> A subject is required</span>
+              </div>
+
+              <div class="field">
+                <label for="supReply"><i class="fa-solid fa-align-left"></i> Reply</label>
+                <textarea id="supReply" name="reply" rows="6" placeholder="Confirm the replacement panel, the dispatch date and the prepaid label." required></textarea>
+                <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> A reply is required</span>
+              </div>
+
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.3rem">
+                <label class="check">
+                  <input type="checkbox" checked />
+                  <span class="box" aria-hidden="true"></span>
+                  <span>Close the ticket on send</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" />
+                  <span class="box" aria-hidden="true"></span>
+                  <span>Attach a prepaid label</span>
+                </label>
+              </div>
+
+              <button class="btn solid block" type="submit"><i class="fa-solid fa-paper-plane"></i> Send reply</button>
+            </form>
+
+            <div class="acc" style="margin-top:1.6rem">
+              <div class="acc-item on">
+                <button class="acc-btn" type="button" aria-expanded="true"><span class="num">01</span> Return window still open <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner"><p>Use this when the item is inside the 60-night trial window and the fault is a manufacturing one. Confirm the order number, name the exact panel or part, give a dispatch date and close with the return label attached. Nothing here should ask the customer for a reason to return.</p></div>
+                </div>
+              </div>
+              <div class="acc-item">
+                <button class="acc-btn" type="button" aria-expanded="false"><span class="num">02</span> Warranty claim, first reply <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner"><p>Acknowledge within four hours even if you cannot quote. Give the claim number, the bench date the photographs are due and a realistic turnaround of fourteen working days. Do not estimate a price before the technician has named the failure mode.</p></div>
+                </div>
+              </div>
+              <div class="acc-item">
+                <button class="acc-btn" type="button" aria-expanded="false"><span class="num">03</span> Delayed shipment apology <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner"><p>State the cause, not the process. If the parcel is more than one day past its promise date, offer the choice of a refund or a re-dispatch on the next trailer, and log the delay against the carrier record so the same root cause shows up in the weekly review.</p></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- FOOT ROW ---------- -->
+    <div class="dash-foot" style="display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;margin-top:clamp(1.6rem,3vw,2.4rem);padding-top:1.2rem;border-top:1px solid var(--line)">
+      <span class="mono dim">Stackly Operations Console v4.2</span>
+      <span class="mono dim" data-clock></span>
+      <span style="display:flex;gap:1.1rem;flex-wrap:wrap">
+        <a class="mono link-u" href="404.html" data-404>System status</a>
+        <a class="mono link-u" href="index.html">Back to storefront</a>
+      </span>
+    </div>
+
+  </section>
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

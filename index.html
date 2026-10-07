@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Stackly — Outdoor &amp; Camping Equipment Built For The Long Haul</title>
+<meta name="description" content="Stackly Outdoor Co. engineers repairable, field-tested tents, sleep systems, packs and camp kitchens for people who treat the trail as a workplace." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="home">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main>
+
+  <!-- ================= 1 · HERO SLIDESHOW ================= -->
+  <section class="hero" id="hero" aria-label="Featured collections">
+    <div class="slides" id="heroSlides">
+
+      <article class="slide on">
+        <div class="slide-media">
+          <img src="assets/banner_1.webp" alt="Ridgeline above a valley at first light" fetchpriority="high" />
+        </div>
+        <div class="slide-inner">
+          <span class="eyebrow st-anim">Alpine Series 2026</span>
+          <h2 class="d2 st-anim" data-split>The quiet<br />before the climb.</h2>
+          <p class="lead lead-b st-anim" style="margin-top:1.2rem">A three-season shelter rated for 90 km/h gusts, 1.9 kg all-in, and every seam repairable in the field with the kit in the door pocket.</p>
+          <div class="st-anim" style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem">
+            <a class="btn solid lg" href="shop.html" data-magnetic>Shop the range <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            <a class="btn lg dark" href="gear.html" data-magnetic>Build your kit <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-media">
+          <img src="assets/banner_2 (1).webp" alt="Campfire glowing at dusk" loading="lazy" />
+        </div>
+        <div class="slide-inner">
+          <span class="eyebrow st-anim">Basecamp Kitchen</span>
+          <h2 class="d2 st-anim" data-split>Cook fast.<br />Carry less.</h2>
+          <p class="lead lead-b st-anim" style="margin-top:1.2rem">Titanium nesting system that boils a litre in 3 min 20 s and folds into its own lid. No coatings, no fumes, no compromise.</p>
+          <div class="st-anim" style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem">
+            <a class="btn solid lg" href="shop.html#cooking">Camp kitchen <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            <button class="btn lg" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+              <i class="fa-solid fa-play"></i> Watch the film
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-media">
+          <img src="assets/banner3 (1).webp" alt="Snow field with a single tent" loading="lazy" />
+        </div>
+        <div class="slide-inner">
+          <span class="eyebrow st-anim">Expedition Winter</span>
+          <h2 class="d2 st-anim" data-split>Built for<br />the cold shoulder.</h2>
+          <p class="lead lead-b st-anim" style="margin-top:1.2rem">Down loft certified to -24&nbsp;°C, a four-season vaulted floor, and stove burners that hold ignition at -30&nbsp;°C.</p>
+          <div class="st-anim" style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem">
+            <a class="btn solid lg" href="shop.html#sleep">Sleep systems <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            <a class="btn lg" href="journal.html">Route guides <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="slide-media">
+          <img src="assets/banner4 (1).webp" alt="Sunlight through a pine canopy" loading="lazy" />
+        </div>
+        <div class="slide-inner">
+          <span class="eyebrow st-anim">Trail Dispatch</span>
+          <h2 class="d2 st-anim" data-split>Field notes<br />from the long way.</h2>
+          <p class="lead lead-b st-anim" style="margin-top:1.2rem">Route intel, failure write-ups and gear teardowns from the crew. Two letters a month, no filler, no affiliate links.</p>
+          <div class="st-anim" style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem">
+            <a class="btn solid lg" href="journal.html">Read the journal <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            <a class="btn lg" href="#newsletter">Subscribe <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="hero-cards" aria-label="Featured collections">
+      <figure class="hero-card">
+        <img src="assets/banner_1.webp" alt="Ridgeline above a valley at first light" loading="lazy" />
+        <figcaption>Alpine Series 2026</figcaption>
+      </figure>
+      <figure class="hero-card">
+        <img src="assets/banner_2 (1).webp" alt="Campfire glowing at dusk" loading="lazy" />
+        <figcaption>Basecamp Kitchen</figcaption>
+      </figure>
+      <figure class="hero-card">
+        <img src="assets/banner3 (1).webp" alt="Snow field with a single tent" loading="lazy" />
+        <figcaption>Expedition Winter</figcaption>
+      </figure>
+      <figure class="hero-card">
+        <img src="assets/banner4 (1).webp" alt="Sunlight through a pine canopy" loading="lazy" />
+        <figcaption>Trail Dispatch</figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-ken" aria-hidden="true">
+      <span class="k k1"></span><span class="k k2"></span>
+      <span class="kt"></span><span class="kt2"></span>
+    </div>
+
+    <div class="sl-nav">
+      <span class="sl-count"><b id="slNow">01</b> / 04</span>
+      <button class="icon-btn" id="slPrev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="sl-dots" role="tablist" aria-label="Slides"></div>
+      <button class="icon-btn" id="slNext" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><span class="mouse"></span></div>
+  </section>
+
+  <!-- ================= 2 · INFINITE MARQUEE (diagonal white band) ================= -->
+  <section class="sec-tight bg-grid diag-both" id="ticker" aria-label="Store promises">
+    <div class="wrap" style="position:relative;z-index:2">
+      <div class="marquee" style="--mq-dur:38s">
+        <div class="marquee-track fwd">
+          <span class="mq-item">Free shipping over $120<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">60-night trail trial</span>
+          <span class="mq-item">Carbon-neutral shipping<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline thin">Field-repairable forever</span>
+          <span class="mq-item">Lifetime warranty<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">Since 2011</span>
+        </div>
+      </div>
+    </div>
+    <div class="mq-band skew" style="margin-top:clamp(2rem,5vw,4rem)">
+      <div class="marquee" style="--mq-dur:44s">
+        <div class="marquee-track fwd">
+          <span class="mq-item">Pack light</span><i class="mq-dot"></i>
+          <span class="mq-item">Move far</span><i class="mq-dot"></i>
+          <span class="mq-item">Stay warm</span><i class="mq-dot"></i>
+          <span class="mq-item">Repair anything</span><i class="mq-dot"></i>
+          <span class="mq-item">Leave no trace</span><i class="mq-dot"></i>
+        </div>
+      </div>
+    </div>
+    <div class="wrap" style="position:relative;z-index:2;margin-top:clamp(2rem,4vw,3rem)">
+      <div class="marquee no-mask" style="--mq-dur:52s">
+        <div class="marquee-track rev">
+          <span class="mq-item mq-outline thin" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">Tents</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">Sleep Systems</span><i class="mq-dot"></i>
+          <span class="mq-item mq-outline thin" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">Packs</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">Camp Kitchen</span><i class="mq-dot"></i>
+          <span class="mq-item mq-outline thin" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">Lighting</span><i class="mq-dot"></i>
+          <span class="mq-item" style="font-size:clamp(1.1rem,2.2vw,1.7rem)">Apparel</span><i class="mq-dot"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 · CATEGORY SPOTLIGHT GRID (cards in from L/R) ================= -->
+  <section class="sec bg-lines" id="categories" aria-labelledby="cat-h">
+    <div class="blob w" style="top:-10%;right:-14%"></div>
+    <div class="blob w" style="bottom:-20%;left:-16%;opacity:.08"></div>
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Equipment Library</span>
+          <h2 class="d2 mt-l" id="cat-h" data-split>Six systems.<br />One <span class="hl">loadout.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Every category shares the same brief: fewer parts, better materials, and a manual that tells you how to fix it yourself. Start with the system you need most.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem">
+            <a class="btn sm" href="gear.html">All categories <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            <a class="btn sm solid" href="shop.html">Full catalogue <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="g g-12" style="position:relative;z-index:1">
+        <article class="c-4 move-l" data-reveal="left">
+          <a class="spot spot-lg" href="shop.html#tents" style="display:block;height:100%">
+            <div style="position:relative;aspect-ratio:2/3;overflow:hidden">
+              <img src="assets/tents_and_tarps.webp" alt="Backpacking tent pitched on granite" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">01 / Shelters</span>
+            </div>
+            <div class="spot-pad" style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.35rem">Tents &amp; Tarps</b>
+                <span class="mono dim" style="display:block;margin-bottom:.7rem">38 products</span>
+                <p class="dim" style="font-size:.86rem">Geodesic vaults, trekking-pole tarps and four-season domes.</p>
+              </div>
+              <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-4 move-r" data-reveal="right" style="margin-top:clamp(0px,4vw,3.4rem)">
+          <a class="spot spot-lg" href="shop.html#sleep" style="display:block;height:100%">
+            <div style="position:relative;aspect-ratio:2/3;overflow:hidden">
+              <img src="assets/sleep_systems.webp" alt="Sleeping bag and pad laid out" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">02 / Sleep</span>
+            </div>
+            <div class="spot-pad" style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.35rem">Sleep Systems</b>
+                <span class="mono dim" style="display:block;margin-bottom:.7rem">24 products</span>
+                <p class="dim" style="font-size:.86rem">Down and synthetic bags rated from +10 to -24 &deg;C.</p>
+              </div>
+              <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-4 move-u" data-reveal style="margin-top:clamp(0px,7vw,6.6rem)">
+          <a class="spot spot-lg" href="shop.html#packs" style="display:block;height:100%">
+            <div style="position:relative;aspect-ratio:2/3;overflow:hidden">
+              <img src="assets/packs_and_duffles (1).webp" alt="Loaded expedition backpack" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">03 / Packs</span>
+            </div>
+            <div class="spot-pad" style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.35rem">Packs &amp; Duffels</b>
+                <span class="mono dim" style="display:block;margin-bottom:.7rem">19 products</span>
+                <p class="dim" style="font-size:.86rem">Framed loads from 22 to 68 litres with lifetime frame warranty.</p>
+              </div>
+              <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-3 move-d" data-reveal>
+          <a class="spot spot-lg" href="shop.html#cooking" style="display:block;height:100%">
+            <div style="position:relative;aspect-ratio:3/2;overflow:hidden">
+              <img src="assets/camp_kitchen.webp" alt="Campfire glowing at dusk" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">04 / Kitchen</span>
+            </div>
+            <div class="spot-pad" style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.7rem">Camp Kitchen</b>
+                <p class="dim" style="font-size:.86rem">Titanium, hard-anodised alloy and nothing else. Boils faster, packs smaller.</p>
+              </div>
+              <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-5 move-u" data-reveal style="margin-top:clamp(0px,3vw,2.2rem)">
+          <a class="spot spot-lg" href="shop.html#lighting" style="display:block;height:100%">
+            <div style="position:relative;aspect-ratio:3/2;overflow:hidden">
+              <img src="assets/lightening_and_power.webp" alt="Sunlight through a pine canopy" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">05 / Lighting</span>
+            </div>
+            <div class="spot-pad" style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.7rem">Lighting &amp; Power</b>
+                <p class="dim" style="font-size:.86rem">Solar banks, headlamps and lantern diffusers tested through 40 night camps.</p>
+              </div>
+              <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-4 move-r" data-reveal="right" style="margin-top:clamp(0px,5vw,4.4rem)">
+          <a class="spot spot-lg" href="shop.html#apparel" style="display:block;height:100%">
+            <div style="position:relative;aspect-ratio:3/2;overflow:hidden">
+              <img src="assets/Techniccal_apparels.webp" alt="Snow field with a single tent" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">06 / Apparel</span>
+            </div>
+            <div class="spot-pad" style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.7rem">Technical Apparel</b>
+                <p class="dim" style="font-size:.86rem">Merino base layers, hard shells and gaiters that survive scree and sea spray.</p>
+              </div>
+              <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 · TRENDING GEAR (product grid, up/down hover) ================= -->
+  <section class="sec bg-grid-dark" id="trending" aria-labelledby="trend-h">
+    <div class="wrap">
+      <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:end">
+        <div>
+          <span class="eyebrow inv">Most Carried This Season</span>
+          <h2 class="d2" id="trend-h" style="margin-top:1rem" data-split>The kit our crew<br />actually packs.</h2>
+        </div>
+        <div>
+          <p class="lead inv">Ranked by the number of times these pieces went out of the Portland workshop door between March and August.</p>
+          <a class="btn dark mt-l" href="shop.html">Shop all 214 products <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+        </div>
+      </div>
+
+      <div class="g g-4" style="margin-top:clamp(2rem,4vw,3.4rem)">
+        <!-- 1 -->
+        <article class="pcard" data-reveal>
+          <div class="pcard-media">
+            <img src="assets/trekking_pole_tent.webp" alt="Ridgeline 2 trekking pole tent" loading="lazy" />
+            <div class="pcard-badges"><span class="badge">Best seller</span></div>
+            <button class="pcard-fav" type="button" data-wish="rig-2" aria-label="Save Ridgeline 2"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick">
+              <button class="btn sm solid" style="flex:1" type="button" data-add data-id="rig-2" data-name="Ridgeline 2 Tent" data-price="389" data-cat="Shelters"><span>Add to cart</span></button>
+            </div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Shelters</span>
+            <b class="pcard-title">Ridgeline 2 Trekking-Pole Tent</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.9 (212)</span></div>
+            <div class="pcard-row">
+              <span class="price">$389.00</span>
+              <button class="add-btn" type="button" data-add data-id="rig-2" data-name="Ridgeline 2 Tent" data-price="389" data-cat="Shelters" aria-label="Add Ridgeline 2 to cart"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+        </article>
+        <!-- 2 -->
+        <article class="pcard" data-reveal style="--rd:80ms">
+          <div class="pcard-media">
+            <img src="assets/downbag.webp" alt="Down sleeping bag on snow" loading="lazy" />
+            <div class="pcard-badges"><span class="badge soft">New</span></div>
+            <button class="pcard-fav" type="button" data-wish="cold-900" aria-label="Save Coldline 900"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick">
+              <button class="btn sm solid" style="flex:1" type="button" data-add data-id="cold-900" data-name="Coldline 900 Down Bag" data-price="449" data-cat="Sleep"><span>Add to cart</span></button>
+            </div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Sleep Systems</span>
+            <b class="pcard-title">Coldline 900 Down Bag</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="cnt">4.8 (98)</span></div>
+            <div class="pcard-row">
+              <span class="price">$449.00</span>
+              <button class="add-btn" type="button" data-add data-id="cold-900" data-name="Coldline 900 Down Bag" data-price="449" data-cat="Sleep" aria-label="Add Coldline 900 to cart"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+        </article>
+        <!-- 3 -->
+        <article class="pcard" data-reveal style="--rd:160ms">
+          <div class="pcard-media">
+            <img src="assets/Trail_Kitchen_Titanium_Set.webp" alt="Titanium cook set on a camp stove" loading="lazy" />
+            <div class="pcard-badges"><span class="badge soft">-18%</span></div>
+            <button class="pcard-fav" type="button" data-wish="tiki-set" aria-label="Save Trail Kitchen Set"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick">
+              <button class="btn sm solid" style="flex:1" type="button" data-add data-id="tiki-set" data-name="Trail Kitchen Titanium Set" data-price="128" data-cat="Camp Kitchen"><span>Add to cart</span></button>
+            </div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Camp Kitchen</span>
+            <b class="pcard-title">Trail Kitchen Titanium Set</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.7 (341)</span></div>
+            <div class="pcard-row">
+              <span class="price">$128.00 <s>$156.00</s></span>
+              <button class="add-btn" type="button" data-add data-id="tiki-set" data-name="Trail Kitchen Titanium Set" data-price="128" data-cat="Camp Kitchen" aria-label="Add Trail Kitchen Set to cart"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+        </article>
+        <!-- 4 -->
+        <article class="pcard" data-reveal style="--rd:240ms">
+          <div class="pcard-media">
+            <img src="assets/Haul_55_Expedition_Pack.webp" alt="Expedition rucksack with lid open" loading="lazy" />
+            <div class="pcard-badges"><span class="badge soft">Limited</span></div>
+            <button class="pcard-fav" type="button" data-wish="haul-55" aria-label="Save Haul 55"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick">
+              <button class="btn sm solid" style="flex:1" type="button" data-add data-id="haul-55" data-name="Haul 55 Expedition Pack" data-price="420" data-cat="Packs"><span>Add to cart</span></button>
+            </div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Packs</span>
+            <b class="pcard-title">Haul 55 Expedition Pack</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.9 (76)</span></div>
+            <div class="pcard-row">
+              <span class="price">$420.00</span>
+              <button class="add-btn" type="button" data-add data-id="haul-55" data-name="Haul 55 Expedition Pack" data-price="420" data-cat="Packs" aria-label="Add Haul 55 to cart"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="g g-4" style="margin-top:clamp(1rem,1.6vw,1.6rem)">
+        <article class="pcard" data-reveal="left">
+          <div class="pcard-media">
+            <img src="assets/Nightwatch_Headlamp___Flask.webp" alt="Insulated flask beside a headlamp" loading="lazy" />
+            <button class="pcard-fav" type="button" data-wish="night-kit" aria-label="Save Nightwatch Kit"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick"><button class="btn sm solid" style="flex:1" type="button" data-add data-id="night-kit" data-name="Nightwatch Headlamp + Flask" data-price="164" data-cat="Lighting"><span>Add to cart</span></button></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Lighting &amp; Power</span>
+            <b class="pcard-title">Nightwatch Headlamp + Flask</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="cnt">5.0 (154)</span></div>
+            <div class="pcard-row"><span class="price">$164.00</span>
+              <button class="add-btn" type="button" data-add data-id="night-kit" data-name="Nightwatch Headlamp + Flask" data-price="164" data-cat="Lighting" aria-label="Add Nightwatch Kit to cart"><i class="fa-solid fa-plus"></i></button></div>
+          </div>
+        </article>
+        <article class="pcard" data-reveal>
+          <div class="pcard-media">
+            <img src="assets/Merino_200_Base_Set (1).webp" alt="Merino base layer folded flat" loading="lazy" />
+            <button class="pcard-fav" type="button" data-wish="merino-set" aria-label="Save Merino 200 Set"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick"><button class="btn sm solid" style="flex:1" type="button" data-add data-id="merino-set" data-name="Merino 200 Base Set" data-price="198" data-cat="Apparel"><span>Add to cart</span></button></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Technical Apparel</span>
+            <b class="pcard-title">Merino 200 Base Set</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.6 (88)</span></div>
+            <div class="pcard-row"><span class="price">$198.00</span>
+              <button class="add-btn" type="button" data-add data-id="merino-set" data-name="Merino 200 Base Set" data-price="198" data-cat="Apparel" aria-label="Add Merino 200 Base Set to cart"><i class="fa-solid fa-plus"></i></button></div>
+          </div>
+        </article>
+        <article class="pcard" data-reveal>
+          <div class="pcard-media">
+            <img src="assets/insulated_mat.webp" alt="Insulated pad rolled beside a tent" loading="lazy" />
+            <button class="pcard-fav" type="button" data-wish="terra-6" aria-label="Save Terra 6 Mat"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick"><button class="btn sm solid" style="flex:1" type="button" data-add data-id="terra-6" data-name="Terra 6 Insulated Mat" data-price="96" data-cat="Sleep"><span>Add to cart</span></button></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Sleep Systems</span>
+            <b class="pcard-title">Terra 6 Insulated Mat</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="cnt">4.9 (201)</span></div>
+            <div class="pcard-row"><span class="price">$96.00</span>
+              <button class="add-btn" type="button" data-add data-id="terra-6" data-name="Terra 6 Insulated Mat" data-price="96" data-cat="Sleep" aria-label="Add Terra 6 Mat to cart"><i class="fa-solid fa-plus"></i></button></div>
+          </div>
+        </article>
+        <article class="pcard" data-reveal="right">
+          <div class="pcard-media">
+            <img src="assets/gaiters.webp" alt="Hiking poles and gaiters on rock" loading="lazy" />
+            <button class="pcard-fav" type="button" data-wish="trek-pro" aria-label="Save Trek Pro Kit"><i class="fa-regular fa-heart"></i></button>
+            <div class="pcard-quick"><button class="btn sm solid" style="flex:1" type="button" data-add data-id="trek-pro" data-name="Trek Pro Poles + Gaiters" data-price="238" data-cat="Packs"><span>Add to cart</span></button></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-cat">Packs</span>
+            <b class="pcard-title">Trek Pro Poles + Gaiters</b>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.5 (63)</span></div>
+            <div class="pcard-row"><span class="price">$238.00</span>
+              <button class="add-btn" type="button" data-add data-id="trek-pro" data-name="Trek Pro Poles + Gaiters" data-price="238" data-cat="Packs" aria-label="Add Trek Pro Kit to cart"><i class="fa-solid fa-plus"></i></button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5 · FILM / DIAGONAL SPLIT + VIDEO ================= -->
+  <section class="sec" id="film" aria-labelledby="film-h">
+    <div class="diag-band">
+      <div class="wrap" style="display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));text-align:center">
+        <div><b class="d3" data-count="11" data-suffix=" yr">0</b><div class="mono" style="color:var(--mute-dark)">On the trail since 2015</div></div>
+        <div><b class="d3" data-count="184" data-suffix="k">0</b><div class="mono" style="color:var(--mute-dark)">Repairs completed</div></div>
+        <div><b class="d3" data-count="96" data-suffix="%">0</b><div class="mono" style="color:var(--mute-dark)">Parts recyclable</div></div>
+        <div><b class="d3" data-count="0">0</b><div class="mono" style="color:var(--mute-dark)">PFC coatings</div></div>
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:clamp(2.4rem,6vw,5rem)">
+      <div class="g g-12" style="align-items:center">
+        <div class="c-6 move-l" data-reveal="left">
+          <div class="media-frame ratio">
+            <video class="media-video" autoplay muted loop playsinline preload="metadata" aria-label="Camping by the riverside">
+              <source src="assets/camping_riverside_compressed.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="c-5 c-offset move-r" data-reveal="right" style="margin-inline-start:auto">
+          <span class="eyebrow">Field Film</span>
+          <h2 class="d2" id="film-h" style="margin:1rem 0 1.2rem" data-split>Thirty-one nights on the <span class="hl">Continental Divide.</span></h2>
+          <p class="lead">We followed a single Ridgeline 2 shelter from the foothills of Boulder to a 4,180 m col in the Wind River Range. Three pitches failed, eleven anchors held, and we logged every repair.</p>
+          <div class="feat" style="margin-top:2rem">
+            <div class="feat-row">
+              <span class="feat-ic"><i class="fa-solid fa-wind"></i></span>
+              <div><b>Gust tested to 90 km/h</b><p>Flysheet tensioned with a single guyline adjustment in a 35 km/h crosswind.</p></div>
+            </div>
+            <div class="feat-row">
+              <span class="feat-ic"><i class="fa-solid fa-scissors"></i></span>
+              <div><b>Field repairable in 12 minutes</b><p>Permanent patches, replacement poles and zip pulls ship in the door pocket.</p></div>
+            </div>
+            <div class="feat-row">
+              <span class="feat-ic"><i class="fa-solid fa-recycle"></i></span>
+              <div><b>96% recyclable by weight</b><p>Single-polymer flysheet, mono-material hardware, no blended laminates.</p></div>
+            </div>
+          </div>
+          <a class="btn mt-l" href="journal.html" data-magnetic>Read the full log <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 · 3D KIT SHOWCASE ================= -->
+  <section class="sec bg-dots" id="build" aria-labelledby="build-h">
+    <div class="wrap">
+      <div class="sec-head center mw-720">
+        <span class="eyebrow" style="justify-content:center">Stackly Configurator</span>
+        <h2 class="d2" id="build-h" data-split>Build it in the <span class="hl">browser.</span></h2>
+        <p class="lead inv" style="color:var(--mute)">Drag a card to see the module rotate. Every system below shares load-bearing poles, common repair stock, and a colour palette that works in any light.</p>
+      </div>
+
+      <div class="g g-3" style="margin-top:clamp(2rem,4vw,3.4rem)">
+        <article class="spot spot-pad" data-tilt="8" data-reveal>
+          <div class="tilt" style="text-align:center">
+            <div class="mod-svg" style="width:118px;height:118px;margin:0 auto 1.3rem;perspective:700px">
+              <svg viewBox="0 0 120 120" style="width:100%;height:100%;animation:spinSlow 22s linear infinite" aria-hidden="true">
+                <g fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round">
+                  <path d="M60 16 104 96H16Z" opacity=".9"/>
+                  <path d="M60 16v80M16 96h88" opacity=".4"/>
+                  <path d="M38 56h44" opacity=".25"/>
+                </g>
+              </svg>
+            </div>
+            <img class="mod-img" src="assets/banner_1.webp" alt="Ridgeline above a valley at first light" loading="lazy" />
+            <span class="tag">Module 01</span>
+            <b class="d4" style="display:block;margin:.7rem 0 .4rem">Shelter Core</b>
+            <p class="dim" style="font-size:.86rem">Geodesic frame, single-pole hubs, 8 repair sleeves included.</p>
+          </div>
+        </article>
+        <article class="spot spot-pad" data-tilt="8" data-reveal style="--rd:90ms">
+          <div class="tilt" style="text-align:center">
+            <div class="mod-svg" style="width:118px;height:118px;margin:0 auto 1.3rem">
+              <svg viewBox="0 0 120 120" style="width:100%;height:100%;animation:spinSlow 18s linear infinite reverse" aria-hidden="true">
+                <g fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round">
+                  <rect x="24" y="34" width="72" height="56" rx="6"/>
+                  <path d="M24 62h72M60 34v56" opacity=".35"/>
+                  <circle cx="60" cy="62" r="14" opacity=".7"/>
+                  <path d="M46 62h28M60 48v28" opacity=".35"/>
+                </g>
+              </svg>
+            </div>
+            <img class="mod-img" src="assets/banner_2 (1).webp" alt="Campfire glowing at dusk" loading="lazy" />
+            <span class="tag">Module 02</span>
+            <b class="d4" style="display:block;margin:.7rem 0 .4rem">Carry System</b>
+            <p class="dim" style="font-size:.86rem">Framed haul with load transfer, 22 to 68 litre shells.</p>
+          </div>
+        </article>
+        <article class="spot spot-pad" data-tilt="8" data-reveal style="--rd:180ms">
+          <div class="tilt" style="text-align:center">
+            <div class="mod-svg" style="width:118px;height:118px;margin:0 auto 1.3rem">
+              <svg viewBox="0 0 120 120" style="width:100%;height:100%;animation:floatY 5s ease-in-out infinite alternate" aria-hidden="true">
+                <g fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                  <path d="M30 88h60"/>
+                  <path d="M42 88V50a18 18 0 0 1 36 0v38"/>
+                  <path d="M50 50V34M70 50V34" opacity=".5"/>
+                  <circle cx="42" cy="70" r="4" opacity=".7"/>
+                </g>
+              </svg>
+            </div>
+            <img class="mod-img" src="assets/camp_hero_1 (2).webp" alt="Snow field with a single tent" loading="lazy" />
+            <span class="tag">Module 03</span>
+            <b class="d4" style="display:block;margin:.7rem 0 .4rem">Camp Kitchen</b>
+            <p class="dim" style="font-size:.86rem">Nesting titanium, stove, windscreen and fuel bottle in 340 g.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="steps" style="margin-top:clamp(2.4rem,5vw,4rem)" data-reveal>
+        <div class="step done"><span class="step-n">01 / PICK</span><b>Choose a base system</b><p>Start from a shelter, pack or kitchen and add modules around it.</p></div>
+        <div class="step done"><span class="step-n">02 / LOAD</span><b>Set your route weight</b><p>Tell us the trip length and we cap the recommendation in kilograms.</p></div>
+        <div class="step done"><span class="step-n">03 / TEST</span><b>Field trial it</b><p>Sixty nights. If it fails, we repair it free and tell you exactly why.</p></div>
+        <div class="step"><span class="step-n">04 / SHIP</span><b>Delivered in 48 hours</b><p>Carbon-neutral dispatch from Reno, tracked end to end.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7 · JOURNAL RAIL (horizontal scroll) ================= -->
+  <section class="sec bg-grid" id="journal" aria-labelledby="jour-h">
+    <div class="wrap">
+      <div style="display:flex;flex-wrap:wrap;gap:1.4rem;align-items:end;justify-content:space-between;margin-bottom:clamp(1.6rem,3vw,2.6rem)">
+        <div>
+          <span class="eyebrow">Trail Dispatch</span>
+          <h2 class="d2" id="jour-h" style="margin-top:1rem" data-split>Notes from the <span class="hl">long way round.</span></h2>
+        </div>
+        <div class="rail-btns only-desk">
+          <button class="icon-btn" type="button" data-rail="-1" aria-label="Scroll articles left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="icon-btn" type="button" data-rail="1" aria-label="Scroll articles right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail wrap" data-rail-track>
+      <div class="rail-track">
+        <article class="rail-item art" data-reveal>
+          <a class="art-img" href="journal.html" style="display:block">
+            <img src="assets/flysheet.webp" alt="Frost on a tent fly" loading="lazy" />
+            <span class="tag art-cat">Field note</span>
+          </a>
+          <div class="art-meta"><span>11 min read</span><span>March 2026</span></div>
+          <b>What actually happens when a flysheet delaminates at 3,900 m</b>
+          <p>Six hours of rain, one torn seam, and the repair decisions that followed.</p>
+        </article>
+        <article class="rail-item art" data-reveal style="--rd:80ms">
+          <a class="art-img" href="journal.html" style="display:block">
+            <img src="assets/quiet_campsites.webp" alt="Lakeside camp at dusk" loading="lazy" />
+            <span class="tag art-cat">Route</span>
+          </a>
+          <div class="art-meta"><span>8 min read</span><span>February 2026</span></div>
+          <b>Five quiet campsites within two hours of Portland</b>
+          <p>Low impact, high water, no permits. Coordinates inside.</p>
+        </article>
+        <article class="rail-item art" data-reveal style="--rd:160ms">
+          <a class="art-img" href="journal.html" style="display:block">
+            <img src="assets/assx.webp" alt="Crampons on a snowfield" loading="lazy" />
+            <span class="tag art-cat">Gear test</span>
+          </a>
+          <div class="art-meta"><span>14 min read</span><span>January 2026</span></div>
+          <b>Down versus synthetic at -24 &deg;C: forty nights of data</b>
+          <p>Fill power, loft recovery and the nights synthetic won.</p>
+        </article>
+        <article class="rail-item art" data-reveal style="--rd:240ms">
+          <a class="art-img" href="journal.html" style="display:block">
+            <img src="assets/Food_storage__fire_rings__catholes.webp" alt="Bear canister hanging from a tree" loading="lazy" />
+            <span class="tag art-cat">Guide</span>
+          </a>
+          <div class="art-meta"><span>6 min read</span><span>December 2025</span></div>
+          <b>Leave No Trace, properly: a working checklist</b>
+          <p>Food storage, fire rings, catholes and the grey area nobody explains.</p>
+        </article>
+        <article class="rail-item art" data-reveal style="--rd:320ms">
+          <a class="art-img" href="journal.html" style="display:block">
+            <img src="assets/Charging_a_phone.webp" alt="Solar panel on a pack lid" loading="lazy" />
+            <span class="tag art-cat">Power</span>
+          </a>
+          <div class="art-meta"><span>9 min read</span><span>November 2025</span></div>
+          <b>Charging a phone in winter: 40 hours of measurements</b>
+          <p>Panel angle, snow cover, and why your battery died anyway.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:1.4rem">
+      <a class="btn" href="journal.html">All field notes <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+    </div>
+  </section>
+
+  <!-- ================= 8 · VOICES / TESTIMONIALS ================= -->
+  <section class="sec" id="voices" aria-labelledby="voice-h">
+    <div class="wrap">
+      <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:end;margin-bottom:clamp(1.8rem,4vw,3rem)">
+        <div>
+          <span class="eyebrow">Field Reports</span>
+          <h2 class="d2" id="voice-h" data-split>What the crew<br />says <span class="hl">afterwards.</span></h2>
+        </div>
+        <div>
+          <div class="stat-grid" style="grid-template-columns:repeat(2,1fr);gap:1rem">
+            <div class="stat-item"><b class="tnum" data-count="4.8" data-decimals="1">0</b><small>Average rating</small></div>
+            <div class="stat-item"><b class="tnum" data-count="12480" data-suffix="">0</b><small>Verified reviews</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tst" data-reveal="scale">
+        <div class="tst-grid">
+          <div class="tst-col">
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Pitched it in a force nine on the Isle of Skye, cried a little, then watched three other tents fail while ours stayed put. The guyline adjustment genuinely is one pull.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/Arjun.webp" alt="" loading="lazy" /></span>
+                <span><b>Marion K.</b><small>Isle of Skye, Scotland</small></span>
+              </div>
+            </div>
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>I tore a pole carbon section on a talus field. The replacement shipped free the next morning and I was back on the ridge by lunch. That never happens.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/rajan.webp" alt="" loading="lazy" /></span>
+                <span><b>Dev R.</b><small>Chamonix, France</small></span>
+              </div>
+            </div>
+          </div>
+          <div class="tst-col">
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>The kitchen set is the first one I have owned that actually fits inside its own lid. Four weeks of two-person trips and not one boil over.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/Priya_nair.webp" alt="" loading="lazy" /></span>
+                <span><b>Priya N.</b><small>Kyrgyzstan</small></span>
+              </div>
+            </div>
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+              <p>Three winters in the Yukon with the Coldline 900. Loft is still there, no delamination, and the zip sliders are the same ones I bought new.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/kawai.webp" alt="" loading="lazy" /></span>
+                <span><b>Tomas L.</b><small>Whitehorse, Canada</small></span>
+              </div>
+            </div>
+          </div>
+          <div class="tst-col">
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Support answered in four minutes on a Sunday. Sent a photo of the torn seam, got a repair plan and a part number. No ticket ping-pong.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/elena.webp" alt="" loading="lazy" /></span>
+                <span><b>Anneke B.</b><small>Rotterdam, Netherlands</small></span>
+              </div>
+            </div>
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Bought the 55 litre pack for a year of unsupported trekking. The frame warranty is not marketing, they re-tensioned it free after two years.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/tomas.webp" alt="" loading="lazy" /></span>
+                <span><b>Rafael S.</b><small>Patagonia, Argentina</small></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9 · LOCATOR + FAQ (diagonal split) ================= -->
+  <section class="sec bg-grid" id="camps" aria-labelledby="camp-h">
+    <div class="wrap">
+      <div class="g g-12" style="align-items:start">
+        <div class="c-5 move-l" data-reveal="left">
+          <span class="eyebrow">Where We Are</span>
+          <h2 class="d2" id="camp-h" style="margin:1rem 0 1.2rem" data-split>Four rooms.<br />One <span class="hl">backcountry</span> ethos.</h2>
+          <p class="lead">Walk in, hold the thing, break something on purpose. Our staff will show you how to fix it before you buy it. That is the whole pitch.</p>
+
+          <div class="loc" style="margin-top:2rem">
+            <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <pattern id="mg" width="34" height="34" patternUnits="userSpaceOnUse">
+                  <path d="M34 0H0v34" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="600" height="340" fill="url(#mg)"/>
+              <path d="M0 210 C120 190 200 240 320 218 S520 176 600 200 L600 340 L0 340Z" fill="rgba(255,255,255,.05)"/>
+              <path d="M0 250 C140 236 220 280 340 258 S520 224 600 246" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.2" stroke-dasharray="5 6"/>
+              <path d="M60 60 C180 90 260 40 380 74 S520 120 600 96" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            </svg>
+            <div class="loc-pins">
+              <b class="mono">Hubs &amp; stores</b>
+              <div style="margin-top:.7rem">
+                <span class="loc-pill"><i class="fa-solid fa-location-dot"></i> Portland HQ</span>
+                <span class="loc-pill"><i class="fa-solid fa-warehouse"></i> Reno Fulfilment</span>
+                <span class="loc-pill"><i class="fa-solid fa-store"></i> Boulder Flagship</span>
+                <span class="loc-pill"><i class="fa-solid fa-store"></i> Innsbruck</span>
+                <span class="loc-pill"><i class="fa-solid fa-van-shuttle"></i> Pop-up: Reykjavik</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-6 c-offset move-r" data-reveal="right" style="margin-inline-start:auto">
+          <span class="eyebrow">Before You Go</span>
+          <h3 class="d3" style="margin:.8rem 0 1.4rem">Questions we get every week</h3>
+
+          <div class="acc" data-multi>
+            <div class="acc-item on">
+              <button class="acc-btn" type="button" aria-expanded="true"><span class="num">01</span> Is the lifetime warranty actually lifetime? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Yes, on structural components: poles, frames, zips, buckles and seams. We cover manufacturing defects and normal wear for fifteen years, and we keep spare stock in the warehouse for that reason. Cosmetic damage, modifications and lost parts are charged at cost.</p>
+                </div>
+              </div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">02</span> How fast is shipping outside North America? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Reno dispatch within 48 hours. Europe and the UK receive in 4 to 7 working days via carbon-neutral road and sea freight. Rest of world 7 to 14 days. Duties are calculated at checkout so nothing is owed on delivery.</p>
+                  <ul><li><i class="fa-solid fa-check"></i> Free over $120 in North America and Europe</li><li><i class="fa-solid fa-check"></i> Tracked and insured end to end</li></ul>
+                </div>
+              </div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">03</span> What is the sixty-night trial? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Use the gear for sixty nights. If it does not hold up, we repair or replace it free and send a technician's note explaining the failure. We ask for photographs because the failure data is how we improve the next revision.</p>
+                </div>
+              </div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">04</span> Do you sell replacement parts directly? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Every part we have ever made is in the parts catalogue, including models retired more than a decade ago. Poles, pole sections, hubs, zips, sliders, buckles, gaskets, stove jets and fabric panels. Owners get a permanent 20% discount.</p>
+                </div>
+              </div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">05</span> Are your products repairable by a normal person? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>That is the whole design brief. Every tent ships with a patch kit, poles come in field-replaceable sections, and the manuals are written as illustrated step sequences rather than warranty disclaimers. Ninety per cent of field failures are fixed in under fifteen minutes with a kit in the door pocket.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10 · NEWSLETTER CTA ================= -->
+  <section class="sec-tight" id="newsletter" aria-labelledby="nl-h">
+    <div class="wrap">
+      <div class="cta-box" data-reveal="scale">
+        <div style="display:grid;gap:clamp(1.6rem,4vw,3.4rem);align-items:center;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+          <div>
+            <span class="eyebrow inv">Trail Dispatch</span>
+            <h2 class="d2" id="nl-h" style="margin:1rem 0 1rem" data-split>Two letters a month.<br />Zero <span class="hl">affiliate links.</span></h2>
+            <p class="lead inv">Route intel, failure write-ups and first access to limited runs. Unsubscribe in one click, we do not sell your address to anyone, ever.</p>
+          </div>
+          <div>
+            <form class="nl-form" id="heroNl" data-nl novalidate style="margin-bottom:1rem">
+              <div class="nl-field" style="flex:1 1 240px">
+                <input type="email" name="email" placeholder="trailhead@gmail.com" aria-label="Email address" aria-describedby="heroNlErr" required />
+                <span class="err-msg" id="heroNlErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Only Gmail addresses are allowed</span>
+              </div>
+              <button class="btn dark" type="submit" data-magnetic>Subscribe <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            <p class="mono" style="color:var(--mute-dark)">Joined by 3,412 readers</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem">
+              <span class="chip dark"><i class="fa-solid fa-check"></i> No spam</span>
+              <span class="chip dark"><i class="fa-solid fa-check"></i> Unsubscribe in one click</span>
+              <span class="chip dark"><i class="fa-solid fa-check"></i> Data never sold</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* hero newsletter validation lives in js/main.js (newsletterInit, form[data-nl]) */
+/* journal rail buttons */
+  document.querySelectorAll('[data-rail]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var track = document.querySelector('[data-rail-track] .rail-track');
+      if (!track) return;
+      track.scrollBy({ left: Number(b.getAttribute('data-rail')) * (track.clientWidth * 0.72), behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

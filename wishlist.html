@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Your Wishlist — Stackly Outdoor Co.</title>
+<meta name="description" content="Everything you have saved from the Stackly range, stored on your device and synced when you sign in. Track prices, watch restocks and move the whole list to your cart in one tap." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="wishlist">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<main>
+
+  <div class="wrap" style="padding-top:clamp(1.4rem,3vw,2.2rem)">
+    <a class="btn sm" href="index.html"><i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i> Back to home</a>
+  </div>
+
+  <!-- ================= 1 · SAVED ITEMS GRID (JS RENDERED) ================= -->
+  <section class="sec bg-grid" id="saved" aria-labelledby="saved-h">
+    <div class="wrap">
+      <div class="dash-head">
+        <div>
+          <span class="eyebrow">Your shortlist</span>
+          <h2 class="d3" id="saved-h" style="margin:.8rem 0 0;max-width:22ch" data-split>Everything you have saved.</h2>
+        </div>
+        <span class="fcount">PRICES RECHECKED EVERY HOUR</span>
+      </div>
+
+      <div class="fbar" role="group" aria-label="Sort and filter your saved items">
+        <div class="field" style="margin:0;flex:1 1 190px;min-width:168px">
+          <select id="wishSort" aria-label="Sort saved items">
+            <option value="recent" selected>Sort by: recently added</option>
+            <option value="price-asc">Sort by: price low to high</option>
+            <option value="price-desc">Sort by: price high to low</option>
+            <option value="name">Sort by: name A&ndash;Z</option>
+          </select>
+        </div>
+        <div class="field" style="margin:0;flex:1 1 190px;min-width:168px">
+          <select id="wishCat" aria-label="Filter saved items by category">
+            <option value="" selected>Category: all systems</option>
+            <option value="Shelters">Shelters</option>
+            <option value="Sleep">Sleep systems</option>
+            <option value="Packs">Packs and duffels</option>
+            <option value="Camp Kitchen">Camp kitchen</option>
+            <option value="Lighting">Lighting and power</option>
+            <option value="Apparel">Technical apparel</option>
+          </select>
+        </div>
+        <span class="spacer"></span>
+        <span class="fcount" id="wishCount2" aria-live="polite"></span>
+        <a class="btn sm" href="shop.html" style="flex:0 0 auto"><i class="fa-solid fa-magnifying-glass"></i> Browse the range</a>
+      </div>
+
+      <div class="g g-12" style="margin-top:clamp(1.4rem,2.4vw,2rem);align-items:stretch">
+        <div class="c-8">
+          <div class="g g-3" id="wishPageList" style="margin-top:1rem"></div>
+        </div>
+
+        <div class="c-4">
+          <div class="spot spot-pad" style="height:100%">
+            <span class="icon-btn" aria-hidden="true" style="margin-bottom:1rem"><i class="fa-solid fa-shield-halved"></i></span>
+            <b class="d4" style="display:block;margin-bottom:.6rem">How this list is stored</b>
+
+            <div id="wishPageSum"></div>
+
+            <ul class="feat" style="margin-top:1.2rem">
+              <li class="feat-row">
+                <span class="feat-ic" aria-hidden="true"><i class="fa-solid fa-mobile-screen"></i></span>
+                <div><b>Stored on this device</b><p>Saved straight to this browser. No account, no upload, nothing sent to us until you sign in.</p></div>
+              </li>
+              <li class="feat-row">
+                <span class="feat-ic" aria-hidden="true"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                <div><b>Syncs when you sign in</b><p>Sign in from any machine and the shortlist merges, including items saved while you were logged out.</p></div>
+              </li>
+              <li class="feat-row">
+                <span class="feat-ic" aria-hidden="true"><i class="fa-solid fa-bell"></i></span>
+                <div><b>Price alerts on every line</b><p>We watch each saved item hourly and email you when it drops or comes back into stock.</p></div>
+              </li>
+              <li class="feat-row">
+                <span class="feat-ic" aria-hidden="true"><i class="fa-solid fa-infinity"></i></span>
+                <div><b>Never expires</b><p>No seasonal cull, no automatic removal. A list saved in 2024 is still here in 2029.</p></div>
+              </li>
+            </ul>
+
+            <div style="display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:space-between;margin-top:1.2rem">
+              <span class="mono dim"><i class="fa-solid fa-clock" aria-hidden="true"></i> Reno depot <span data-clock>00:00:00 PT</span></span>
+              <a class="btn sm" href="shop.html">Keep browsing <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

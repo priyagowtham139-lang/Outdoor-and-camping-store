@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Stackly — The Journal: Field Notes, Gear Teardowns, Route Guides &amp; Campfire Stories</title>
+<meta name="description" content="The Stackly journal: field notes from the crew, long-form gear teardowns, route guides, safety write-ups, repair logs and reader campfire stories. No affiliate links, every figure logged." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="journal">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main>
+
+  <!-- ================= 1 · PAGE HERO (image + stats + marquee) ================= -->
+  <section class="phero" id="journal-top" aria-labelledby="jour-hero-h">
+    <div class="phero-bg">
+      <img src="assets/journal_hero.webp" alt="First light over a granite ridgeline with a single pitched tent on a snow bench below" loading="lazy" data-parallax="0.05" style="position:absolute;top:-8%;left:0;width:100%;height:116%;object-fit:cover" />
+    </div>
+
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        <span>Journal</span>
+      </nav>
+
+      <h1 class="d2" id="jour-hero-h" data-split>Field notes from<br />the long way <span class="hl">round.</span></h1>
+
+      <p class="lead" style="margin-top:1.4rem;color:#0a0b0d">Everything we learn on the trail ends up here first: failure write-ups with the photographs left in, route guides with the wrong turns marked, repair logs timed to the minute. Written by the eleven people who actually carry the gear. No affiliate links, no sponsored placements, no gear we have not slept in.</p>
+
+      
+    </div>
+
+    <div class="wrap" style="position:relative;z-index:2;margin-top:clamp(2.2rem,5vw,3.6rem)">
+      <div class="marquee" style="--mq-dur:48s">
+        <div class="marquee-track fwd">
+          <span class="mq-item">Delamination<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">Torque Testing</span>
+          <span class="mq-item">Winter Sleep Systems<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline thin">Permit Lines</span>
+          <span class="mq-item">Solar Yield<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">Repair Logs</span>
+          <span class="mq-item">Snow Anchor Failure<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline thin">Leave No Trace</span>
+        </div>
+      </div>
+
+      <div class="stat-grid" style="margin-top:clamp(2rem,4vw,3.2rem);max-width:980px">
+        <div class="stat-item"><b class="tnum" data-count="268">0</b><small>Articles published</small></div>
+        <div class="stat-item"><b class="tnum" data-count="11">0</b><small>Crew members writing</small></div>
+        <div class="stat-item"><b class="tnum" data-count="1940" data-suffix=" days">0</b><small>Trail days logged</small></div>
+        <div class="stat-item"><b class="tnum" data-count="31">0</b><small>Countries filed from</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2 · LEAD ARTICLE (diagonal full-bleed split) ================= -->
+  <section class="sec bg-grid diag-both" id="field-notes" aria-labelledby="lead-h">
+    <div class="wrap" style="position:relative;z-index:2">
+      <div class="g g-12" style="align-items:center">
+
+        <div class="c-6 move-l" data-reveal="left">
+          <div class="media-frame ratio-tall lead-model">
+            <div class="lead-model-stage">
+              <div class="lead-model-spin">
+                <svg class="lead-model-svg" viewBox="-171.9 -191 343.8 297" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+                  <g fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+                    <line x1="-34.6" y1="-90.0" x2="155.9" y2="20.0" />
+                    <line x1="155.9" y1="20.0" x2="34.6" y2="90.0" />
+                    <line x1="34.6" y1="90.0" x2="-155.9" y2="-20.0" />
+                    <line x1="-155.9" y1="-20.0" x2="-34.6" y2="-90.0" />
+                    <line x1="-95.3" y1="-175.0" x2="95.3" y2="-65.0" />
+                    <line x1="-34.6" y1="-90.0" x2="-95.3" y2="-175.0" />
+                    <line x1="-155.9" y1="-20.0" x2="-95.3" y2="-175.0" />
+                    <line x1="155.9" y1="20.0" x2="95.3" y2="-65.0" />
+                    <line x1="34.6" y1="90.0" x2="95.3" y2="-65.0" />
+                    <line x1="-17.3" y1="-45.0" x2="-47.6" y2="-87.5" />
+                    <line x1="17.3" y1="45.0" x2="47.6" y2="-32.5" />
+                    <line x1="-47.6" y1="-87.5" x2="47.6" y2="-32.5" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <span class="tag" style="position:absolute;top:1.1rem;left:1.1rem;z-index:4;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)">Lead Feature</span>
+            <div style="position:absolute;left:1.1rem;right:1.1rem;bottom:1.1rem;z-index:4">
+              <b class="mono" style="display:block;margin-bottom:.5rem;color:var(--mute)">Shelter geometry &middot; fig. 1</b>
+              <span class="loc-pill"><i class="fa-solid fa-mountain"></i> 4,180 m col</span>
+              <span class="loc-pill"><i class="fa-solid fa-temperature-low"></i> -9 &deg;C low</span>
+              <span class="loc-pill"><i class="fa-solid fa-wind"></i> Gusts to 74 km/h</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-6 move-r" data-reveal="right" style="margin-inline-start:auto">
+          <article class="art" style="gap:0">
+            <div class="art-meta" style="margin-bottom:1rem">
+              <span><i class="fa-solid fa-clipboard-list"></i> Field Notes</span>
+              <span><i class="fa-solid fa-clock"></i> 24 min read</span>
+              <span><i class="fa-solid fa-calendar-days"></i> 18 August 2026</span>
+              <span><i class="fa-solid fa-pen-ruler"></i> Revision 3</span>
+            </div>
+
+            <h2 class="d2" id="lead-h" data-split>Thirty-one nights on the <span class="hl">Continental Divide.</span></h2>
+
+            <p class="lead" style="margin-top:1.2rem">We followed a single two-person shelter from the foothills outside Boulder to a 4,180 metre col in the Wind River Range, crossing the divide eleven times with one kit and one spare pole set. Three pitches failed outright, nine anchors held, and every repair is timed in this piece along with the temperature at which it happened.</p>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.9rem;border:1px solid var(--line);border-radius:99px;padding:.5rem 1.4rem .5rem .5rem;margin-top:1.8rem;width:fit-content;max-width:100%">
+              <span style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex:0 0 auto;background:var(--ink-5)">
+                <img src="assets/marit (1).webp" alt="Portrait of Marit Hallgrimsdottir" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:contrast(1.1)" />
+              </span>
+              <span>
+                <b style="display:block;font-family:var(--ff-alt);font-weight:700;font-size:.95rem;letter-spacing:-.015em">Marit Hallgr&iacute;msd&oacute;ttir</b>
+                <small class="mono" style="color:var(--mute-2)">Senior Field Technician &middot; Glacier &amp; Alpine Systems</small>
+              </span>
+            </div>
+
+            <div class="feat" style="margin-top:2rem">
+              <div class="feat-row">
+                <span class="feat-ic"><i class="fa-solid fa-list-check"></i></span>
+                <div><b>The eleven crossings, with dates and snowpack</b><p>Where the divide was walkable, where it was not, and the three detours that cost us a day each.</p></div>
+              </div>
+              <div class="feat-row">
+                <span class="feat-ic"><i class="fa-solid fa-scissors"></i></span>
+                <div><b>Three failures, repaired in the field</b><p>A snapped pole section, a delaminated seam at 3,900 m and a zip that separated at the slider. Times and temperatures included.</p></div>
+              </div>
+              <div class="feat-row">
+                <span class="feat-ic"><i class="fa-solid fa-weight-hanging"></i></span>
+                <div><b>What 31 nights actually cost</b><p>Base weight before and after, total pack-out mass logged at every resupply, and the four things we carried that earned their place.</p></div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem">
+              <a class="btn solid" href="404.html" data-404 data-magnetic>Read the full log <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+              <a class="btn" href="#latest">Browse all articles <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="mq-band skew" aria-hidden="true">
+    <div class="marquee" style="--mq-dur:46s">
+      <div class="marquee-track fwd">
+        <span class="mq-item">No affiliate links<i class="mq-dot"></i></span>
+        <span class="mq-item">Every figure logged</span>
+        <span class="mq-item">Photos left in<i class="mq-dot"></i></span>
+        <span class="mq-item">Failures published whole</span>
+        <span class="mq-item">Written on the trail<i class="mq-dot"></i></span>
+        <span class="mq-item">Corrected in public</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3 · LATEST ARTICLES (filter bar + 3-col grid) ================= -->
+  <section class="sec bg-lines" id="latest" aria-labelledby="latest-h">
+    <div class="blob w" style="top:-12%;left:-16%;opacity:.07"></div>
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Recent dispatches</span>
+          <h2 class="d2 mt-l" id="latest-h" data-split>Nine pieces we<br />logged this <span class="hl">quarter.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Long reads, not news. Each one names the author, the dates walked, the kit carried and the revision the piece has been corrected to. Filter by topic or format, then read in whatever order the trail gave us.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem">
+            <span class="chip"><i class="fa-solid fa-file-lines"></i> 268 pieces and counting</span>
+            <span class="chip"><i class="fa-solid fa-rotate-left"></i> Corrections posted inline</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fbar" data-reveal role="group" aria-label="Filter articles by topic and format">
+        <div class="field" style="margin:0;flex:1 1 190px;min-width:168px">
+          <select aria-label="Filter by topic">
+            <option>All topics</option>
+            <option>Field Notes</option>
+            <option>Gear Tests</option>
+            <option>Routes</option>
+            <option>Safety</option>
+            <option>Campfire Stories</option>
+            <option>Repair Logs</option>
+          </select>
+        </div>
+        <div class="field" style="margin:0;flex:1 1 190px;min-width:168px">
+          <select aria-label="Filter by format">
+            <option>All formats</option>
+            <option>Long read</option>
+            <option>Teardown</option>
+            <option>Route guide</option>
+            <option>Photo log</option>
+            <option>Checklist</option>
+          </select>
+        </div>
+        <span class="fcount">9 OF 268 ARTICLES</span>
+        <span class="spacer"></span>
+        <a class="btn sm" href="#archive" style="flex:0 0 auto"><i class="fa-solid fa-box-archive"></i> Browse the archive</a>
+      </div>
+
+      <div class="g g-3 latest-grid" style="margin-top:clamp(1.4rem,2.6vw,2.4rem)">
+
+        <article class="art" data-reveal="left">
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/flysheet.webp" alt="Peeled back flysheet fabric showing delaminated seam tape at close range" loading="lazy" />
+            <span class="tag art-cat">Field Notes</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>11 min read</span><span>Mar 2026</span></div>
+          </a>
+          <div class="art-meta"><span>Field Notes</span><span>11 min</span><span>14 March 2026</span></div>
+          <b>What actually happens when a flysheet delaminates at 3,900 m</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Six hours of rain, one seam that let go, and the four repair decisions we made in the dark with numb hands.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Marit Hallgr&iacute;msd&oacute;ttir</span>
+        </article>
+
+        <article class="art" data-reveal>
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/windriver.webp" alt="Switchbacks climbing a scree slope toward a high camp in the Wind River Range" loading="lazy" />
+            <span class="tag art-cat">Routes</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>16 min read</span><span>Feb 2026</span></div>
+          </a>
+          <div class="art-meta"><span>Routes</span><span>16 min</span><span>2 February 2026</span></div>
+          <b>The Wind River high loop: nine camps, four permits, one wrong turn</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Permit blocks, water sources, and the junction at 41&deg;27.3&rsquo;N that three parties read differently.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Tomas Iverson</span>
+        </article>
+
+        <article class="art" data-reveal>
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/wood_stove.webp" alt="Disassembled wood stove on a work mat showing a heat-soaked door gasket" loading="lazy" />
+            <span class="tag art-cat">Repair Logs</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>7 min read</span><span>28 January 2026</span></div>
+          </a>
+          <div class="art-meta"><span>Repair Logs</span><span>7 min</span><span>28 January 2026</span></div>
+          <b>A wood stove that will not light is almost always a gasket problem</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Ninety per cent of the failures we get sent are one part. How to test it in the field in under four minutes.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Priya Nandakumar</span>
+        </article>
+
+        <article class="art" data-reveal="right">
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/snow_anchors.webp" alt="Snow picket and deadman anchor set up on a wind-loaded slope" loading="lazy" />
+            <span class="tag art-cat">Safety</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>13 min read</span><span>12 January 2026</span></div>
+          </a>
+          <div class="art-meta"><span>Safety</span><span>13 min</span><span>12 January 2026</span></div>
+          <b>Snow anchors that actually hold, and the four that pulled first</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Pull tests on 28 anchors, at -11 &deg;C, with the load figures written down rather than remembered.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Dario Kellerman</span>
+        </article>
+
+        <article class="art" data-reveal>
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/assx.webp" alt="Two sleeping bags opened side by side on a snow surface for comparison" loading="lazy" />
+            <span class="tag art-cat">Gear Tests</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>18 min read</span><span>19 December 2025</span></div>
+          </a>
+          <div class="art-meta"><span>Gear Tests</span><span>18 min</span><span>19 December 2025</span></div>
+          <b>Down versus synthetic at -24 &deg;C: forty nights of sleep data</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Fill power, loft recovery and the seven nights synthetic won outright. Logs published in full.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Anneke Brandt</span>
+        </article>
+
+        <article class="art" data-reveal style="--rd:120ms">
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/Food_storage__fire_rings__catholes.webp" alt="A stone fire ring left cold and scattered after use on a forest floor" loading="lazy" />
+            <span class="tag art-cat">Field Notes</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>6 min read</span><span>30 November 2025</span></div>
+          </a>
+          <div class="art-meta"><span>Field Notes</span><span>6 min</span><span>30 November 2025</span></div>
+          <b>Leave No Trace, properly: the checklist we actually run</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Food storage, fire rings, catholes and the grey area that most guides simply skip over.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Cole Mbeki</span>
+        </article>
+
+        <article class="art" data-reveal="left">
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/Charging_a_phone.webp" alt="Folding solar panel strapped to a pack lid in snow" loading="lazy" />
+            <span class="tag art-cat">Gear Tests</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>9 min read</span><span>8 November 2025</span></div>
+          </a>
+          <div class="art-meta"><span>Gear Tests</span><span>9 min</span><span>8 November 2025</span></div>
+          <b>Charging a phone in winter: forty hours of solar measurements</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Panel angle, snow cover and the panel orientation that finally beat a flat lid at 4,000 m.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Yusuf Karimi</span>
+        </article>
+
+        <article class="art" data-reveal="right" style="--rd:180ms">
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/campfire.webp" alt="Turnaround camp on a col with packs stacked against a boulder" loading="lazy" />
+            <span class="tag art-cat">Campfire Stories</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>12 min read</span><span>21 October 2025</span></div>
+          </a>
+          <div class="art-meta"><span>Campfire Stories</span><span>12 min</span><span>21 October 2025</span></div>
+          <b>The col we turned back from, and why the map said keep going</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">A first solo traverse, a rising east wind, and the four hours spent deciding to reverse.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Marit Hallgr&iacute;msd&oacute;ttir</span>
+        </article>
+
+        <article class="art" data-reveal="right" style="--rd:240ms">
+          <a class="art-img" href="404.html" data-404 style="display:block">
+            <img src="assets/freeze_dried_versus.webp" alt="Freeze-dried dinner bags and a pot of rehydrated food on a camp stool" loading="lazy" />
+            <span class="tag art-cat">Campfire Stories</span>
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.4)"></div>
+            <div class="art-meta" style="position:absolute;left:.7rem;bottom:.7rem;z-index:2"><span>10 min read</span><span>4 October 2025</span></div>
+          </a>
+          <div class="art-meta"><span>Campfire Stories</span><span>10 min</span><span>4 October 2025</span></div>
+          <b>Freeze-dried versus dehydrated: four hundred grams of dinner, measured</b>
+          <p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Calories, rehydration time at altitude, and the fuel cost of boiling water for either one.</p>
+          <span class="mono art-by" style="color:var(--mute-2)">Elena Ruiz</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 · CAMPFIRE STORIES + MOST READ + CREW ================= -->
+  <section class="sec bg-grid-dark" id="stories" aria-labelledby="stories-h">
+    <div class="wrap">
+      <div class="g g-12" style="align-items:end;margin-bottom:clamp(1.8rem,4vw,3rem)">
+        <div class="c-7" data-reveal="left">
+          <span class="eyebrow inv">Submitted by readers</span>
+          <h2 class="d2" id="stories-h" style="margin-top:1rem;color:var(--ink)" data-split>Campfire stories,<br />told <span class="hl dark">properly.</span></h2>
+        </div>
+        <div class="c-5" data-reveal="right">
+          <p class="lead inv">Sent in by readers after a long season on the trail. Names kept, locations generalised, nothing sharpened. If yours is one of them, it will be printed with the coordinates redacted.</p>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+
+        <div class="c-7" data-reveal="left">
+          <div class="tst">
+            <div class="tst-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))">
+
+              <div class="tst-card">
+                <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+                <p>Four of us, one working stove, and a lake that froze two weeks earlier than the forecast said. We ended up eating the last of the crew food at 11 p.m. and it remains the best meal of my life. No notes, no regrets, no pictures of the lake.</p>
+                <div class="tst-who">
+                  <span class="av"><img src="assets/av1.webp" alt="" loading="lazy" /></span>
+                  <span><b>Ingrid S.</b><small>Tornetr&auml;sk, Sweden &middot; 6 nights</small></span>
+                </div>
+              </div>
+
+              <div class="tst-card">
+                <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+                <p>My daughter carried the map, I carried the stove, and we argued about the route for eleven days. She was right every single time. We now let her navigate and I only carry things that can be boiled.</p>
+                <div class="tst-who">
+                  <span class="av"><img src="assets/av2.webp" alt="" loading="lazy" /></span>
+                  <span><b>Rowan T.</b><small>Cape Reinga, New Zealand &middot; 11 nights</small></span>
+                </div>
+              </div>
+
+              <div class="tst-card">
+                <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+                <p>My tent failed at 03:00 in a force eight and I walked four kilometres to a hut in the dark. I have run that night in my head every year since. Read the field notes before you think your setup is fine.</p>
+                <div class="tst-who">
+                  <span class="av"><img src="assets/av3.webp" alt="" loading="lazy" /></span>
+                  <span><b>Sam O.</b><small>Kerry, Ireland &middot; 3 nights</small></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="c-5" data-reveal="right" aria-label="Most read this month">
+          <article class="spot spot-lg spot-pad" style="background:var(--fill);border-color:rgba(0,0,0,.1);color:var(--ink)">
+            <span class="eyebrow inv">Most read this month</span>
+            <h3 class="d3" style="margin:.8rem 0 .4rem">Ranked by finished reads</h3>
+            <p class="mono" style="color:var(--mute-dark)">Not by clicks. If you stop halfway we know.</p>
+
+            <ol style="margin-top:1.4rem">
+              <li style="display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid rgba(0,0,0,.1)">
+                <span class="mono" style="font-size:1.1rem;line-height:1;flex:0 0 auto;color:var(--ink)">01</span>
+                <span style="flex:1 1 auto;min-width:0">
+                  <a href="404.html" data-404 style="display:block;font-family:var(--ff-alt);font-weight:700;font-size:.98rem;letter-spacing:-.015em;line-height:1.3">What actually happens when a flysheet delaminates at 3,900 m</a>
+                  <span class="mono" style="color:var(--mute-dark)">11 min read</span>
+                  <span class="bar-mini" data-w="94" style="display:block;margin-top:.5rem;background:rgba(0,0,0,.12)"><i style="background:var(--ink)"></i></span>
+                </span>
+              </li>
+              <li style="display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid rgba(0,0,0,.1)">
+                <span class="mono" style="font-size:1.1rem;line-height:1;flex:0 0 auto;color:var(--ink)">02</span>
+                <span style="flex:1 1 auto;min-width:0">
+                  <a href="404.html" data-404 style="display:block;font-family:var(--ff-alt);font-weight:700;font-size:.98rem;letter-spacing:-.015em;line-height:1.3">Down versus synthetic at -24 &deg;C: forty nights of sleep data</a>
+                  <span class="mono" style="color:var(--mute-dark)">18 min read</span>
+                  <span class="bar-mini" data-w="88" style="display:block;margin-top:.5rem;background:rgba(0,0,0,.12)"><i style="background:var(--ink)"></i></span>
+                </span>
+              </li>
+              <li style="display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid rgba(0,0,0,.1)">
+                <span class="mono" style="font-size:1.1rem;line-height:1;flex:0 0 auto;color:var(--ink)">03</span>
+                <span style="flex:1 1 auto;min-width:0">
+                  <a href="404.html" data-404 style="display:block;font-family:var(--ff-alt);font-weight:700;font-size:.98rem;letter-spacing:-.015em;line-height:1.3">The Wind River high loop: nine camps, four permits, one wrong turn</a>
+                  <span class="mono" style="color:var(--mute-dark)">16 min read</span>
+                  <span class="bar-mini" data-w="81" style="display:block;margin-top:.5rem;background:rgba(0,0,0,.12)"><i style="background:var(--ink)"></i></span>
+                </span>
+              </li>
+              <li style="display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid rgba(0,0,0,.1)">
+                <span class="mono" style="font-size:1.1rem;line-height:1;flex:0 0 auto;color:var(--ink)">04</span>
+                <span style="flex:1 1 auto;min-width:0">
+                  <a href="404.html" data-404 style="display:block;font-family:var(--ff-alt);font-weight:700;font-size:.98rem;letter-spacing:-.015em;line-height:1.3">A wood stove that will not light is almost always a gasket problem</a>
+                  <span class="mono" style="color:var(--mute-dark)">7 min read</span>
+                  <span class="bar-mini" data-w="74" style="display:block;margin-top:.5rem;background:rgba(0,0,0,.12)"><i style="background:var(--ink)"></i></span>
+                </span>
+              </li>
+              <li style="display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0">
+                <span class="mono" style="font-size:1.1rem;line-height:1;flex:0 0 auto;color:var(--ink)">05</span>
+                <span style="flex:1 1 auto;min-width:0">
+                  <a href="404.html" data-404 style="display:block;font-family:var(--ff-alt);font-weight:700;font-size:.98rem;letter-spacing:-.015em;line-height:1.3">The col we turned back from, and why the map said keep going</a>
+                  <span class="mono" style="color:var(--mute-dark)">12 min read</span>
+                  <span class="bar-mini" data-w="66" style="display:block;margin-top:.5rem;background:rgba(0,0,0,.12)"><i style="background:var(--ink)"></i></span>
+                </span>
+              </li>
+            </ol>
+          </article>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- crew band -->
+    <div id="team" class="bg-dots" style="margin-top:clamp(2.6rem,6vw,5rem);padding-block:clamp(2.6rem,6vw,5rem);border-top:1px solid var(--line)">
+      <div class="wrap">
+        <div class="sec-head split" style="margin-bottom:clamp(1.8rem,4vw,3rem)">
+          <div>
+            <span class="eyebrow">The crew</span>
+            <h2 class="d2 mt-l" data-split>Eleven writers,<br />one <span class="hl">patch kit each.</span></h2>
+          </div>
+          <div>
+            <p class="lead">Every piece in this journal is signed by the person who walked the route or broke the part. No ghost writers, no interns filing summaries. They all still answer the support inbox.</p>
+          </div>
+        </div>
+
+        <div class="g g-4">
+
+          <article class="tm" data-reveal="left">
+            <div class="tm-img">
+              <img src="assets/marit (1).webp" alt="Portrait of Marit Hallgrimsdottir in a technical shell" loading="lazy" />
+              <div class="tm-socials">
+                <a href="404.html" data-404 aria-label="Marit Hallgrimsdottir on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html" data-404 aria-label="Marit Hallgrimsdottir on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <b>Marit Hallgr&iacute;msd&oacute;ttir</b>
+            <small>Senior Field Technician &middot; Glacier Systems</small>
+          </article>
+
+          <article class="tm" data-reveal>
+            <div class="tm-img">
+              <img src="assets/tomas_testi.webp" alt="Portrait of Tomas Iverson outdoors in a wool cap" loading="lazy" />
+              <div class="tm-socials">
+                <a href="404.html" data-404 aria-label="Tomas Iverson on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html" data-404 aria-label="Tomas Iverson on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <b>Tomas Iverson</b>
+            <small>Route Editor &middot; Permit &amp; Access Desk</small>
+          </article>
+
+          <article class="tm" data-reveal style="--rd:120ms">
+            <div class="tm-img">
+              <img src="assets/sophia_grant.webp" alt="Portrait of Priya Nandakumar at a workshop bench" loading="lazy" />
+              <div class="tm-socials">
+                <a href="404.html" data-404 aria-label="Priya Nandakumar on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html" data-404 aria-label="Priya Nandakumar on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <b>Priya Nandakumar</b>
+            <small>Repair Lead &middot; Field Service Bench</small>
+          </article>
+
+          <article class="tm" data-reveal="right" style="--rd:180ms">
+            <div class="tm-img">
+              <img src="assets/lena.webp" alt="Portrait of Elena Ruiz holding a stove burner" loading="lazy" />
+              <div class="tm-socials">
+                <a href="404.html" data-404 aria-label="Elena Ruiz on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html" data-404 aria-label="Elena Ruiz on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <b>Elena Ruiz</b>
+            <small>Test Engineer &middot; Load &amp; Failure Lab</small>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 · SUBSCRIBE + ARCHIVE ================= -->
+  <section class="sec" id="newsletter" aria-labelledby="nl-h">
+    <div class="diag-band">
+      <div class="wrap">
+        <div class="g g-2" style="align-items:center;gap:clamp(1.6rem,4vw,3.4rem)">
+          <div>
+            <span class="eyebrow inv">Trail Dispatch</span>
+            <h2 class="d3" id="nl-h" style="margin:.9rem 0 1rem;color:var(--ink)">Get the next dispatch first</h2>
+            <p class="lead inv">Two letters a month. New field notes the day they are filed, route intel before the season opens, and first word on limited runs. We never sell the list, and the unsubscribe button takes you out in one click.</p>
+            <div style="margin-top:1.4rem">
+              <b class="tnum" data-count="3412" data-suffix=" readers" style="display:block;font-family:var(--ff-alt);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.04em;line-height:1;color:var(--ink)">0</b>
+              <small class="mono" style="color:var(--mute-dark)">Reading since 2015 &middot; 41% open the whole thing</small>
+            </div>
+          </div>
+
+          <div>
+            <form class="nl-form" data-nl data-validate novalidate aria-label="Subscribe to Trail Dispatch">
+              <div class="field" style="flex:1 1 240px;margin:0">
+                <label class="sr" for="jourEmail">Email address</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-envelope lead-ic" aria-hidden="true"></i>
+                  <input id="jourEmail" type="email" name="email" placeholder="trailhead@gmail.com" aria-describedby="jourNlErr" required />
+                </div>
+                <span class="err-msg" id="jourNlErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Only Gmail addresses are allowed</span>
+              </div>
+              <button class="btn dark solid" type="submit" data-magnetic style="flex:0 0 auto">Subscribe <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            <div class="chip-row" style="margin-top:1.2rem">
+              <span class="chip dark"><i class="fa-solid fa-check"></i> No affiliate links</span>
+              <span class="chip dark"><i class="fa-solid fa-check"></i> Unsubscribe in one click</span>
+              <span class="chip dark"><i class="fa-solid fa-check"></i> Address never sold</span>
+            </div>
+            <p class="nl-note" style="color:var(--mute-dark)">We send on the first Tuesday of the month and the last Friday before the winter season. Nothing else, ever.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" id="archive" style="margin-top:clamp(2.4rem,6vw,5rem)">
+      <div class="sec-head split" style="margin-bottom:clamp(1.8rem,4vw,3rem)">
+        <div>
+          <span class="eyebrow">Archive</span>
+          <h2 class="d2 mt-l" data-split>Every piece we<br />have ever <span class="hl">filed.</span></h2>
+        </div>
+        <div>
+          <p class="lead">268 pieces since 2015, grouped by the quarter they were published. Nothing is deleted when it goes stale; a route guide from 2019 is usually more useful than one from this year, because you can see what changed.</p>
+        </div>
+      </div>
+
+      <div class="g g-3">
+
+        <article class="spot spot-lg spot-pad" data-reveal="left">
+          <span class="mono" style="color:var(--mute-2)">31 pieces</span>
+          <h3 class="d4" style="margin:.5rem 0 1rem">2026 &middot; Quarter One</h3>
+          <ul style="display:grid">
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Thirty-one nights on the Continental Divide</span><span class="mono">24 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Flysheet delamination at 3,900 m</span><span class="mono">11 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>The Wind River high loop</span><span class="mono">16 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Repairing a zip on a freezing night</span><span class="mono">8 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;font-size:.86rem;color:var(--mute);transition:color .3s"><span>Permit lines for the 2026 season</span><span class="mono">9 min</span></a></li>
+          </ul>
+          <div style="display:flex;justify-content:flex-end;margin-top:1rem">
+            <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </article>
+
+        <article class="spot spot-lg spot-pad" data-reveal>
+          <span class="mono" style="color:var(--mute-2)">26 pieces</span>
+          <h3 class="d4" style="margin:.5rem 0 1rem">2025 &middot; Quarter Four</h3>
+          <ul style="display:grid">
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Down versus synthetic at -24 &deg;C</span><span class="mono">18 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Leave No Trace, properly</span><span class="mono">6 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Charging a phone in winter</span><span class="mono">9 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Wood stove gasket diagnostics</span><span class="mono">7 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;font-size:.86rem;color:var(--mute);transition:color .3s"><span>Ten camps under a fire ban</span><span class="mono">11 min</span></a></li>
+          </ul>
+          <div style="display:flex;justify-content:flex-end;margin-top:1rem">
+            <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </article>
+
+        <article class="spot spot-lg spot-pad" data-reveal="right" style="--rd:120ms">
+          <span class="mono" style="color:var(--mute-2)">74 pieces</span>
+          <h3 class="d4" style="margin:.5rem 0 1rem">2025 &middot; Quarter One to Three</h3>
+          <ul style="display:grid">
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>The 2.4 kg base weight nobody believes</span><span class="mono">9 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>How we test a shelter until it fails</span><span class="mono">14 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Snow anchors that actually hold</span><span class="mono">13 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--mute);transition:color .3s"><span>Freeze-dried versus dehydrated</span><span class="mono">10 min</span></a></li>
+            <li><a href="404.html" data-404 style="display:flex;gap:.8rem;align-items:baseline;justify-content:space-between;gap:1rem;padding:.6rem 0;font-size:.86rem;color:var(--mute);transition:color .3s"><span>The case for carrying a second knife</span><span class="mono">6 min</span></a></li>
+          </ul>
+          <div style="display:flex;justify-content:flex-end;margin-top:1rem">
+            <span class="icon-btn" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="wrap" style="position:relative;z-index:2;margin-top:clamp(2.4rem,6vw,4.6rem)">
+      <div class="marquee" style="--mq-dur:44s">
+        <div class="marquee-track rev">
+          <span class="mq-item">New field notes first<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline thin">Two letters a month</span>
+          <span class="mq-item">No sponsored placements<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">Unsubscribe in one click</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

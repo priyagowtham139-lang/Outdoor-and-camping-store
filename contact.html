@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Stackly — Contact, Support, Stores, Careers &amp; Press</title>
+<meta name="description" content="Reach the Stackly trail team: support and warranty lines, wholesale enquiries, four offices on the map, open roles, press kit and answers to the questions we get every week." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="contact">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main>
+
+  <!-- ================= 1 · PAGE HERO — CONTACT ================= -->
+  <section class="phero" id="top" aria-labelledby="contact-h">
+    <div class="phero-bg">
+      <img src="assets/contact_hero.webp" alt="Weathered trail shelter pitched on a scree bench above a cloud-filled valley" loading="lazy" data-parallax="0.05" style="position:absolute;top:-8%;left:0;width:100%;height:116%;object-fit:cover" />
+    </div>
+
+    <!-- mobile-only vertical department accent -->
+    <div class="marquee vert hide-desk" style="position:absolute;z-index:1;right:calc(var(--pad) * .4);top:clamp(1.6rem,6vw,4rem);width:clamp(130px,34vw,220px);height:clamp(180px,40vh,300px);opacity:.45;pointer-events:none">
+      <div class="marquee-track fwd" style="--mq-dur:26s">
+        <span class="mq-item" style="font-size:1.2rem">Support</span>
+        <span class="mq-item mq-outline thin" style="font-size:1.2rem">Repairs</span>
+        <span class="mq-item" style="font-size:1.2rem">Press</span>
+        <span class="mq-item mq-outline thin" style="font-size:1.2rem">Wholesale</span>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="crumbs">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        <span>Contact</span>
+      </div>
+
+      <h1 class="d2" id="contact-h" data-split>Talk to the crew<br />who built the <span class="hl">thing.</span></h1>
+      <p class="lead lead-b" style="margin-top:1.3rem;max-width:58ch">No ticket carousel, no chatbot. Five desks, four offices, one repair bench and a crew that has been on the same trails you have. Pick the channel that fits and you will get a person, usually within four minutes.</p>
+
+      
+
+      <div class="stat-grid" style="margin-top:clamp(2rem,4vw,3.2rem);max-width:940px">
+        <div class="stat-item"><b class="tnum" data-count="4" data-suffix=" min">0</b><small>Median first reply</small></div>
+        <div class="stat-item"><b class="tnum" data-count="14" data-suffix=" h">0</b><small>Support day, 7 days a week</small></div>
+        <div class="stat-item"><b class="tnum" data-count="9">0</b><small>Languages on the bench</small></div>
+        <div class="stat-item"><b class="tnum" data-count="98" data-suffix="%">0</b><small>Resolved first contact</small></div>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:2;margin-top:clamp(2.4rem,5vw,4rem)">
+      <div class="wrap">
+        <div class="marquee" style="--mq-dur:42s">
+          <div class="marquee-track fwd">
+            <span class="mq-item">Sales<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Support</span>
+            <span class="mq-item">Repairs<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline thin">Wholesale</span>
+            <span class="mq-item">Careers<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Press</span>
+            <span class="mq-item">Field Trials<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline thin">Accounts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2 · CONTACT FORM + CHANNEL DESKS ================= -->
+  <section class="sec" id="form" aria-labelledby="form-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Send A Message</span>
+          <h2 class="d2 mt-l" id="form-h" data-split>Tell us what broke,<br />or what you are <span class="hl">planning.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Order numbers, photographs and a rough route description get you a faster answer than anything else. Warranty claims are handled by the repair desk and never routed through sales.</p>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <!-- ---------- form column ---------- -->
+        <div class="c-6 move-l" data-reveal="left">
+          <form class="spot spot-pad form-lg" data-validate novalidate aria-labelledby="form-h">
+            <div class="field">
+              <label for="cf-name">Full name</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-user lead-ic" aria-hidden="true"></i>
+                <input type="text" id="cf-name" name="name" placeholder="Marion Keane" autocomplete="name" aria-describedby="cfNameErr" data-alpha-only required />
+              </div>
+              <span class="err-msg" id="cfNameErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Please complete this field</span>
+            </div>
+
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope lead-ic" aria-hidden="true"></i>
+                <input type="email" id="cf-email" name="email" placeholder="trailhead@gmail.com" autocomplete="email" aria-describedby="cfEmailErr" data-gmail-only required />
+              </div>
+              <span class="err-msg" id="cfEmailErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Please complete this field</span>
+            </div>
+
+            <div class="field">
+              <label for="cf-subject">Subject</label>
+              <select id="cf-subject" name="subject">
+                <option>Order enquiry</option>
+                <option>Product advice</option>
+                <option>Warranty claim</option>
+                <option>Returns</option>
+                <option>Wholesale</option>
+                <option>Careers</option>
+                <option>Press</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="6" placeholder="Order SK-40219, seam along the left pole sleeve peeled after 40 nights in coastal rain. Photographs attached." required></textarea>
+              <span class="err-msg"><i class="fa-solid fa-circle-exclamation"></i> Please complete this field</span>
+            </div>
+
+            <div class="field check-field" style="margin:.2rem 0 1.2rem">
+              <label class="check" for="cf-consent">
+                <input type="checkbox" id="cf-consent" name="consent" aria-describedby="cfConsentErr" required />
+                <span class="box" aria-hidden="true"></span>
+                <span>I agree Stackly may store these details to answer my enquiry. Nothing is shared with third parties.</span>
+              </label>
+              <span class="err-msg" id="cfConsentErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Please agree to continue</span>
+            </div>
+
+            <button class="btn solid lg" type="submit" data-magnetic>Send to the trail team <i class="fa-solid fa-paper-plane fa-arrow"></i></button>
+            <p class="mono" style="margin-top:1rem;letter-spacing:.1em">Median reply 4 min &middot; Mon&ndash;Sun, 07:00&ndash;21:00 PT &middot; Nine languages</p>
+          </form>
+        </div>
+
+        <!-- ---------- channel desks column ---------- -->
+        <div class="c-6 move-r" data-reveal="right" style="margin-inline-start:auto">
+          <div class="desk-stack">
+            <div class="ctc" style="margin-left:0">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-headset"></i></span>
+              <b>Sales &amp; support</b>
+              <p>Order changes, kit advice, expedition quotes and anything that shipped in the last 90 days.</p>
+              <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+              <a href="tel:+917010792745">+91 70107 92745</a>
+              <span class="mono" style="color:var(--mute-2)">Mon&ndash;Fri 07:00&ndash;18:00 PT &middot; Sat 09:00&ndash;14:00 PT</span>
+            </div>
+
+            <div class="ctc" style="margin-left:0">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+              <b>Warranty &amp; repairs</b>
+              <p>Photograph the failure, quote the model code, and the bench replies with a part number and a cost.</p>
+              <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+              <a href="tel:+917010792745">+91 70107 92745</a>
+              <span class="mono" style="color:var(--mute-2)">Mon&ndash;Fri 08:00&ndash;17:00 PT</span>
+            </div>
+
+            <div class="ctc" style="margin-left:0">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></span>
+              <b>Wholesale</b>
+              <p>Dealer pricing, open-to-buy terms and showroom stock. Minimum opening order twelve units.</p>
+              <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+              <a href="tel:+917010792745">+91 70107 92745</a>
+              <span class="mono" style="color:var(--mute-2)">Mon&ndash;Fri 09:00&ndash;17:00 PT</span>
+            </div>
+
+            <div class="ctc" style="margin-left:0">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-people-group"></i></span>
+              <b>Careers</b>
+              <p>Speculative applications welcome. Send a route you have walked and the piece of kit you would redesign.</p>
+              <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+              <a href="tel:+917010792745">+91 70107 92745</a>
+              <span class="mono" style="color:var(--mute-2)">Mon&ndash;Thu 09:00&ndash;16:00 PT</span>
+            </div>
+
+            <div class="ctc" style="margin-left:0">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-newspaper"></i></span>
+              <b>Press &amp; media</b>
+              <p>Review units, sample sales, interview requests and the current press kit.</p>
+              <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+              <a href="tel:+917010792745">+91 70107 92745</a>
+              <span class="mono" style="color:var(--mute-2)">Mon&ndash;Fri 08:00&ndash;15:00 PT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 · OFFICES & ADDRESSES ================= -->
+  <section class="sec bg-grid" id="offices" aria-labelledby="off-h">
+    <div class="wrap">
+      <div class="g g-12" style="align-items:start">
+        <div class="c-6 move-l" data-reveal="left">
+          <span class="eyebrow">Offices &amp; Workshops</span>
+          <h2 class="d2" id="off-h" style="margin:1rem 0 1.2rem" data-split>Four rooms.<br />One <span class="hl">workshop floor.</span></h2>
+          <p class="lead">Design, pattern cutting and the repair bench sit under the same roof in Portland. Nothing leaves the building without passing a technician first.</p>
+
+          <div class="spot spot-pad" style="margin-top:clamp(1.6rem,3vw,2.4rem)">
+            <div class="addr-list">
+              <div class="addr-row">
+                <span class="ic" aria-hidden="true"><i class="fa-solid fa-building"></i></span>
+                <div>
+                  <b>Headquarters &amp; design studio</b>
+                  MMR Complex, Chinna Thirupathi (near Chinna Muniyappan Kovil)<br />Salem, Tamil Nadu 636008, India
+                  <span class="mono" style="display:block;color:var(--mute-2);margin-top:.35rem">Pacific time &middot; <span data-clock>00:00:00 PT</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-6 move-r" data-reveal="right" style="margin-inline-start:auto">
+          <div class="loc">
+            <svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <pattern id="officeGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M30 0H0v30" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="600" height="380" fill="url(#officeGrid)"/>
+              <path d="M0 250 C130 226 210 282 330 258 S520 220 600 246 L600 380 L0 380Z" fill="rgba(255,255,255,.05)"/>
+              <path d="M0 288 C150 272 230 320 350 296 S520 258 600 284" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.2" stroke-dasharray="5 7"/>
+              <path d="M70 74 C200 108 270 52 392 90 S512 140 600 112" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.2" stroke-dasharray="3 6"/>
+              <path d="M126 132 C210 168 268 148 336 186" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.2" stroke-dasharray="3 6"/>
+              <path d="M336 186 C430 226 470 196 528 214" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.2" stroke-dasharray="3 6"/>
+              <circle cx="126" cy="132" r="4" fill="rgba(255,255,255,.5)"/>
+              <circle cx="336" cy="186" r="4" fill="rgba(255,255,255,.5)"/>
+              <circle cx="528" cy="214" r="4" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <div class="loc-pins">
+              <b class="mono">Four addresses, one supply chain</b>
+              <div style="margin-top:.8rem">
+                <span class="loc-pill"><i class="fa-solid fa-location-dot"></i> Portland HQ &amp; studio</span>
+                <span class="loc-pill"><i class="fa-solid fa-warehouse"></i> Reno fulfilment</span>
+                <span class="loc-pill"><i class="fa-solid fa-store"></i> Boulder flagship</span>
+                <span class="loc-pill"><i class="fa-solid fa-globe"></i> Innsbruck trade hub</span>
+              </div>
+              <p class="mono" style="margin-top:1.4rem;letter-spacing:.14em">Live &middot; Pacific time <span data-clock>00:00:00 PT</span></p>
+            </div>
+          </div>
+
+          <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);margin-top:clamp(1.6rem,3vw,2.4rem)">
+            <div class="stat-item"><b class="tnum" data-count="4" data-suffix="">0</b><small>Offices &amp; workshops</small></div>
+            <div class="stat-item"><b class="tnum" data-count="24" data-suffix="">0</b><small>Retail partners</small></div>
+            <div class="stat-item"><b class="tnum" data-count="48" data-suffix="">0</b><small>Countries shipped</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 · MAP ================= -->
+  <section class="sec bg-dots" id="map" aria-labelledby="map-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Where We Are</span>
+          <h2 class="d2 mt-l" id="map-h" data-split>One map,<br />every <span class="hl">door we open.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Head office, workshop, trade counter and pop-up all sit on this map. Call ahead for the fitting rooms &mdash; they fill fast on Saturdays.</p>
+        </div>
+      </div>
+
+      <div class="loc loc-gmap">
+        <iframe
+          class="loc-frame"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.1616098770783!2d78.17140487505539!3d11.682956588526356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefef7fd970bb%3A0xe11aef1a71994f9!2sStackly!5e0!3m2!1sen!2sin!4v1791264392631!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="Google Map showing the Stackly head office in Salem, Tamil Nadu"
+        ></iframe>
+
+        <div class="loc-pins">
+          <b class="mono">Four locations on this map</b>
+          <div style="margin-top:.8rem">
+            <span class="loc-pill"><i class="fa-solid fa-location-dot"></i> Salem head office</span>
+            <span class="loc-pill"><i class="fa-solid fa-warehouse"></i> Hyderabad office</span>
+            <span class="loc-pill"><i class="fa-solid fa-store"></i> Bangalore office</span>
+            <span class="loc-pill"><i class="fa-solid fa-tent"></i> chennai New office</span>
+          </div>
+          <p class="mono" style="margin-top:1.4rem;letter-spacing:.14em">Live &middot; Pacific time <span data-clock>00:00:00 PT</span></p>
+        </div>
+      </div>
+
+      <div class="g g-4" style="margin-top:clamp(1.6rem,3vw,2.4rem)">
+        <a class="spot spot-pad" href="#form" data-reveal="left">
+          <span class="ic" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+          <b class="d4" style="display:block;margin-top:.9rem">Salem head office</b>
+          <span class="mono dim" style="display:block;margin-top:.35rem">Salem, Tamil Nadu</span>
+          <span class="btn sm" style="margin-top:1.1rem">Get directions <i class="fa-solid fa-arrow-right-long fa-arrow"></i></span>
+        </a>
+        <a class="spot spot-pad" href="#form" data-reveal="left">
+          <span class="ic" aria-hidden="true"><i class="fa-solid fa-warehouse"></i></span>
+          <b class="d4" style="display:block;margin-top:.9rem">Hyderabad office</b>
+          <span class="mono dim" style="display:block;margin-top:.35rem">Hyderabad</span>
+          <span class="btn sm" style="margin-top:1.1rem">Get directions <i class="fa-solid fa-arrow-right-long fa-arrow"></i></span>
+        </a>
+        <a class="spot spot-pad" href="#form" data-reveal="right">
+          <span class="ic" aria-hidden="true"><i class="fa-solid fa-store"></i></span>
+          <b class="d4" style="display:block;margin-top:.9rem">Bangalore office</b>
+          <span class="mono dim" style="display:block;margin-top:.35rem">Bangalore</span>
+          <span class="btn sm" style="margin-top:1.1rem">Get directions <i class="fa-solid fa-arrow-right-long fa-arrow"></i></span>
+        </a>
+        <a class="spot spot-pad" href="#form" data-reveal="right">
+          <span class="ic" aria-hidden="true"><i class="fa-solid fa-tent"></i></span>
+          <b class="d4" style="display:block;margin-top:.9rem">chennai New office</b>
+          <span class="mono dim" style="display:block;margin-top:.35rem">chennai</span>
+          <span class="btn sm" style="margin-top:1.1rem">Get directions <i class="fa-solid fa-arrow-right-long fa-arrow"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= 5 · FAQ ================= -->
+  <section class="sec" id="faq" aria-labelledby="faq-h">
+    <div class="mq-band skew" style="margin-top:0">
+      <div class="marquee" style="--mq-dur:40s">
+        <div class="marquee-track fwd">
+          <span class="mq-item">Ships in 48 hours<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">Free over $120</span>
+          <span class="mq-item">60-night trial<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline thin">Parts kept forever</span>
+          <span class="mq-item">Repairs by the bench<i class="mq-dot"></i></span>
+          <span class="mq-item mq-outline">No restocking fee</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:clamp(2rem,4vw,3.4rem)">
+      <div class="g g-12" style="align-items:start">
+        <div class="c-5 move-l" data-reveal="left">
+          <span class="eyebrow">Before You Ask</span>
+          <h2 class="d2" id="faq-h" style="margin:1rem 0 1.2rem" data-split>Answers before<br />you <span class="hl">ask.</span></h2>
+          <p class="lead">These seven cover nine tenths of what lands in the support queue. If yours is not here, the form above reaches a technician rather than a script.</p>
+          <a class="btn mt-l" href="#form" data-magnetic>Ask the trail team <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+        </div>
+
+        <div class="c-7 move-r" data-reveal="right">
+          <div class="acc">
+            <div class="acc-item on">
+              <button class="acc-btn" type="button" aria-expanded="true"><span class="num">01</span> How quickly do you ship, and what does delivery cost? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Reno dispatches every order within 48 hours on weekdays. Standard is free above $120 in North America and Europe and $18 below that. Express is $24 and lands in two to three working days. Duties are calculated at checkout, so nothing is collected at your door.</p>
+                  <ul>
+                    <li><i class="fa-solid fa-check"></i> Carbon-neutral road and sea freight on every line</li>
+                    <li><i class="fa-solid fa-check"></i> Tracked and insured from shelf to summit</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">02</span> What is the returns policy? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Sixty days, unused, in the original packaging, with no restocking fee. Send it back to Reno rather than the store and we email a prepaid label the moment the return is approved. Refunds land on the original payment method within five working days of the parcel being scanned.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">03</span> Is the warranty really for the life of the product? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>On structural parts, yes: poles, frames, zips, buckles, hubs and seams. We cover manufacturing defects and normal wear for fifteen years and keep spare stock in the warehouse for exactly that reason. Cosmetic damage, third-party modifications and lost hardware are repaired at cost, never refused.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">04</span> How do I find the right size for a bag or a mat? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Tell us your height, the coldest temperature you expect and how you sleep, and we will cut a recommendation. The comfort rating we quote is the lowest temperature at which most people stay warm, not a survival figure. If you are between two sizes we will send the larger one and a liner, free.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">05</span> Can you repair gear I bought years ago? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Yes, including models retired more than a decade ago. Every part we have ever made is in the parts catalogue, owners get a permanent twenty per cent discount, and the door pocket of any Stackly shelter already contains the patch kit and pole sections needed for ninety per cent of field failures.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">06</span> How do gift cards work, and do they expire? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Digital cards from $25 to $500 arrive by email within fifteen minutes and never expire. They work online, in the Boulder fitting room and at any of our six stores. Partial balances are refunded to the original card if the card is lost, which we will confirm from the order email.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button" aria-expanded="false"><span class="num">07</span> Where can I track an order that has already shipped? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="acc-panel">
+                <div class="acc-inner">
+                  <p>Open your account and the tracking link is on the order itself, updated at every carrier scan. If a parcel stalls for more than two working days, the support desk contacts the carrier for you rather than asking you to chase it. Parcels held at a depot beyond five days are re-dispatched at no cost.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 · CAREERS, PRESS & CLOSING ================= -->
+  <section class="sec bg-grid" id="careers" aria-labelledby="careers-h">
+    <div class="wrap">
+      <div class="g g-3" style="align-items:start">
+        <!-- careers -->
+        <article class="spot spot-pad move-l" id="careers-roles" data-reveal="left">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+            <div>
+              <span class="eyebrow">Careers</span>
+              <h2 class="d4" style="margin-top:.8rem" id="careers-h">Four open roles</h2>
+            </div>
+            <span class="pill ok"><i class="fa-solid fa-circle"></i> Hiring</span>
+          </div>
+          <p class="dim" style="font-size:.86rem;margin-top:.7rem">Eleven people work here. Everyone owns a product line, everyone has done a season of field testing, and everyone is paid to go outside.</p>
+
+          <div class="addr-list" style="margin-top:1.4rem">
+            <div class="addr-row">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-drafting-compass"></i></span>
+              <div style="flex:1 1 auto">
+                <b>Senior Pattern Maker, Shelter Systems</b>
+                <span class="mono" style="display:block;color:var(--mute-2);margin-bottom:.6rem">Full time &middot; Portland, OR &middot; Pattern &amp; prototyping</span>
+                <a class="btn sm" href="#form">Apply</a>
+              </div>
+            </div>
+            <div class="addr-row">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+              <div style="flex:1 1 auto">
+                <b>Field Technician, Repairs</b>
+                <span class="mono" style="display:block;color:var(--mute-2);margin-bottom:.6rem">Full time &middot; Boulder, CO &middot; Workshop</span>
+                <a class="btn sm" href="#form">Apply</a>
+              </div>
+            </div>
+            <div class="addr-row">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-handshake"></i></span>
+              <div style="flex:1 1 auto">
+                <b>Wholesale Account Manager, Europe</b>
+                <span class="mono" style="display:block;color:var(--mute-2);margin-bottom:.6rem">Full time &middot; Remote from Innsbruck &middot; Sales</span>
+                <a class="btn sm" href="#form">Apply</a>
+              </div>
+            </div>
+            <div class="addr-row">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-camera"></i></span>
+              <div style="flex:1 1 auto">
+                <b>Product Photographer, Studio</b>
+                <span class="mono" style="display:block;color:var(--mute-2);margin-bottom:.6rem">Contract &middot; Portland, OR &middot; Studio</span>
+                <a class="btn sm" href="#form">Apply</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- press -->
+        <article class="spot spot-pad" id="press" data-reveal>
+          <span class="eyebrow">Press</span>
+          <h2 class="d4" style="margin:.8rem 0 .7rem">Press kit &amp; media desk</h2>
+          <p class="dim" style="font-size:.86rem">Everything below is cleared for editorial use without a signed licence. Interview requests are answered within two business days, and we will ship a review unit anywhere we ship to customers.</p>
+
+          <div class="addr-list" style="margin-top:1.3rem">
+            <div class="addr-row">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-user"></i></span>
+              <div>
+                <b>Dana Whitfield, Communications Lead</b>
+                <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+                <a href="tel:+917010792745">+91 70107 92745</a>
+                <span class="mono" style="display:block;color:var(--mute-2);margin-top:.2rem">Mon&ndash;Fri 08:00&ndash;15:00 PT</span>
+              </div>
+            </div>
+            <div class="addr-row">
+              <span class="ic" aria-hidden="true"><i class="fa-solid fa-video"></i></span>
+              <div>
+                <b>Marc Oyelaran, Field Media Coordinator</b>
+                <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+                <a href="tel:+917010792745">+91 70107 92745</a>
+                <span class="mono" style="display:block;color:var(--mute-2);margin-top:.2rem">Accommodation &amp; field access</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fbadge" style="margin-top:1.4rem;display:inline-flex"><i class="fa-solid fa-download"></i> Downloadable assets</div>
+          <div class="footer-badges" style="margin-top:.6rem">
+            <a class="fbadge" href="#press"><i class="fa-solid fa-icons"></i> Brand marks, SVG + PNG</a>
+            <a class="fbadge" href="#press"><i class="fa-solid fa-file-lines"></i> Line sheet 2026, PDF</a>
+            <a class="fbadge" href="#press"><i class="fa-solid fa-images"></i> Field library, 4K</a>
+            <a class="fbadge" href="#press"><i class="fa-solid fa-address-card"></i> Founder headshots</a>
+            <a class="fbadge" href="#press"><i class="fa-solid fa-chart-simple"></i> Fact and figures, PDF</a>
+          </div>
+        </article>
+
+        <!-- newsletter -->
+        <article class="spot spot-pad move-r" data-reveal="right">
+          <span class="eyebrow">Keep In Touch</span>
+          <h2 class="d4" style="margin:.8rem 0 .7rem">Press &amp; product list</h2>
+          <p class="dim" style="font-size:.86rem">Launch notes, revision histories and field-test results, sent the week something changes. Two letters a month, no affiliate links, one-click unsubscribe.</p>
+
+<form data-nl data-validate novalidate style="margin-top:1.4rem">
+<div class="field">
+  <label for="pl-email">Email address</label>
+  <div class="input-wrap">
+  <i class="fa-solid fa-envelope lead-ic" aria-hidden="true"></i>
+  <input type="email" id="pl-email" name="email" placeholder="trailhead@gmail.com" autocomplete="email" aria-describedby="plNlErr" required />
+  </div>
+  <span class="err-msg" id="plNlErr" role="alert"><i class="fa-solid fa-circle-exclamation"></i> Only Gmail addresses are allowed</span>
+</div>
+            <button class="btn solid block" type="submit" data-magnetic>Join the list <i class="fa-solid fa-paper-plane fa-arrow"></i></button>
+          </form>
+
+          <div class="chip-row" style="margin-top:1.2rem">
+            <span class="chip"><i class="fa-solid fa-check"></i> Never sold</span>
+            <span class="chip"><i class="fa-solid fa-check"></i> No spam</span>
+          </div>
+          <p class="mono" style="margin-top:1.1rem">Joined by 3,412 readers</p>
+        </article>
+      </div>
+
+      <!-- closing CTA -->
+      <div class="cta-box" style="margin-top:clamp(2.4rem,5vw,4rem)" data-reveal="scale">
+        <div style="display:grid;gap:clamp(1.6rem,4vw,3.4rem);align-items:center;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+          <div>
+            <span class="eyebrow inv">Still Holding One</span>
+            <h2 class="d2" style="margin:1rem 0 1rem" data-split>Ask us anything.<br />We actually <span class="hl dark">answer.</span></h2>
+            <p class="lead inv">If you are not sure whether the gear is right for your route, tell us the route. We would rather spend twenty minutes on the phone than sell you the wrong shelter.</p>
+          </div>
+          <div>
+            <div class="stat-item" style="border-color:rgba(0,0,0,.2)">
+              <b class="tnum" data-count="12480" data-suffix="">0</b>
+              <small style="color:var(--mute-dark)">Enquiries closed since 2015</small>
+            </div>
+            <p class="lead inv" style="margin-top:1rem">Median first reply is four minutes during support hours, and a named technician signs every warranty decision.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem">
+              <a class="btn dark solid" href="shop.html" data-magnetic>Browse the gear <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+              <a class="btn dark" href="signin.html?tab=signin">Track an order <i class="fa-solid fa-user"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:2;margin-top:clamp(2.4rem,5vw,4rem)">
+      <div class="wrap">
+        <div class="marquee" style="--mq-dur:46s">
+          <div class="marquee-track rev">
+            <span class="mq-item">Talk to us<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">We will answer</span>
+            <span class="mq-item">Pack light<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline thin">Repair anything</span>
+            <span class="mq-item">Leave no trace<i class="mq-dot"></i></span>
+            <span class="mq-item mq-outline">Four minutes median</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

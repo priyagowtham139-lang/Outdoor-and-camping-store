@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* run before first paint: never let the browser restore or animate a previous
+   scroll position on a fresh load — the new page should just open at the top */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+document.documentElement.classList.add('no-smooth');
+function __clearSmooth(){ setTimeout(function(){ document.documentElement.classList.remove('no-smooth'); }, 120); }
+window.addEventListener('load', __clearSmooth);
+window.addEventListener('pageshow', __clearSmooth);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Shop All Equipment — Stackly Outdoor Co.</title>
+<meta name="description" content="Browse the full Stackly catalogue: 214 field-tested tents, sleep systems, packs, camp kitchens, lighting and technical apparel. Filter by season, weight, finish and price. Sixty-night trial, lifetime parts." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M5 25 13 10l5 9M18 25l7-12 4 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body data-page="shop">
+
+<div class="loader" id="loader" role="status" aria-label="Loading Stackly">
+  <svg class="loader-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 400 L0 250 L170 120 L300 235 L430 96 L600 258 L760 150 L900 262 L1080 110 L1260 240 L1440 160 L1440 400 Z" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+    <path d="M0 400 L0 300 L140 190 L300 300 L450 170 L620 300 L780 210 L960 300 L1120 180 L1300 300 L1440 220 L1440 400 Z" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+  </svg>
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="spin-ring" cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="26 12"/>
+        <circle class="pin-dot" cx="50" cy="50" r="3" fill="#fff"/>
+        <g class="pin-pop">
+          <path d="M50 30 L62 52 L50 47 L38 52 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M22 68 H78" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M30 68 L40 52 M46 68 L52 57 M58 68 L64 56" stroke="rgba(255,255,255,.45)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-word"></div>
+    <span class="loader-tag">Outdoor Equipment Co.</span>
+    <div class="loader-bar"><i></i></div>
+    <span class="loader-pct">LOADING <b>00</b> / 100</span>
+    <p class="loader-tips" style="transition:opacity .26s"></p>
+  </div>
+</div>
+
+<div id="layout-header"></div>
+
+<main>
+
+  <!-- ================= 1 · PAGE HERO ================= -->
+  <section class="phero" id="new" aria-label="Shop introduction">
+    <div class="phero-bg">
+      <img src="assets/shop_hero_image.webp" alt="Wall of shelving stacked with tents, packs and camp stoves in the Portland workshop" fetchpriority="high" />
+    </div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Shop</span>
+      </nav>
+
+      <span class="eyebrow">Full Catalogue · 214 Products</span>
+      <h1 class="d2" style="margin:1.1rem 0 1.2rem;max-width:20ch" data-split>Every tool we would<br />carry <span class="hl">ourselves.</span></h1>
+      
+      
+
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem">
+        <a class="btn solid lg" href="#all" data-magnetic>Shop all 214 products <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+        <a class="btn lg" href="contact.html">Ask a gear tech <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+      </div>
+    </div>
+
+    <div class="marquee" style="--mq-dur:46s;position:relative;z-index:2;margin-top:clamp(2.2rem,5vw,4rem)">
+      <div class="marquee-track fwd">
+        <span class="mq-item">Tents<i class="mq-dot"></i></span>
+        <span class="mq-item mq-outline">Sleep Systems<i class="mq-dot"></i></span>
+        <span class="mq-item">Packs<i class="mq-dot"></i></span>
+        <span class="mq-item mq-outline thin">Camp Kitchen<i class="mq-dot"></i></span>
+        <span class="mq-item">Lighting<i class="mq-dot"></i></span>
+        <span class="mq-item mq-outline">Technical Apparel<i class="mq-dot"></i></span>
+        <span class="mq-item">Field Repair Parts<i class="mq-dot"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2 · TOOLBAR + FILTERS + PRODUCT GRID ================= -->
+  <section class="sec bg-grid" id="all" aria-labelledby="all-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Catalogue</span>
+          <h2 class="d2 mt-l" id="all-h" data-split>Filter the <span class="hl">whole range.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Prices include duties for Europe and the UK. Reno dispatch is inside 48 hours, shipping is carbon-neutral, and every order over $120 ships free. Twelve of the most-carried pieces are shown below — the full range is one filter away.</p>
+        </div>
+      </div>
+
+      <div class="shop-grid">
+
+        <aside class="filters" id="filterPanel" aria-label="Product filters">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+            <b class="mono" style="flex:1 1 auto">Refine</b>
+            <button class="icon-btn hide-desk" id="filterClose" type="button" aria-label="Close filters" style="width:36px;height:36px;font-size:.7rem"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="fgroup">
+            <b>Category <i class="fa-solid fa-angle-down"></i></b>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">Shelters</span><span class="fn">38</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">Sleep</span><span class="fn">24</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">Packs</span><span class="fn">19</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">Camp Kitchen</span><span class="fn">31</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">Lighting</span><span class="fn">22</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">Apparel</span><span class="fn">40</span></label>
+          </div>
+
+          <div class="fgroup">
+            <b>Season rating <i class="fa-solid fa-angle-down"></i></b>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">4-season (winter)</span><span class="fn">27</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">3-season (shoulder)</span><span class="fn">46</span></label>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">2-season (summer)</span><span class="fn">33</span></label>
+          </div>
+
+          <div class="fgroup">
+            <b>Price range (USD) <i class="fa-solid fa-angle-down"></i></b>
+            <div class="rng">
+              <input type="number" min="0" max="2000" step="10" value="0" aria-label="Minimum price" />
+              <span>to</span>
+              <input type="number" min="0" max="2000" step="10" value="900" aria-label="Maximum price" />
+            </div>
+            <p class="mono" style="margin-top:.6rem">64% of the range sits under $300</p>
+          </div>
+
+          <div class="fgroup">
+            <b>Colour / finish <i class="fa-solid fa-angle-down"></i></b>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Blackout</span><span class="fn">96</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Graphite</span><span class="fn">58</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Desert sand</span><span class="fn">31</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Slate / sea</span><span class="fn">29</span></label>
+          </div>
+
+          <div class="fgroup">
+            <b>Availability <i class="fa-solid fa-angle-down"></i></b>
+            <label class="fopt"><input type="checkbox" checked /><span class="box"></span><span class="fl">In stock, ships 48h</span><span class="fn">176</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Limited run</span><span class="fn">21</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Backorder, 3 weeks</span><span class="fn">17</span></label>
+          </div>
+
+          <div class="fgroup">
+            <b>Rating <i class="fa-solid fa-angle-down"></i></b>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">4.5 and above</span><span class="fn">148</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">4.0 and above</span><span class="fn">189</span></label>
+            <label class="fopt"><input type="checkbox" /><span class="box"></span><span class="fl">Any rating</span><span class="fn">214</span></label>
+          </div>
+
+          <div class="fgroup" style="padding-bottom:0">
+            <button class="btn sm block" type="button"><i class="fa-solid fa-rotate-left"></i> Reset all filters</button>
+          </div>
+        </aside>
+
+        <div style="min-width:0">
+          <div class="fbar">
+            <div class="field" style="margin:0;flex:0 0 auto;min-width:168px">
+              <select id="sortSel" aria-label="Sort products">
+                <option value="feat">Featured</option>
+                <option value="lo">Price: low to high</option>
+                <option value="hi">Price: high to low</option>
+                <option value="az">Name: A to Z</option>
+                <option value="rate">Top rated</option>
+              </select>
+            </div>
+            <span class="fcount" id="shopCount">12 OF 12 PRODUCTS</span>
+            <span class="spacer"></span>
+            <button class="btn sm hide-desk" id="filterOpen" type="button" style="flex:0 0 auto"><i class="fa-solid fa-sliders"></i> Filters</button>
+            <div class="chip-scroll" id="shopChips" style="flex:1 1 200px;min-width:0">
+              <button class="chip on" type="button" data-cat="all" aria-pressed="true">All</button>
+              <button class="chip" type="button" data-cat="Shelters" aria-pressed="false">Shelters</button>
+              <button class="chip" type="button" data-cat="Sleep" aria-pressed="false">Sleep</button>
+              <button class="chip" type="button" data-cat="Packs" aria-pressed="false">Packs</button>
+              <button class="chip" type="button" data-cat="Camp Kitchen" aria-pressed="false">Camp Kitchen</button>
+              <button class="chip" type="button" data-cat="Lighting" aria-pressed="false">Lighting</button>
+              <button class="chip" type="button" data-cat="Apparel" aria-pressed="false">Apparel</button>
+            </div>
+          </div>
+
+          <div class="g g-3" id="productGrid" style="margin-top:clamp(1rem,1.6vw,1.6rem)">
+
+            <!-- 01 -->
+            <article class="pcard spot" data-item="sh-r2" data-cat="Shelters" data-price="389" data-rating="4.9" data-name="Ridgeline 2 Trekking-Pole Tent" data-reveal>
+              <div class="pcard-media">
+                <img src="assets/trekking_pole_tent.webp" alt="Ridgeline 2 trekking-pole tent pitched on a granite bench" loading="lazy" />
+                <div class="pcard-badges"><span class="badge">Best seller</span></div>
+                <button class="pcard-fav" type="button" data-wish="sh-r2" aria-label="Save Ridgeline 2 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="sh-r2" data-name="Ridgeline 2 Trekking-Pole Tent" data-price="389" data-cat="Shelters"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Shelters</span>
+                <b class="pcard-title">Ridgeline 2 Trekking-Pole Tent</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="cnt">4.9 (212)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$389.00</span>
+                  <button class="add-btn" type="button" data-add data-id="sh-r2" data-name="Ridgeline 2 Trekking-Pole Tent" data-price="389" data-cat="Shelters" aria-label="Add Ridgeline 2 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 02 -->
+            <article class="pcard" data-item="sh-v4" data-cat="Shelters" data-price="495" data-rating="4.8" data-name="Vault 4 Geodesic Dome" data-reveal style="--rd:70ms">
+              <div class="pcard-media">
+                <img src="assets/Geodesic_Dome.webp" alt="Vault 4 geodesic dome shelter on a snow bench" loading="lazy" />
+                <div class="pcard-badges"><span class="badge">New</span></div>
+                <button class="pcard-fav" type="button" data-wish="sh-v4" aria-label="Save Vault 4 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="sh-v4" data-name="Vault 4 Geodesic Dome" data-price="495" data-cat="Shelters"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Shelters</span>
+                <b class="pcard-title">Vault 4 Geodesic Dome</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.8 (146)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$495.00</span>
+                  <button class="add-btn" type="button" data-add data-id="sh-v4" data-name="Vault 4 Geodesic Dome" data-price="495" data-cat="Shelters" aria-label="Add Vault 4 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 03 -->
+            <article class="pcard" data-item="sl-c9" data-cat="Sleep" data-price="449" data-rating="4.9" data-name="Coldline 900 Down Bag" data-reveal="left" style="--rd:140ms">
+              <div class="pcard-media">
+                <img src="assets/downbag.webp" alt="Coldline 900 down sleeping bag unzipped on a snowfield" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">-24 &deg;C</span></div>
+                <button class="pcard-fav" type="button" data-wish="sl-c9" aria-label="Save Coldline 900 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="sl-c9" data-name="Coldline 900 Down Bag" data-price="449" data-cat="Sleep"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Sleep</span>
+                <b class="pcard-title">Coldline 900 Down Bag</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="cnt">4.9 (98)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$449.00</span>
+                  <button class="add-btn" type="button" data-add data-id="sl-c9" data-name="Coldline 900 Down Bag" data-price="449" data-cat="Sleep" aria-label="Add Coldline 900 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 04 -->
+            <article class="pcard" data-item="sl-t6" data-cat="Sleep" data-price="96" data-rating="4.7" data-name="Terra 6 Insulated Sleeping Mat" data-reveal style="--rd:60ms">
+              <div class="pcard-media">
+                <img src="assets/insulated_mat.webp" alt="Terra 6 insulated sleeping mat rolled beside a stove" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">R 4.2</span></div>
+                <button class="pcard-fav" type="button" data-wish="sl-t6" aria-label="Save Terra 6 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="sl-t6" data-name="Terra 6 Insulated Sleeping Mat" data-price="96" data-cat="Sleep"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Sleep</span>
+                <b class="pcard-title">Terra 6 Insulated Sleeping Mat</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.7 (201)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$96.00</span>
+                  <button class="add-btn" type="button" data-add data-id="sl-t6" data-name="Terra 6 Insulated Sleeping Mat" data-price="96" data-cat="Sleep" aria-label="Add Terra 6 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 05 -->
+            <article class="pcard" data-item="pk-h55" data-cat="Packs" data-price="420" data-rating="4.8" data-name="Haul 55 Expedition Pack" data-reveal="right" style="--rd:120ms">
+              <div class="pcard-media">
+                <img src="assets/Haul_55_Expedition_Pack.webp" alt="Haul 55 expedition pack loaded and stood upright on scree" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">Limited</span></div>
+                <button class="pcard-fav" type="button" data-wish="pk-h55" aria-label="Save Haul 55 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="pk-h55" data-name="Haul 55 Expedition Pack" data-price="420" data-cat="Packs"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Packs</span>
+                <b class="pcard-title">Haul 55 Expedition Pack</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.8 (76)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$420.00</span>
+                  <button class="add-btn" type="button" data-add data-id="pk-h55" data-name="Haul 55 Expedition Pack" data-price="420" data-cat="Packs" aria-label="Add Haul 55 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 06 -->
+            <article class="pcard" data-item="pk-f28" data-cat="Packs" data-price="138" data-rating="4.5" data-name="Ferry 28 Field Duffel" data-reveal style="--rd:190ms">
+              <div class="pcard-media">
+                <img src="assets/Field_Duffel.webp" alt="Ferry 28 field duffel bag lashed to a rafters rack" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">28 L</span></div>
+                <button class="pcard-fav" type="button" data-wish="pk-f28" aria-label="Save Ferry 28 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="pk-f28" data-name="Ferry 28 Field Duffel" data-price="138" data-cat="Packs"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Packs</span>
+                <b class="pcard-title">Ferry 28 Field Duffel</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.5 (63)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$138.00 <s>$165.00</s></span>
+                  <button class="add-btn" type="button" data-add data-id="pk-f28" data-name="Ferry 28 Field Duffel" data-price="138" data-cat="Packs" aria-label="Add Ferry 28 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 07 -->
+            <article class="pcard" data-item="ck-tk1" data-cat="Camp Kitchen" data-price="128" data-rating="4.7" data-name="Trail Kitchen Titanium Set" data-reveal style="--rd:50ms">
+              <div class="pcard-media">
+                <img src="assets/Trail_Kitchen_Titanium_Set.webp" alt="Trail Kitchen titanium pot set nesting on a camp stove" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">-18%</span></div>
+                <button class="pcard-fav" type="button" data-wish="ck-tk1" aria-label="Save Trail Kitchen Set to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="ck-tk1" data-name="Trail Kitchen Titanium Set" data-price="128" data-cat="Camp Kitchen"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Camp Kitchen</span>
+                <b class="pcard-title">Trail Kitchen Titanium Set</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.7 (341)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$128.00 <s>$156.00</s></span>
+                  <button class="add-btn" type="button" data-add data-id="ck-tk1" data-name="Trail Kitchen Titanium Set" data-price="128" data-cat="Camp Kitchen" aria-label="Add Trail Kitchen Set to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 08 -->
+            <article class="pcard" data-item="ck-s2" data-cat="Camp Kitchen" data-price="79" data-rating="4.6" data-name="Storm 2 Canister Stove" data-reveal="left" style="--rd:130ms">
+              <div class="pcard-media">
+                <img src="assets/canister_stove.webp" alt="Storm 2 canister stove burning under a pot at dusk" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">3.4 min</span></div>
+                <button class="pcard-fav" type="button" data-wish="ck-s2" aria-label="Save Storm 2 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="ck-s2" data-name="Storm 2 Canister Stove" data-price="79" data-cat="Camp Kitchen"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Camp Kitchen</span>
+                <b class="pcard-title">Storm 2 Canister Stove</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.6 (188)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$79.00</span>
+                  <button class="add-btn" type="button" data-add data-id="ck-s2" data-name="Storm 2 Canister Stove" data-price="79" data-cat="Camp Kitchen" aria-label="Add Storm 2 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 09 -->
+            <article class="pcard" data-item="lt-n750" data-cat="Lighting" data-price="92" data-rating="4.8" data-name="Nightwatch 750 Headlamp" data-reveal="right" style="--rd:200ms">
+              <div class="pcard-media">
+                <img src="assets/Nightwatch_Headlamp___Flask.webp" alt="Nightwatch 750 headlamp lighting a dark forest trail" loading="lazy" />
+                <div class="pcard-badges"><span class="badge">Best seller</span></div>
+                <button class="pcard-fav" type="button" data-wish="lt-n750" aria-label="Save Nightwatch 750 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="lt-n750" data-name="Nightwatch 750 Headlamp" data-price="92" data-cat="Lighting"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Lighting</span>
+                <b class="pcard-title">Nightwatch 750 Headlamp</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="cnt">4.8 (154)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$92.00</span>
+                  <button class="add-btn" type="button" data-add data-id="lt-n750" data-name="Nightwatch 750 Headlamp" data-price="92" data-cat="Lighting" aria-label="Add Nightwatch 750 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 10 -->
+            <article class="pcard" data-item="lt-sp28" data-cat="Lighting" data-price="149" data-rating="4.4" data-name="Solar 28 Power Bank" data-reveal style="--rd:40ms">
+              <div class="pcard-media">
+                <img src="assets/power_bank.webp" alt="Solar 28 power bank panel clipped to a pack lid" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">28 W</span></div>
+                <button class="pcard-fav" type="button" data-wish="lt-sp28" aria-label="Save Solar 28 to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="lt-sp28" data-name="Solar 28 Power Bank" data-price="149" data-cat="Lighting"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Lighting</span>
+                <b class="pcard-title">Solar 28 Power Bank</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.4 (117)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$149.00 <s>$179.00</s></span>
+                  <button class="add-btn" type="button" data-add data-id="lt-sp28" data-name="Solar 28 Power Bank" data-price="149" data-cat="Lighting" aria-label="Add Solar 28 to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 11 -->
+            <article class="pcard" data-item="ap-m200" data-cat="Apparel" data-price="198" data-rating="4.6" data-name="Merino 200 Base Layer Set" data-reveal style="--rd:110ms">
+              <div class="pcard-media">
+                <img src="assets/Merino_200_Base_Set.webp" alt="Merino 200 base layer top and leggings folded flat" loading="lazy" />
+                <div class="pcard-badges"><span class="badge soft">17.5 micron</span></div>
+                <button class="pcard-fav" type="button" data-wish="ap-m200" aria-label="Save Merino 200 Set to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="ap-m200" data-name="Merino 200 Base Layer Set" data-price="198" data-cat="Apparel"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Apparel</span>
+                <b class="pcard-title">Merino 200 Base Layer Set</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.6 (88)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$198.00</span>
+                  <button class="add-btn" type="button" data-add data-id="ap-m200" data-name="Merino 200 Base Layer Set" data-price="198" data-cat="Apparel" aria-label="Add Merino 200 Set to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 12 -->
+            <article class="pcard spot" data-item="ap-rx3" data-cat="Apparel" data-price="312" data-rating="4.7" data-name="Ridgeline 3L Hard Shell" data-reveal="right" style="--rd:180ms">
+              <div class="pcard-media">
+                <img src="assets/3L_Hard_Shell.webp" alt="Ridgeline 3L hard shell jacket worn on a wet ridgeline" loading="lazy" />
+                <div class="pcard-badges"><span class="badge">Field pick</span></div>
+                <button class="pcard-fav" type="button" data-wish="ap-rx3" aria-label="Save Ridgeline 3L to wishlist"><i class="fa-regular fa-heart"></i></button>
+                <div class="pcard-quick">
+                  <button class="btn sm solid" style="flex:1" type="button" data-add data-id="ap-rx3" data-name="Ridgeline 3L Hard Shell" data-price="312" data-cat="Apparel"><span>Add to cart</span></button>
+                </div>
+              </div>
+              <div class="pcard-body">
+                <span class="pcard-cat">Apparel</span>
+                <b class="pcard-title">Ridgeline 3L Hard Shell</b>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="cnt">4.7 (231)</span></div>
+                <div class="pcard-row">
+                  <span class="price">$312.00</span>
+                  <button class="add-btn" type="button" data-add data-id="ap-rx3" data-name="Ridgeline 3L Hard Shell" data-price="312" data-cat="Apparel" aria-label="Add Ridgeline 3L to cart"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="cta-box" style="margin-top:clamp(2rem,4vw,3.2rem);padding:clamp(1.4rem,3vw,2.2rem)">
+            <div style="display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between">
+              <div>
+                <b class="d4" style="display:block;margin-bottom:.3rem">Not sure which shelter you need?</b>
+                <p class="dim" style="font-size:.9rem;max-width:52ch">Send us the route, the season and your base weight. A gear tech replies inside one business day with a capped kilogram figure — no upsell, no commission.</p>
+              </div>
+              <a class="btn dark solid" href="contact.html">Ask a gear tech <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="drawer-scrim" id="filterScrim"></div>
+
+  <!-- ================= 3 · CATEGORY SPOTLIGHTS ================= -->
+  <section class="sec bg-lines" id="systems" aria-labelledby="sys-h">
+    <div class="blob w" style="top:-8%;left:-16%;opacity:.09"></div>
+    <div class="blob w" style="bottom:-24%;right:-12%;opacity:.07"></div>
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Six Systems</span>
+          <h2 class="d2 mt-l" id="sys-h" data-split>Start with the <span class="hl">system</span><br />you need most.</h2>
+        </div>
+        <div>
+          <p class="lead">Every category shares the same brief: fewer parts, better materials, and a manual that tells you how to fix it yourself. Pick a system to jump straight into the matching products.</p>
+          <div class="chip-row" style="margin-top:1.4rem">
+            <span class="chip"><i class="fa-solid fa-tent"></i> Shelters</span>
+            <span class="chip"><i class="fa-solid fa-bed"></i> Sleep</span>
+            <span class="chip"><i class="fa-solid fa-bag-shopping"></i> Packs</span>
+            <span class="chip"><i class="fa-solid fa-fire-burner"></i> Kitchen</span>
+            <span class="chip"><i class="fa-solid fa-battery-full"></i> Lighting</span>
+            <span class="chip"><i class="fa-solid fa-shirt"></i> Apparel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="g g-12" style="position:relative;z-index:1">
+
+        <article class="c-7 move-l" data-reveal="left">
+          <a class="spot spot-lg" id="tents" href="#all" style="display:flex;flex-direction:column;height:100%">
+            <div class="sys-media">
+              <img src="assets/trunks.webp" alt="Three trekking-pole tents pitched in a row on an alpine bench" loading="lazy" data-parallax="0.06" style="filter:contrast(1.1) brightness(.8);height:120%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">01 / Shelters</span>
+            </div>
+            <div class="spot-pad sys-body">
+              <b class="d4 sys-title">Tents, Tarps &amp; Trunks</b>
+              <span class="mono dim sys-sub">38 products · from $164</span>
+              <ul class="sys-list">
+                <li><i class="fa-solid fa-check"></i> Geodesic vaults, trekking-pole tarps and 4-season domes from 1.2 to 4.6 kg</li>
+                <li><i class="fa-solid fa-check"></i> Every flysheet is single-polymer, 40D ripstop, PFC-free</li>
+                <li><i class="fa-solid fa-check"></i> Field-replaceable pole sections, 8-sleeve repair kit in the door pocket</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-5 move-r" data-reveal="right" style="margin-top:clamp(0px,5vw,4.4rem)">
+          <a class="spot spot-lg" id="sleep" href="#all" style="display:flex;flex-direction:column;height:100%">
+            <div class="sys-media">
+              <img src="assets/sleep_shop (1).webp" alt="Down sleeping bag opened flat inside a snow shelter" loading="lazy" data-parallax="0.05" style="filter:contrast(1.1) brightness(.8);height:120%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">02 / Sleep</span>
+            </div>
+            <div class="spot-pad sys-body">
+              <b class="d4 sys-title">Sleep Systems</b>
+              <span class="mono dim sys-sub">24 products · from $58</span>
+              <ul class="sys-list">
+                <li><i class="fa-solid fa-check"></i> 850-fill RDS down and 100% recycled synthetic, rated +10 to -24 &deg;C</li>
+                <li><i class="fa-solid fa-check"></i> Baffles are individually replaceable, not bonded into the shell</li>
+                <li><i class="fa-solid fa-check"></i> Mats tested to R 4.2 and R 6.8 on the ASTM standard</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-6 move-l" data-reveal="left" style="margin-top:clamp(0px,3vw,2.2rem)">
+          <a class="spot spot-lg" id="packs" href="#all" style="display:flex;flex-direction:column;height:100%">
+            <div class="sys-media">
+              <img src="assets/packs_and_duffles_shop.webp" alt="Expedition pack with lid open showing the internal frame" loading="lazy" data-parallax="0.07" style="filter:contrast(1.1) brightness(.8);height:120%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">03 / Packs</span>
+            </div>
+            <div class="spot-pad sys-body">
+              <b class="d4 sys-title">Packs &amp; Duffels</b>
+              <span class="mono dim sys-sub">19 products · 22 to 68 L</span>
+              <ul class="sys-list">
+                <li><i class="fa-solid fa-check"></i> 7075 alloy stays, re-tensioned free for the life of the pack</li>
+                <li><i class="fa-solid fa-check"></i> Load transfer carries 24 kg before the shoulder harness takes over</li>
+                <li><i class="fa-solid fa-check"></i> Belt, buckle and zip sliders all stocked as service parts since 2011</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-6 move-r" data-reveal="right" style="margin-top:clamp(0px,6vw,5.2rem)">
+          <a class="spot spot-lg" id="cooking" href="#all" style="display:flex;flex-direction:column;height:100%">
+            <div class="sys-media">
+              <img src="assets/camp_kitchen_shop.webp" alt="Titanium cook pot boiling on a small canister stove at a campsite" loading="lazy" data-parallax="0.05" style="filter:contrast(1.1) brightness(.8);height:120%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">04 / Camp Kitchen</span>
+            </div>
+            <div class="spot-pad sys-body">
+              <b class="d4 sys-title">Camp Kitchen</b>
+              <span class="mono dim sys-sub">31 products · 340 g full set</span>
+              <ul class="sys-list">
+                <li><i class="fa-solid fa-check"></i> Grade 1 titanium, no coatings, boil a litre in 3 min 20 s</li>
+                <li><i class="fa-solid fa-check"></i> Press-fit handles and 100% recyclable alloys, no laminates</li>
+                <li><i class="fa-solid fa-check"></i> Jets, seals and piezo igniters sold separately, guaranteed for 15 years</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-4 move-l" data-reveal="left" style="margin-top:clamp(0px,2vw,1.4rem)">
+          <a class="spot spot-lg" id="apparel" href="#all" style="display:flex;flex-direction:column;height:100%">
+            <div class="sys-media sys-media-short">
+              <img src="assets/technical_apparel_shop (1).webp" alt="Technical apparel drying on a line at a wet camp" loading="lazy" style="filter:contrast(1.1) brightness(.8);height:100%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">05 / Apparel</span>
+            </div>
+            <div class="spot-pad sys-body">
+              <b class="d4 sys-title">Technical Apparel</b>
+              <span class="mono dim sys-sub">40 products</span>
+              <ul class="sys-list">
+                <li><i class="fa-solid fa-check"></i> 17.5 micron merino, 3-layer shells, gaiters and socks</li>
+                <li><i class="fa-solid fa-check"></i> Zips and cuffs replaced individually, not by the whole garment</li>
+                <li><i class="fa-solid fa-check"></i> Every seam taped on the inside, so repairs stay reachable</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-8 move-r" data-reveal="right" style="margin-top:clamp(0px,4vw,3.2rem)">
+          <a class="spot spot-lg" id="lighting" href="#all" style="display:flex;flex-direction:column;height:100%">
+            <div class="sys-media sys-media-short">
+              <img src="assets/lightening_and_power_shop.webp" alt="Headlamp and lantern lighting a tent at 2am in heavy cloud" loading="lazy" data-parallax="0.08" style="filter:contrast(1.1) brightness(.8);height:120%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">06 / Lighting &amp; Power</span>
+            </div>
+            <div class="spot-pad sys-body">
+              <b class="d4 sys-title">Lighting &amp; Power</b>
+              <span class="mono dim sys-sub">22 products · tested over 40 night camps</span>
+              <ul class="sys-list">
+                <li><i class="fa-solid fa-check"></i> 750 lumen headlamps rated to -30 &deg;C with hold-at-ignition burners</li>
+                <li><i class="fa-solid fa-check"></i> Solar banks with replaceable 21700 cells, not glued-in packs</li>
+                <li><i class="fa-solid fa-check"></i> USB-C on every light since revision 3, so one cable covers the whole kit</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 · DEAL OF THE WEEK ================= -->
+  <section class="sec" id="deal" aria-labelledby="deal-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Deal Of The Week</span>
+          <h2 class="d2 mt-l" id="deal-h" data-split>Seven days.<br />One <span class="hl">allocation.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Each week we release a single limited run from the workshop, priced below the standing catalogue and capped hard so nobody buys a pallet. When the meter hits zero the price goes back up and the page says so.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-band">
+      <div class="wrap">
+        <div style="display:grid;gap:clamp(1.8rem,3.4vw,3rem);grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:center">
+
+          <div>
+            <span class="eyebrow inv" style="color:var(--mute-dark)">Vault 4 Geodesic Dome · Run 041</span>
+            <h3 class="d2" style="margin:1rem 0 .8rem;font-size:clamp(1.8rem,3.6vw,3rem)">Allocation closes in</h3>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.5rem,1.4vw,1.2rem);margin:clamp(1.2rem,2.4vw,2rem) 0">
+              <div style="border-left:2px solid rgba(0,0,0,.18);padding-left:.9rem">
+                <b class="d3 tnum" id="cdD" style="display:block">07</b>
+                <span class="mono" style="color:var(--mute-dark)">Days</span>
+              </div>
+              <div style="border-left:2px solid rgba(0,0,0,.18);padding-left:.9rem">
+                <b class="d3 tnum" id="cdH" style="display:block">00</b>
+                <span class="mono" style="color:var(--mute-dark)">Hours</span>
+              </div>
+              <div style="border-left:2px solid rgba(0,0,0,.18);padding-left:.9rem">
+                <b class="d3 tnum" id="cdM" style="display:block">00</b>
+                <span class="mono" style="color:var(--mute-dark)">Minutes</span>
+              </div>
+              <div style="border-left:2px solid rgba(0,0,0,.18);padding-left:.9rem">
+                <b class="d3 tnum" id="cdS" style="display:block">00</b>
+                <span class="mono" style="color:var(--mute-dark)">Seconds</span>
+              </div>
+            </div>
+
+            <div class="feat" style="gap:0">
+              <div class="feat-row" style="border-bottom-color:rgba(0,0,0,.12)">
+                <span class="feat-ic" style="border-color:rgba(0,0,0,.18);color:var(--ink)"><i class="fa-solid fa-box-open"></i></span>
+                <div><b>240 units, then it is gone</b><p>Run 041 is capped at 240 shelters. We do not re-cut fabric for a second run.</p></div>
+              </div>
+              <div class="feat-row" style="border-bottom-color:rgba(0,0,0,.12)">
+                <span class="feat-ic" style="border-color:rgba(0,0,0,.18);color:var(--ink)"><i class="fa-solid fa-wrench"></i></span>
+                <div><b>Free 10-year parts plan</b><p>Poles, hubs, zips and sleeves for this run ship free for a decade.</p></div>
+              </div>
+              <div class="feat-row" style="border-bottom:0">
+                <span class="feat-ic" style="border-color:rgba(0,0,0,.18);color:var(--ink)"><i class="fa-solid fa-truck-fast"></i></span>
+                <div><b>Ships in 48 hours from Reno</b><p>Carbon-neutral road freight, tracked door to door, duties prepaid in Europe.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <article class="spot spot-lg" data-reveal="scale" style="--rd:120ms">
+            <div style="position:relative;aspect-ratio:16/10;overflow:hidden">
+              <img src="assets/dome__shop.webp" alt="Vault 4 geodesic dome shelter pitched at dusk on snow" loading="lazy" style="filter:contrast(1.1) brightness(.8);height:100%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.9rem;left:.9rem;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)">-20% this week</span>
+            </div>
+            <div class="spot-pad">
+              <span class="pcard-cat">Shelters · 4-season</span>
+              <b class="d4" style="display:block;margin:.55rem 0 .35rem">Vault 4 Geodesic Dome</b>
+              <p class="dim" style="font-size:.88rem">Four-season geodesic, 3.80 kg packed, 20D flysheet with a single-pole hub so one person can pitch it in eleven minutes. Rated to -30 &deg;C with two vestibules and a vaulted floor.</p>
+
+              <div class="price" style="margin:1.2rem 0 .3rem;font-size:clamp(1.7rem,3.2vw,2.4rem)">$495.00 <s>$620.00</s></div>
+              <span class="mono" style="color:var(--mute-2)">Save $125.00 · SKU VLT4-R041</span>
+
+              <div style="display:flex;align-items:center;gap:.9rem;margin:1.1rem 0 1.2rem">
+                <div class="bar-mini" data-w="72" style="flex:1 1 auto"><i></i></div>
+                <span class="mono" style="flex:0 0 auto">72% allocated</span>
+              </div>
+
+              <button class="btn dark solid block" type="button" data-add data-id="sh-v4" data-name="Vault 4 Geodesic Dome" data-price="495" data-cat="Shelters">
+                Add to cart <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="mq-band skew">
+      <div class="marquee" style="--mq-dur:40s">
+        <div class="marquee-track fwd">
+          <span class="mq-item">Limited run</span><i class="mq-dot"></i>
+          <span class="mq-item">Ships in 48 hours</span><i class="mq-dot"></i>
+          <span class="mq-item">Free repair kit</span><i class="mq-dot"></i>
+          <span class="mq-item">Carbon-neutral freight</span><i class="mq-dot"></i>
+          <span class="mq-item">15-year parts stock</span><i class="mq-dot"></i>
+          <span class="mq-item">Duties prepaid</span><i class="mq-dot"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5 · COMPARISON TABLE + BUYING GUIDE ================= -->
+  <section class="sec bg-dots" id="compare" aria-labelledby="cmp-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Side By Side</span>
+          <h2 class="d2 mt-l" id="cmp-h" data-split>Three families.<br />One honest <span class="hl">table.</span></h2>
+        </div>
+        <div>
+          <p class="lead">The same three shelters we sell to nearly everyone, measured the same way. No asterisks, no "from" pricing, and no row we have quietly left out because the numbers looked bad.</p>
+        </div>
+      </div>
+
+      <div class="g g-12" style="align-items:start">
+        <div class="c-7 move-l" data-reveal="left">
+          <div class="table-wrap">
+            <div class="tbl-scroll">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th scope="col">Specification</th>
+                    <th scope="col">Ridgeline 2</th>
+                    <th scope="col" class="t-strong">Trailpitch 1</th>
+                    <th scope="col">Vault 4</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="t-strong">Packed weight</td>
+                    <td>1.90 kg</td>
+                    <td class="t-strong">1.42 kg</td>
+                    <td>3.80 kg</td>
+                  </tr>
+                  <tr>
+                    <td class="t-strong">Season rating</td>
+                    <td>3-season</td>
+                    <td class="t-strong">2-season</td>
+                    <td>4-season</td>
+                  </tr>
+                  <tr>
+                    <td class="t-strong">Warranty</td>
+                    <td>15 yr structural</td>
+                    <td class="t-strong">15 yr structural</td>
+                    <td>15 yr structural</td>
+                  </tr>
+                  <tr>
+                    <td class="t-strong">Repairability</td>
+                    <td>Field kit, 12 min</td>
+                    <td class="t-strong">Field kit, 8 min</td>
+                    <td>Field kit, 14 min</td>
+                  </tr>
+                  <tr>
+                    <td class="t-strong">Materials</td>
+                    <td>7075 alloy / 30D</td>
+                    <td class="t-strong">7001 alloy / 15D</td>
+                    <td>7075 alloy / 20D</td>
+                  </tr>
+                  <tr>
+                    <td class="t-strong">Price</td>
+                    <td>$389.00</td>
+                    <td class="t-strong">$268.00</td>
+                    <td>$495.00</td>
+                  </tr>
+                  <tr>
+                    <td class="t-strong">Best use</td>
+                    <td>Loaded alpine trips</td>
+                    <td class="t-strong">Fast and light, 3 nights</td>
+                    <td>Basecamp and winter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="stat-grid" style="margin-top:clamp(1.6rem,3vw,2.4rem)" data-reveal>
+            <div class="stat-item"><b class="tnum" data-count="90" data-suffix=" km/h" data-decimals="0">0</b><small>Gust rating, all 3</small></div>
+            <div class="stat-item"><b class="tnum" data-count="1.42" data-decimals="2" data-suffix=" kg">0</b><small>Lightest shelter</small></div>
+            <div class="stat-item"><b class="tnum" data-count="15" data-suffix=" yr">0</b><small>Parts stock held</small></div>
+            <div class="stat-item"><b class="tnum" data-count="98.6" data-decimals="1" data-suffix="%">0</b><small>Field-repair success</small></div>
+          </div>
+        </div>
+
+        <div class="c-5 move-r" data-reveal="right" style="margin-top:clamp(0px,4vw,2.6rem)">
+          <article class="spot spot-pad" style="height:100%">
+            <div style="position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--r-m);margin-bottom:1.2rem">
+              <img src="assets/buying_guide.webp" alt="Gear technician comparing two shelters in the workshop" loading="lazy" style="filter:contrast(1.1) brightness(.85);height:100%;width:100%;object-fit:cover" />
+              <span class="tag" style="position:absolute;top:.8rem;left:.8rem;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)">Buying guide</span>
+            </div>
+            <b class="d4" style="display:block;margin-bottom:.3rem">Before you spend the money</b>
+            <p class="dim" style="font-size:.88rem;margin-bottom:.6rem">Three questions decide it in about ninety seconds. If you still cannot choose, a gear tech will answer with a hard number.</p>
+
+            <div class="acc">
+              <div class="acc-item on">
+                <button class="acc-btn" type="button" aria-expanded="true"><span class="num">01</span> What is your base weight? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner">
+                    <p>Under 9 kg base weight, take the Trailpitch 1 at 1.42 kg. Between 9 and 14 kg, the Ridgeline 2 gives you the floor area you want without punishing the load. Above 14 kg you should be splitting party weight, not buying a bigger tent.</p>
+                    <ul>
+                      <li><i class="fa-solid fa-check"></i> Under 9 kg: Trailpitch 1</li>
+                      <li><i class="fa-solid fa-check"></i> 9 to 14 kg: Ridgeline 2</li>
+                      <li><i class="fa-solid fa-check"></i> Snow loading: Vault 4 only</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="acc-item">
+                <button class="acc-btn" type="button" aria-expanded="false"><span class="num">02</span> Will you be out in real winter cold? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner">
+                    <p>Below -5 &deg;C with overnight snow on the roof, the two- and three-season shelters are the wrong purchase. Only the Vault 4 has a vaulted floor, snow skirts and poles rated to -30 &deg;C. Anything warmer and you are paying 1.5 kg for a privilege you will not use.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="acc-item">
+                <button class="acc-btn" type="button" aria-expanded="false"><span class="num">03</span> How many people actually need floor space? <span class="acc-ico"><i class="fa-solid fa-chevron-down"></i></span></button>
+                <div class="acc-panel">
+                  <div class="acc-inner">
+                    <p>Measure the floor at the shoulder, not the hip — the published dimensions are peak height and widest point. Two people in a three-person shelter is comfortable; three people in a four-season dome is roomy. Where you buy it does not change that.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a class="link-u" style="margin-top:1.4rem" href="contact.html">Ask us instead <i class="fa-solid fa-arrow-right-long"></i></a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 · REVIEWS + SERVICE PROMISES + CTA ================= -->
+  <section class="sec bg-dash" id="reviews" aria-labelledby="rev-h">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div>
+          <span class="eyebrow">Field Reports</span>
+          <h2 class="d2 mt-l" id="rev-h" data-split>Twelve thousand<br />people <span class="hl">already packed.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Reviews are only published from confirmed orders, and we publish the three-star ones too. If a product fails on you, the honest review of it appears here within a week.</p>
+        </div>
+      </div>
+
+      <div class="tst" data-reveal="scale">
+        <div class="tst-grid">
+          <div class="tst-col">
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Ordered the Vault 4 on a Tuesday, it was on a mountain in Norway by Friday. The single-pole hub genuinely means one person can pitch it — I have watched two people fight over a dome for twenty minutes before.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/Arjun.webp" alt="Portrait of Marion K." loading="lazy" /></span>
+                <span><b>Marion K.</b><small>Hordaland, Norway</small></span>
+              </div>
+            </div>
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Three weeks of two-person trips with the Trail Kitchen set and not one boil over. It genuinely nests into its own lid, which sounds trivial until you are the one packing at six in the morning.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/Priya_nair.webp" alt="Portrait of Priya N." loading="lazy" /></span>
+                <span><b>Priya N.</b><small>Almaty, Kazakhstan</small></span>
+              </div>
+            </div>
+          </div>
+          <div class="tst-col">
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>My pack frame creaked at 22 kg in week two. Sent a photo on a Sunday night, got a re-tension note and a replacement stay on Tuesday, no charge and no argument. That is why I have bought four more things.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/tomas.webp" alt="Portrait of Rafael S." loading="lazy" /></span>
+                <span><b>Rafael S.</b><small>El Chaltén, Argentina</small></span>
+              </div>
+            </div>
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+              <p>Nightwatch 750 ran eight hours on high through a full trip. I have owned brighter lamps, but this is the first one that has not dimmed into uselessness by the third night.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/kawai.webp" alt="Portrait of Tomas L." loading="lazy" /></span>
+                <span><b>Tomas L.</b><small>Whitehorse, Canada</small></span>
+              </div>
+            </div>
+          </div>
+          <div class="tst-col">
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Ran the sleep system through the 60-night trial. One zip slider failed on night 52, it was replaced free, and I got a technician's note explaining exactly why. Nobody does that.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/elena.webp" alt="Portrait of Anneke B." loading="lazy" /></span>
+                <span><b>Anneke B.</b><small>Rotterdam, Netherlands</small></span>
+              </div>
+            </div>
+            <div class="tst-card">
+              <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+              <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>Ordered in the States, delivered in Innsbruck four days later with duties already paid. The packaging was all recyclable and there was not a single plastic tie in the box.</p>
+              <div class="tst-who">
+                <span class="av"><img src="assets/rajan.webp" alt="Portrait of Dev R." loading="lazy" /></span>
+                <span><b>Dev R.</b><small>Innsbruck, Austria</small></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-grid" style="margin-top:clamp(2rem,4vw,3rem)" data-reveal>
+        <div class="stat-item"><b class="tnum" data-count="4.8" data-decimals="1">0</b><small>Average rating</small></div>
+        <div class="stat-item"><b class="tnum" data-count="12480" data-suffix="">0</b><small>Verified reviews</small></div>
+        <div class="stat-item"><b class="tnum" data-count="60" data-suffix=" nights">0</b><small>Free trial window</small></div>
+        <div class="stat-item"><b class="tnum" data-count="214" data-suffix="" data-prefix="+">0</b><small>Products in stock</small></div>
+      </div>
+
+      <div class="g g-3" style="margin-top:clamp(2.2rem,4.5vw,3.6rem)">
+        <article class="spot spot-pad" data-reveal>
+          <span class="icon-btn" aria-hidden="true" style="margin-bottom:1.1rem"><i class="fa-solid fa-moon"></i></span>
+          <b class="d4" style="display:block;margin-bottom:.45rem">Sixty-night trail trial</b>
+          <p class="dim" style="font-size:.88rem">Use it for two months of real trips. If it does not hold up we repair or replace it free and send a technician's note on the failure. We ask for photographs because the failure data is how revision four exists.</p>
+          <div class="chip-row" style="margin-top:1.1rem">
+            <span class="chip"><i class="fa-solid fa-check"></i> No return shipping</span>
+            <span class="chip"><i class="fa-solid fa-check"></i> No restocking fee</span>
+          </div>
+        </article>
+
+        <article class="spot spot-pad" data-reveal style="--rd:90ms">
+          <span class="icon-btn" aria-hidden="true" style="margin-bottom:1.1rem"><i class="fa-solid fa-leaf"></i></span>
+          <b class="d4" style="display:block;margin-bottom:.45rem">Carbon-neutral shipping</b>
+          <p class="dim" style="font-size:.88rem">Every parcel leaves Reno on road and sea freight with verified offsets, in paper and recycled board only. Europe and the UK receive in four to seven working days with duties calculated at checkout so nothing is owed on the door.</p>
+          <div class="chip-row" style="margin-top:1.1rem">
+            <span class="chip"><i class="fa-solid fa-check"></i> Free over $120</span>
+            <span class="chip"><i class="fa-solid fa-check"></i> Duties prepaid</span>
+          </div>
+        </article>
+
+        <article class="spot spot-pad" data-reveal style="--rd:180ms">
+          <span class="icon-btn" aria-hidden="true" style="margin-bottom:1.1rem"><i class="fa-solid fa-infinity"></i></span>
+          <b class="d4" style="display:block;margin-bottom:.45rem">Lifetime parts, not lifetime excuses</b>
+          <p class="dim" style="font-size:.88rem">Poles, hubs, zips, sliders, buckles, gaskets, stove jets and fabric panels stay in the catalogue for fifteen years, including for models retired a decade ago. Owners keep a permanent 20% parts discount.</p>
+          <div class="chip-row" style="margin-top:1.1rem">
+            <span class="chip"><i class="fa-solid fa-check"></i> 184k repairs done</span>
+            <span class="chip"><i class="fa-solid fa-check"></i> 96% recyclable</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-box" style="margin-top:clamp(2.4rem,5vw,4rem)" data-reveal="scale">
+        <div style="display:grid;gap:clamp(1.6rem,4vw,3.4rem);align-items:center;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+          <div>
+            <span class="eyebrow inv">Still Deciding</span>
+            <h2 class="d2" style="margin:1rem 0 1rem" data-split>Tell us the route.<br />We will cap the <span class="hl dark">kilograms.</span></h2>
+            <p class="lead inv">Send the trail, the dates and your base weight. A gear tech replies within one business day with a load list and a hard gram figure — no commission, no affiliate links, no "while stocks last".</p>
+          </div>
+          <div>
+            <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.4rem">
+              <a class="btn dark solid lg" href="contact.html" data-magnetic>Talk to a gear tech <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+              <a class="btn dark lg" href="journal.html">Route guides <i class="fa-solid fa-arrow-right-long fa-arrow"></i></a>
+            </div>
+            <div class="chip-row">
+              <span class="chip dark"><i class="fa-solid fa-check"></i> Reply in one business day</span>
+              <span class="chip dark"><i class="fa-solid fa-check"></i> No commission</span>
+              <span class="chip dark"><i class="fa-solid fa-check"></i> Human written</span>
+            </div>
+            <p class="mono" style="margin-top:1.2rem">Workshop open Wed to Sat · 09:00 to 17:00 PT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="layout-footer"></div>
+
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* deal of the week — allocation closes seven days after this page loads */
+(function () {
+  var d = document.getElementById('cdD'), h = document.getElementById('cdH'),
+      m = document.getElementById('cdM'), s = document.getElementById('cdS');
+  if (!d || !h || !m || !s) return;
+  var endAt = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var t = Math.max(0, Math.floor((endAt - new Date().getTime()) / 1000));
+    d.textContent = pad(Math.floor(t / 86400));
+    h.textContent = pad(Math.floor(t % 86400 / 3600));
+    m.textContent = pad(Math.floor(t % 3600 / 60));
+    s.textContent = pad(t % 60);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>

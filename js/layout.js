@@ -273,11 +273,11 @@
           '</div>' +
           '<div style="display:grid;gap:.5rem;justify-items:start">' +
             '<span class="mono dim">Accepted payments</span>' +
-            '<div class="pay-row"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>PAYPAL</span><span>APPLE PAY</span><span>KLARNA</span></div>' +
+            '<div class="pay-row"><a href="404.html" data-404>VISA</a><a href="404.html" data-404>MASTERCARD</a><a href="404.html" data-404>AMEX</a><a href="404.html" data-404>PAYPAL</a><a href="404.html" data-404>APPLE PAY</a><a href="404.html" data-404>KLARNA</a></div>' +
           '</div>' +
           '<div style="display:grid;gap:.5rem;justify-items:start">' +
             '<span class="mono dim">Regional hubs</span>' +
-            '<div class="chip-row"><span class="chip">Portland</span><span class="chip">Reno</span><span class="chip">Boulder</span><span class="chip">Innsbruck</span></div>' +
+            '<div class="chip-row"><a class="chip" href="404.html" data-404>Portland</a><a class="chip" href="404.html" data-404>Reno</a><a class="chip" href="404.html" data-404>Boulder</a><a class="chip" href="404.html" data-404>Innsbruck</a></div>' +
           '</div>' +
         '</div>' +
 

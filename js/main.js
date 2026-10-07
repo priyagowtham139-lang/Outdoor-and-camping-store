@@ -85,7 +85,15 @@
         }, 260);
       }, REDUCED ? 60 : 480);
     }
-    return { init: init, start: function () { if (!el) { done = true; return; } requestAnimationFrame(tick); } };
+    return { init: init, start: function () {
+      if (!el) {
+        done = true;
+        document.body.classList.add('loaded');
+        document.dispatchEvent(new CustomEvent('stackly:ready'));
+        return;
+      }
+      requestAnimationFrame(tick);
+    } };
   })();
 
   /* =======================================================================
